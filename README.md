@@ -1,7 +1,9 @@
 # SnowCore
-A web app that allows users to see historical snowfall and receive alerts for new snowfall in the three valleys area. 
+## A web app that allows users to see historical snowfall and receive alerts for new snowfall in the three valleys area. 
 
-## Getting Started
+Use dev branch to make any changes.
+
+### Getting Started
 ```
 git init
 ```
