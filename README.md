@@ -25,8 +25,8 @@ npm run start
 3. Website should automatically open. (Can be found at localhost:3000)
 
 # Video showing how to get started
-## Same process even tho im using Linux
-### My laptop is extremly slow, yours should load faster
+Same process even tho im using Linux
+My laptop is extremly slow, yours should load faster
 
 ![walkthrough](https://user-images.githubusercontent.com/64266031/153695438-7455b4c0-7d50-4387-8aab-41c1121dacea.gif)
 
