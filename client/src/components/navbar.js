@@ -30,7 +30,7 @@ function NavBar(){
               href="#"
               className="w-14 rounded flex "
             >
-              <h1 className='flex bg-primary p-2 rounded-md text-white'> SNOWCORE. </h1>
+              <h1 className='flex bg-primary p-2 rounded-md text-white text-xl'> SNOWCORE. </h1>
             </a>
             <button onClick={toggleNav} className="flex items-center justify-center p-0.5 bg-gray-200 rounded-md shadow-md roundedfocus:outline-none focus:ring-1 focus:ring-gray-500">
               <MdOutlineNavigateBefore size={30} />
@@ -47,12 +47,12 @@ function NavBar(){
               <div
                 className="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none"
               >
-                <MdOutlineSpaceDashboard />
+                <MdOutlineSpaceDashboard size={30} className="ml-2" />
 
               </div>
               <a
                 href="/"
-                className="inline-block w-full py-2 pl-8 pr-4 text-m rounded hover:bg-primary focus:outline-none hover:text-white focus:bg-primary focus:text-white text-primary"
+                className="inline-block w-full py-2 pl-14 text-m rounded hover:bg-primary focus:outline-none hover:text-white focus:bg-primary focus:text-white text-primary"
               >Home</a
               >
             </li>
@@ -60,27 +60,27 @@ function NavBar(){
             <div
                 className="relative flex justify-between text-gray-50 text-primary hover:text-white"
               >
-                <div className="flex items-center w-full">
+                <div className="flex items-center w-full flex-row">
                   <div
                     className="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none text-gray-500"
                   >
-                    <CgProfile />
+                    <CgProfile size={30} className="ml-2"/>
                   </div>
                   <a href='/profile'
-                    className="inline-block w-full py-2 pl-8 pr-4 text-m rounded hover:bg-primary focus:outline-none hover:text-white focus:ring-1 focus:ring-gray-500 focus:bg-primary focus:text-white text-primary"
+                    className="inline-block w-full py-2 pl-14 text-m rounded hover:bg-primary focus:outline-none hover:text-white focus:ring-1 focus:ring-gray-500 focus:bg-primary focus:text-white text-primary"
                   >Profile</a>
                 </div>
               </div>
             </li>
             <li className="relative text-gray-500 hover:text-white focus-within:text-white">
               <div
-                className="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none"
+                className="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none hover:text-white"
               >
-                <AiOutlineStar />
+                <AiOutlineStar size={30} className="ml-2"/>
               </div>
               <a
                 href="#"
-                className="inline-block w-full py-2 pl-8 pr-4 text-m rounded hover:bg-primary focus:outline-none focus:ring-1 focus:ring-gray-500 focus:bg-primary focus:text-white"
+                className="inline-block w-full py-2 pl-14  text-m rounded hover:bg-primary focus:outline-none focus:ring-1 focus:ring-gray-500 focus:bg-primary focus:text-white"
               >Favourites</a
               >
             </li>
@@ -88,11 +88,11 @@ function NavBar(){
               <div
                 className="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none"
               >
-                <IoBookOutline />
+                <IoBookOutline size={30} className="ml-2"/>
               </div>
               <a
                 href="#"
-                className="inline-block w-full py-2 pl-8 pr-4 text-m rounded hover:bg-primary focus:outline-none focus:ring-1 focus:ring-gray-500 focus:bg-primary focus:text-white"
+                className="inline-block w-full py-2 pl-14 text-m rounded hover:bg-primary focus:outline-none focus:ring-1 focus:ring-gray-500 focus:bg-primary focus:text-white"
               >Resorts</a
               >
             </li>
@@ -100,11 +100,11 @@ function NavBar(){
               <div
                 className="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none"
               >
-                < IoPeopleOutline />
+                < IoPeopleOutline size={30} className="ml-2"/>
               </div>
               <a
                 href="#"
-                className="inline-block w-full py-2 pl-8 pr-4 text-m rounded hover:bg-primary focus:outline-none focus:ring-1 focus:ring-gray-500 focus:bg-primary focus:text-white"
+                className="inline-block w-full py-2 pl-14 text-m rounded hover:bg-primary focus:outline-none focus:ring-1 focus:ring-gray-500 focus:bg-primary focus:text-white"
               >About Us</a
               >
             </li>
@@ -134,11 +134,11 @@ function NavBar(){
               <div
                 className="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none"
               >
-                < AiOutlineSetting/>
+                < AiOutlineSetting size={30} className="ml-2"/>
               </div>
               <a
                 href="#"
-                className="inline-block w-full py-2 pl-8 pr-4 text-m rounded hover:bg-primary focus:outline-none focus:ring-1 focus:ring-gray-500 focus:bg-primary focus:text-white"
+                className="inline-block w-full py-2 pl-14 text-m rounded hover:bg-primary focus:outline-none focus:ring-1 focus:ring-gray-500 focus:bg-primary focus:text-white"
               >Settings</a
               >
             </li>
@@ -146,11 +146,11 @@ function NavBar(){
               <div
                 className="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none mt-2"
               >
-                <GoSignOut />
+                <GoSignOut size={30} className="ml-2"/>
               </div>
               <a
                 href="#"
-                className="inline-block w-full py-2 pl-8 pr-4 text-m rounded hover:bg-primary focus:outline-none focus:ring-1 focus:ring-gray-500 focus:bg-primary focus:text-white"
+                className="inline-block w-full py-2 pl-14 text-m rounded hover:bg-primary focus:outline-none focus:ring-1 focus:ring-gray-500 focus:bg-primary focus:text-white"
               >Sign Out</a
               >
             </li>
@@ -162,7 +162,7 @@ function NavBar(){
 
     {/* IN NAV */}
     <div id="bottomNav" className="float-left top-0 left-0 h-screen m-5 shadow-2xl flex justify-center min-h-screen  ">
-      <div className="w-20 bg-white rounded-tl-lg rounded-bl-lg">
+      <div className="w-24 bg-white rounded-tl-lg rounded-bl-lg">
 
 
         <div className="px-6 pt-8">
@@ -173,10 +173,10 @@ function NavBar(){
               href="#"
               className="flex "
             >
-              <h1 className='flex bg-primary p-2 rounded-md text-white'> SC. </h1>
+              <h1 className='flex bg-primary p-2 rounded-md text-white text-xl'> SC. </h1>
             </a>
             <button onClick={toggleNav} className="bg-white  rounded-tr-lg rounded-br-lg focus:outline-none  sticky">
-              <MdOutlineNavigateNext  size={20}/>
+              <MdOutlineNavigateNext  size={30}/>
             </button>
           </div>
 
@@ -184,40 +184,40 @@ function NavBar(){
         <div className="px-6 pt-4">
           <ul className="flex flex-col space-y-5">
             
-          <a href='/'><li className="relative text-gray-500 hover:text-white focus-within:text-white mx-auto rounded-lg p-2 hover:bg-primary">
+          <a href='/'><li className="relative text-primary hover:text-white focus-within:text-white mx-auto rounded-lg p-2 hover:bg-primary">
               <div
-              className="flex items-center mx-auto pointer-events-none ">
-              <MdOutlineSpaceDashboard />
+              className="flex items-center mx-auto pointer-events-none pl-1">
+              <MdOutlineSpaceDashboard size={25}/>
             </div>
             </li>
             </a>
 
-            <a href='/profile'><li className="relative text-gray-500 hover:text-white focus-within:text-white mx-auto rounded-lg p-2 hover:bg-primary">
+            <a href='/profile'><li className=" text-primary hover:text-white focus-within:text-white mx-auto rounded-lg p-2 hover:bg-primary">
               <div
-              className="flex items-center mx-auto pointer-events-none">
-              <CgProfile />
+              className="flex items-center pointer-events-none pl-1">
+              <CgProfile size={25}/>
             </div>
             </li>
             </a>
 
-            <a href='/login'><li className="relative text-gray-500 hover:text-white focus-within:text-white mx-auto rounded-lg p-2 hover:bg-primary">
+            <a href='/login'><li className="relative text-primary hover:text-white focus-within:text-white mx-auto rounded-lg p-2 hover:bg-primary">
               <div
-              className="flex items-center mx-auto pointer-events-none">
-              <AiOutlineStar />
+              className="flex items-center mx-auto pointer-events-none pl-1">
+              <AiOutlineStar size={25}/>
             </div>
             </li></a>
 
-          <li className="relative text-gray-500 hover:text-white focus-within:text-white mx-auto rounded-lg p-2 hover:bg-primary">
+          <li className="relative text-primary hover:text-white focus-within:text-white mx-auto rounded-lg p-2 hover:bg-primary">
               <div
               className="flex items-center mx-auto pointer-events-none">
-              <IoBookOutline />
+              <IoBookOutline size={25}/>
             </div>
             </li>
 
-            <li className="relative text-gray-500 hover:text-white focus-within:text-white mx-auto rounded-lg p-2 hover:bg-primary">
+            <li className="relative text-primary hover:text-white focus-within:text-white mx-auto rounded-lg p-2 hover:bg-primary">
               <div
               className="flex items-center mx-auto pointer-events-none">
-              <IoPeopleOutline />
+              <IoPeopleOutline size={25}/>
             </div>
             </li>
 
@@ -231,17 +231,17 @@ function NavBar(){
 
           <ul className="space-y-2">
 
-            <li className="relative text-gray-500 hover:text-white focus-within:text-white mx-auto rounded-lg p-4 hover:bg-primary">
+            <li className="relative text-primary hover:text-white focus-within:text-white mx-auto rounded-lg p-4 hover:bg-primary">
               <div
-                className="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none">
-                < AiOutlineSetting/>
+                className="absolute inset-y-0 left-0 flex items-center pl-2.5 pointer-events-none">
+                < AiOutlineSetting size={25}/>
               </div>
             </li>
 
-            <li className="relative text-gray-500 hover:text-white focus-within:text-white mx-auto rounded-lg p-4 hover:bg-primary">
+            <li className="relative text-primary hover:text-white focus-within:text-white mx-auto rounded-lg p-4 hover:bg-primary">
               <div
-                className="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none">
-                <GoSignOut />
+                className="absolute inset-y-0 left-0 flex items-center pl-3 mx-auto pointer-events-none">
+                <GoSignOut size={25}/>
               </div>
             </li>
 
