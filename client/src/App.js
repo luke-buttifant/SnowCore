@@ -8,6 +8,18 @@ import Login from "./pages/Login"
 import Contact from "./pages/Contact"
 
 function App() {
+  var isDarkMode = false;
+
+  if (localStorage.theme === 'dark') {
+    document.documentElement.classList.add('dark')
+    document.documentElement.classList.add("bg-dark-mode")
+    isDarkMode = true;
+  } else {
+    document.documentElement.classList.remove('dark')
+    document.documentElement.classList.add("bg-white")
+    isDarkMode = false;
+  }
+
   const [data, setData] = React.useState(null);
 
   React.useEffect(() => {
@@ -18,7 +30,7 @@ function App() {
 
   return (
     <>
-    <body className="font-Sora bg-white-smoke">
+    <div className={isDarkMode ? 'bg-dark-mode' : 'bg-white'}>
     <Router>
       <Navbar />
       <Routes>
@@ -32,7 +44,7 @@ function App() {
     <div>
     This is from the backend NODE server: <b>{data}</b>
     </div>
-    </body>
+    </div>
     </>
 
 
