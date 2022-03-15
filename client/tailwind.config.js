@@ -5,11 +5,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "white-smoke": "#F9FAF4",
-        "deep-space-sparkle": "#4A6163",
-        "sandy-brown": "#F9A66C",
-        "pastel-orange": "#FFC94B",
-        "light-coral": "#F17A7E",
+        "dark-mode": "#26252A",
+        "primary": "#41416E",
+        "secondary": '#EF6D58',
+        "accent-green": "#C6FAD2"
       },
     },
     fontFamily: {
