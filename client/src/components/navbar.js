@@ -1,12 +1,13 @@
 import { CgProfile } from 'react-icons/cg'
 import { MdOutlineNavigateBefore, MdOutlineNavigateNext, MdOutlineSpaceDashboard } from 'react-icons/md'
-import { AiOutlineInfoCircle, AiOutlineSetting, AiOutlineStar } from 'react-icons/ai'
+import { AiOutlineSetting, AiOutlineStar } from 'react-icons/ai'
 import { GoSignOut } from 'react-icons/go'
 import {IoBookOutline, IoPeopleOutline} from 'react-icons/io5'
 import dp from '../images/dp.png'
-import {React, useEffect} from 'react'
+import {React} from 'react'
 import {useLocation } from "react-router-dom";
 import Toggle from './ThemeToggle';
+import MobileToggle from './MobileThemeToggle'
 
 
 function NavBar(){
@@ -255,6 +256,7 @@ function NavBar(){
             </li>
 
           </ul>
+          <MobileToggle />
         </div>
 
       </div>

@@ -5,6 +5,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        sunIcon: "url('./images/sun-icon.png",
+      },
       colors: {
         "dark-mode": "#26252A",
         "primary": "#41416E",
