@@ -7,9 +7,7 @@ import Favourites from "./pages/Favourites"
 import Login from "./pages/Login"
 import Contact from "./pages/Contact"
 
-function App() {
-  var isDarkMode = false;
-
+function themeToggle(isDarkMode){
   if (localStorage.theme === 'dark') {
     document.documentElement.classList.add('dark')
     document.documentElement.classList.add("bg-dark-mode")
@@ -19,6 +17,13 @@ function App() {
     document.documentElement.classList.add("bg-white")
     isDarkMode = false;
   }
+}
+
+function App() {
+  var isDarkMode = false;
+
+  themeToggle(isDarkMode);
+
 
   const [data, setData] = React.useState(null);
 

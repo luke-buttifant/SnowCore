@@ -6,12 +6,15 @@ const Toggle = () => {
     const lightModeToggle = document.getElementById("lightModeToggle");
     if (localStorage.theme === 'dark'){
         localStorage.theme = 'light'
-        window.location.reload(true);
-
+        document.documentElement.classList.add('dark')
+        document.documentElement.classList.add("bg-dark-mode")
+        lightModeToggle.classList.add('ml-16');
     }
     else if (localStorage.theme === 'light'){
         localStorage.theme = 'dark'
-        window.location.reload(true);
+        document.documentElement.classList.remove('dark')
+        document.documentElement.classList.add("bg-white")
+        lightModeToggle.classList.remove('ml-16');
     }
    }
     
