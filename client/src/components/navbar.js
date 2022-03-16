@@ -171,7 +171,7 @@ function NavBar(){
 
 
     {/* IN NAV */}
-    <div id="bottomNav" className="float-left top-0 left-0 h-screen m-5 shadow-2xl flex justify-center min-h-screen  ">
+    <div id="bottomNav" className=" hidden md:flex float-left top-0 left-0 h-screen m-5 shadow-2xl flex justify-center min-h-screen  ">
       <div className="w-24 bg-white dark:bg-dark-mode rounded-tl-lg rounded-bl-lg shadow">
 
 

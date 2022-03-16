@@ -16,7 +16,7 @@ const Profile = () =>{
         
     <h1 className="text-center text-4xl font-Sora dark:text-white"> Luke Buttifant</h1>
     <hr className="w-96 mx-auto mb-8 dark:opacity-25"></hr>
-    <div className="flex flex-row bg-white dark:bg-dark-mode-secondary rounded-lg shadow-lg mx-auto max-w-[70%]">
+    <div className="grid grid-cols-1 lg:grid-cols-2 bg-white dark:bg-dark-mode-secondary rounded-lg shadow-lg mx-auto md:max-w-[70%]">
       <div className="container">
         <div className="grid grid-rows-3 m-10 gap-3 rounded-lg text-center">
           <a href="/profile"><div className="text-2xl text-primary hover:bg-gray-200 p-2 rounded-lg"><div className="flex dark:text-white dark:hover:text-dark-mode"><AiOutlineProfile className="mr-2 mt-1 "/> Profile</div></div></a>
@@ -45,7 +45,7 @@ const Profile = () =>{
       <div><label className="text-gray-500 dark:text-white" htmlFor="dob">D.O.B</label></div>
       <div><input className="min-w-full dark:bg-dark-mode-secondary" name="dob" type="text" placeholder="06.07.2000"/></div>
       <hr className="dark:opacity-25"></hr>
-      <div className="mx-auto"><button className="bg-secondary dark:bg-green-200 p-4 text-3xl rounded-lg w-96 m-5 text-white dark:text-black font-bold" type="button">Update</button></div>
+      <div className="mx-auto"><button className="bg-secondary dark:bg-green-200 p-4 text-lg lg:text-2xl w-48 lg:pl-10 lg:pr-10 lg:min-w-full rounded-lg  m-5 text-white dark:text-black font-bold" type="button">Update</button></div>
       </div>
 
      
