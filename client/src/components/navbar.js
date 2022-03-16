@@ -11,7 +11,7 @@ import MobileToggle from './MobileThemeToggle'
 
 
 function NavBar(){
-  const withouSidebarRoutes = ["/login"];
+  const withouSidebarRoutes = ["/login", "/register"];
 
   function toggleNav(){
     document.getElementById("topNav").classList.toggle("hidden");

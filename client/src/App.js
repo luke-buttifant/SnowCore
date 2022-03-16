@@ -6,6 +6,7 @@ import Resorts from "./pages/Resorts"
 import Favourites from "./pages/Favourites"
 import Login from "./pages/Login"
 import Profile from "./pages/profile"
+import Register from "./pages/register";
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
         <Route path='/Resorts' element={<Resorts />} />
         <Route path='/Favourites' element={<Favourites />} />
         <Route path='/Login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
         <Route path='/profile' element={<Profile />} />
       </Routes>
     </Router>
