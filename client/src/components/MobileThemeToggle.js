@@ -6,9 +6,8 @@ function toggleTheme(){
     if (localStorage.theme === 'dark'){
         localStorage.theme = 'light'
         document.documentElement.classList.remove('dark')
-        document.documentElement.classList.remove("bg-dark-mode")
         document.documentElement.classList.add('bg-background')
-
+        document.documentElement.classList.remove("bg-dark-mode")
 
     }
     else{

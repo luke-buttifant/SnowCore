@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Resorts from "./pages/Resorts"
 import Favourites from "./pages/Favourites"
 import Login from "./pages/Login"
-import Contact from "./pages/Contact"
+import Profile from "./pages/profile"
 
 
 function App() {
@@ -17,7 +17,7 @@ function App() {
   } else {
     document.documentElement.classList.remove('dark')
     document.documentElement.classList.remove('bg-dark-mode')
-    document.documentElement.classList.add("bg-background min-h-screen bg-no-repeat")
+    document.documentElement.classList.add("bg-background")
   }
 
 
@@ -38,7 +38,7 @@ function App() {
         <Route path='/Resorts' element={<Resorts />} />
         <Route path='/Favourites' element={<Favourites />} />
         <Route path='/Login' element={<Login />} />
-        <Route path='/Contact' element={<Contact />} />
+        <Route path='/profile' element={<Profile />} />
       </Routes>
     </Router>
     
