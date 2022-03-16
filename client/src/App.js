@@ -30,7 +30,7 @@ function App() {
 
   return (
     <>
-    <div className={isDarkMode ? 'bg-dark-mode' : 'bg-white'}>
+    <div className={isDarkMode ? 'bg-dark-mode' : 'bg-background min-h-screen bg-no-repeat'}>
     <Router>
       <Navbar />
       <Routes>
@@ -41,9 +41,9 @@ function App() {
       </Routes>
     </Router>
     
-    <div>
+    {/* <div>
     This is from the backend NODE server: <b>{data}</b>
-    </div>
+    </div> */}
     </div>
     </>
 

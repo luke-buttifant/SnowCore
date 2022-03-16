@@ -156,7 +156,7 @@ function NavBar(){
                 <GoSignOut size={30} className="ml-2"/>
               </div>
               <a
-                href="#"
+                href="/login"
                 className="inline-block w-full py-2 pl-14 text-m rounded hover:bg-primary focus:outline-none focus:ring-1 focus:ring-gray-500 focus:bg-primary focus:text-white"
               >Sign Out</a
               >
@@ -248,12 +248,12 @@ function NavBar(){
               </div>
             </li>
 
-            <li className="relative text-primary hover:text-white focus-within:text-white mx-auto rounded-lg p-4 hover:bg-primary dark:text-white">
+            <a href='/login'><li className="relative text-primary hover:text-white focus-within:text-white mx-auto rounded-lg p-4 hover:bg-primary dark:text-white">
               <div
                 className="absolute inset-y-0 left-0 flex items-center pl-3 mx-auto pointer-events-none">
                 <GoSignOut size={25}/>
               </div>
-            </li>
+            </li></a>
 
           </ul>
           <MobileToggle />

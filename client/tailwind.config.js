@@ -6,7 +6,8 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        sunIcon: "url('./images/sun-icon.png",
+        'login-illustration': "url('./images/loginIllustration.jpg')",
+        'background': "url('./images/background.png')"
       },
       colors: {
         "dark-mode": "#26252A",
@@ -21,11 +22,6 @@ module.exports = {
     container: {
       center: true,
       padding: "1rem",
-      screens: {
-        lg: "1124px", 
-        xl: "1124px", 
-        "2xl": "1124px",
-      },
     },
   },
   plugins: [],
