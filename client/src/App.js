@@ -7,22 +7,18 @@ import Favourites from "./pages/Favourites"
 import Login from "./pages/Login"
 import Contact from "./pages/Contact"
 
-function themeToggle(isDarkMode){
-  if (localStorage.theme === 'dark') {
-    document.documentElement.classList.add('dark')
-    document.documentElement.classList.add("bg-dark-mode")
-    isDarkMode = true;
-  } else {
-    document.documentElement.classList.remove('dark')
-    document.documentElement.classList.add("bg-white")
-    isDarkMode = false;
-  }
-}
 
 function App() {
-  var isDarkMode = false;
 
-  themeToggle(isDarkMode);
+  if (localStorage.theme === 'dark') {
+    document.documentElement.classList.add('dark')
+    document.documentElement.classList.remove('bg-background')
+    document.documentElement.classList.add("bg-dark-mode")
+  } else {
+    document.documentElement.classList.remove('dark')
+    document.documentElement.classList.remove('bg-dark-mode')
+    document.documentElement.classList.add("bg-background min-h-screen bg-no-repeat")
+  }
 
 
   const [data, setData] = React.useState(null);
@@ -35,7 +31,7 @@ function App() {
 
   return (
     <>
-    <div className={isDarkMode ? 'bg-dark-mode' : 'bg-background min-h-screen bg-no-repeat'}>
+    <div className={localStorage.theme === 'dark' ? 'bg-dark-mode' : 'bg-background min-h-screen bg-no-repeat'}>
     <Router>
       <Navbar />
       <Routes>

@@ -1,22 +1,25 @@
 import { React, useRef } from "react";
 import {BsSun} from 'react-icons/bs'
 
-const MobileToggle = () => {
+function toggleTheme(){
+    const lightModeToggle = document.getElementById("lightModeToggle");
+    if (localStorage.theme === 'dark'){
+        localStorage.theme = 'light'
+        document.documentElement.classList.remove('dark')
+        document.documentElement.classList.remove("bg-dark-mode")
+        document.documentElement.classList.add('bg-background')
 
-    function toggleTheme(){
-        const lightModeToggle = document.getElementById("lightModeToggle");
-        if (localStorage.theme === 'dark'){
-            localStorage.theme = 'light'
-            document.documentElement.classList.add('dark')
-            document.documentElement.classList.add("bg-dark-mode")
-    
-        }
-        else if (localStorage.theme === 'light'){
-            localStorage.theme = 'dark'
-            document.documentElement.classList.remove('dark')
-            document.documentElement.classList.add("bg-white")
-        }
-       }
+
+    }
+    else{
+        localStorage.theme = 'dark'
+        document.documentElement.classList.add('dark')
+        document.documentElement.classList.add('bg-dark-mode')
+        document.documentElement.classList.remove("bg-background")
+    }
+}
+
+const MobileToggle = () => {
     
 return(
     <>

@@ -1,22 +1,25 @@
 import { useRef } from "react";
 
-const Toggle = () => {
-
-   function toggleTheme(){
+function toggleTheme(){
     const lightModeToggle = document.getElementById("lightModeToggle");
     if (localStorage.theme === 'dark'){
         localStorage.theme = 'light'
-        document.documentElement.classList.add('dark')
-        document.documentElement.classList.add("bg-dark-mode")
-        lightModeToggle.classList.add('ml-16');
-    }
-    else if (localStorage.theme === 'light'){
-        localStorage.theme = 'dark'
         document.documentElement.classList.remove('dark')
-        document.documentElement.classList.add("bg-white")
-        lightModeToggle.classList.remove('ml-16');
+        document.documentElement.classList.add('bg-background')
+        document.documentElement.classList.remove("bg-dark-mode")
+        lightModeToggle.classList.remove("ml-16")
+
     }
-   }
+    else{
+        localStorage.theme = 'dark'
+        document.documentElement.classList.add('dark')
+        document.documentElement.classList.add('bg-dark-mode')
+        document.documentElement.classList.remove("bg-background")
+        lightModeToggle.classList.add("ml-16")
+    }
+}
+
+const Toggle = () => {
     
 return(
     <>
