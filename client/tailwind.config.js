@@ -13,7 +13,8 @@ module.exports = {
         "dark-mode": "#26252A",
         "primary": "#41416E",
         "secondary": '#EF6D58',
-        "accent-green": "#C6FAD2"
+        "accent-green": "#C6FAD2",
+        "dark-mode-secondary": "#161616",
       },
     },
     fontFamily: {
