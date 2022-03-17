@@ -167,7 +167,7 @@ function NavBar(){
 
 
     {/* IN NAV */}
-    <div className='hidden md:block'>
+    <div className='hidden md:block z-10'>
     <div id="bottomNav" className="scale-0 md:scale-100 float-left top-0 left-0 h-screen m-5 shadow-2xl flex justify-center min-h-screen  ">
       <div className="w-24 bg-white dark:bg-dark-mode rounded-tl-lg rounded-bl-lg shadow">
 
@@ -207,7 +207,7 @@ function NavBar(){
             </li>
             </a>
 
-            <a href='/login'><li className="relative text-primary hover:text-white focus-within:text-white mx-auto rounded-lg p-2 hover:bg-primary dark:text-white">
+            <a href='/favourites'><li className="relative text-primary hover:text-white focus-within:text-white mx-auto rounded-lg p-2 hover:bg-primary dark:text-white">
               <div
               className="flex items-center mx-auto pointer-events-none pl-1">
               <AiOutlineStar size={25}/>

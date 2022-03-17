@@ -48,6 +48,7 @@ const Profile = () =>{
       <div className="mx-auto"><button className="bg-secondary dark:bg-green-200 hover:bg-primary dark:hover:bg-white p-4 text-lg lg:text-2xl w-48 lg:pl-10 lg:pr-10 lg:min-w-full rounded-lg  m-5 text-white dark:text-black font-bold" type="button">Update</button></div>
       </div>
 
+    
      
     </div>
     </div>
