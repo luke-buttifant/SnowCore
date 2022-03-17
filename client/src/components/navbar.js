@@ -18,10 +18,6 @@ function NavBar(){
     document.getElementById("bottomNav").classList.toggle("hidden");
   }
 
-  function ToggleTheme(){
-    
-  }
-
 
 
   const {pathname} = useLocation();
@@ -29,7 +25,7 @@ function NavBar(){
   
   return(
     <>
-    <div id="topNav" className="float-left top-0 left-0 h-screen m-5 shadow-2xl flex justify-center min-h-screen hidden">
+    <div id="topNav" className="float-left top-0 left-0 h-screen m-5 shadow-2xl flex justify-center min-h-screen hidden z-10 absolute">
       <div className="w-64 bg-white dark:bg-dark-mode rounded-md">
         <div className="px-6 pt-8">
           <div className="flex items-center justify-between">
@@ -263,6 +259,11 @@ function NavBar(){
       </div>
     </div>
     </div>
+
+    {/* MOBILE NAV TOGGLE */}
+    <button id='mobileToggle' onClick={toggleNav} className="md:hidden rounded-tr-lg rounded-br-lg focus:outline-none  relative top-0 left-0 z-0 m-2 dark:bg-dark-mode dark:text-white">
+              <MdOutlineNavigateNext  size={50}/>
+            </button>
   </>
 
   )
