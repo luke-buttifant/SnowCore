@@ -45,7 +45,7 @@ const Profile = () =>{
       <div><label className="text-gray-500 dark:text-white" htmlFor="dob">D.O.B</label></div>
       <div><input className="min-w-full dark:bg-dark-mode-secondary" name="dob" type="text" placeholder="06.07.2000"/></div>
       <hr className="dark:opacity-25"></hr>
-      <div className="mx-auto"><button className="bg-secondary dark:bg-green-200 hover:bg-primary dark:hover:bg-white p-4 text-lg lg:text-2xl w-48 lg:pl-10 lg:pr-10 lg:min-w-full rounded-lg  m-5 text-white dark:text-black font-bold" type="button">Update</button></div>
+      <div className="mx-auto"><button className="bg-primary dark:bg-green-200 hover:bg-secondary dark:hover:bg-white p-4 text-lg lg:text-2xl w-48 lg:pl-10 lg:pr-10 lg:min-w-full rounded-lg  m-5 text-white dark:text-black font-bold" type="button">Update</button></div>
       </div>
 
     
