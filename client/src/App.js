@@ -7,6 +7,8 @@ import Favourites from "./pages/Favourites"
 import Login from "./pages/Login"
 import Profile from "./pages/profile"
 import Register from "./pages/register";
+import Home from "./pages";
+import Footer from "./components/footer";
 
 
 function App() {
@@ -21,21 +23,13 @@ function App() {
     document.documentElement.classList.add("bg-background")
   }
 
-
-  const [data, setData] = React.useState(null);
-
-  React.useEffect(() => {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((data) => setData(data.message));
-  }, []);
-
   return (
     <>
     <div className=" dark:bg-none dark:bg-dark-mode bg-background min-h-screen bg-no-repeat">
     <Router>
       <Navbar />
       <Routes>
+      <Route path='/' element={<Home />} />
         <Route path='/Resorts' element={<Resorts />} />
         <Route path='/Favourites' element={<Favourites />} />
         <Route path='/Login' element={<Login />} />
@@ -44,10 +38,9 @@ function App() {
       </Routes>
     </Router>
     
-    {/* <div>
-    This is from the backend NODE server: <b>{data}</b>
-    </div> */}
+
     </div>
+    <Footer />
     </>
 
 

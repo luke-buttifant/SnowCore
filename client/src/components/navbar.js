@@ -261,8 +261,8 @@ function NavBar(){
     </div>
 
     {/* MOBILE NAV TOGGLE */}
-    <button id='mobileToggle' onClick={toggleNav} className="md:hidden rounded-tr-lg rounded-br-lg focus:outline-none  relative top-0 left-0 z-0 m-2 dark:bg-dark-mode dark:text-white">
-              <MdOutlineNavigateNext  size={50}/>
+    <button id='mobileToggle' onClick={toggleNav} className="md:hidden rounded-tr-lg rounded-br-lg focus:outline-none  relative top-4 left-3 z-0 m-2 dark:bg-dark-mode-secondary bg-gray-200 dark:text-white">
+              <MdOutlineNavigateNext  size={35}/>
             </button>
   </>
 

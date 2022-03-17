@@ -7,7 +7,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         'login-illustration': "url('./images/loginIllustration.jpg')",
-        'background': "url('./images/background.png')"
+        'background': "url('./images/background2.png')"
       },
       colors: {
         "dark-mode": "#26252A",
@@ -18,7 +18,7 @@ module.exports = {
       },
     },
     fontFamily: {
-      Sora: ["Sora", "sans-serif"],
+      nunito: ['Nunito', "sans-serif"],
     },
     container: {
       center: true,

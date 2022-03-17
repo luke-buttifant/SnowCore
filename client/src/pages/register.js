@@ -20,21 +20,21 @@ const Register = () =>{
                                 type="email" 
                                 name="email" 
                                 placeholder="Email..." 
-                                className="w-full py-3 px-3 border hover: border-gray-500 shadow-lg rounded-2xl text-base border-gray-400"/>                            
+                                className="w-full py-3 px-3 border  shadow-lg rounded-2xl text-base border-gray-400"/>                            
                         </div>
                         <div className="pt-2 pr-20">
                             <input 
                                 type="password" 
                                 name="password" 
                                 placeholder="Password..." 
-                                className=" w-full py-3 px-3 border hover: border-gray-500 shadow-lg rounded-2xl text-base border-gray-400 mx-auto"/>
+                                className=" w-full py-3 px-3 border  shadow-lg rounded-2xl text-base border-gray-400 mx-auto"/>
                         </div>
                         <div className="pt-2 pr-20">
                             <input 
                                 type="password" 
                                 name="RepeatPassword" 
                                 placeholder="Repeat Password..." 
-                                className=" w-full py-3 px-3 border hover: border-gray-500 shadow-lg rounded-2xl text-base border-gray-400 mx-auto"/>
+                                className=" w-full py-3 px-3 border  shadow-lg rounded-2xl text-base border-gray-400 mx-auto"/>
                         </div>
                         <div className="text-sm font-sans font-medium w-full pr-20 pt-5 text-center mx-auto">
                             <a href="/profile"><button 

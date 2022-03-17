@@ -13,9 +13,13 @@ import dp from '../images/dp.png'
 const Favourites = () =>{
 
   const ToggleStar = event => {
+    //Gets the 'name' value from the star that is clicked
     var star = event.currentTarget.name;
+    //Both the filled star and the outlined star have the same name so they both get put into the 'stars' variable.
     var stars = document.getElementsByName(star);
 
+    //looping through through the stars array and toggling hidden on each one
+    //i.e. hidden => visible || visible => hidden
     for (let i = 0; i < stars.length; i++) {
       document.getElementById(stars[i].id).classList.toggle("hidden")
     }
@@ -31,8 +35,13 @@ const Favourites = () =>{
     <h1 className="text-center text-4xl font-Sora dark:text-white mb-10"> Luke Buttifant</h1>
     <h2 className="text-2xl font-Sora dark:text-white mb-2 text-center"> My Favourites</h2>
     <div className='max-w-[80%] mx-auto'>
-<Swiper className='mx-auto'
+<Swiper className='shadow-lg mb-10'
+      grabCursor={true}
       spaceBetween={10}
+      navigation={true}
+      pagination={{
+        clickable: true,
+      }}
       centerInsufficientSlides={true}
       slidesPerView={1}
       breakpoints={{
