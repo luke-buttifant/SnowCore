@@ -214,12 +214,12 @@ function NavBar(){
             </div>
             </li></a>
 
-          <li className="relative text-primary hover:text-white focus-within:text-white mx-auto rounded-lg p-2 hover:bg-primary dark:text-white">
+          <a href='/resorts'><li className="relative text-primary hover:text-white focus-within:text-white mx-auto rounded-lg p-2 hover:bg-primary dark:text-white">
               <div
-              className="flex items-center mx-auto pointer-events-none">
+              className="flex items-center mx-auto pointer-events-none pl-1">
               <IoBookOutline size={25}/>
             </div>
-            </li>
+            </li></a>
 
             <li className="relative text-primary hover:text-white focus-within:text-white mx-auto rounded-lg p-2 hover:bg-primary dark:text-white">
               <div
