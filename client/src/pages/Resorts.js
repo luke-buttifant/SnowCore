@@ -5,18 +5,11 @@ import LesMenuires from '../images/Les-menuires-card.png';
 import meribel from '../images/meribel-card.png'
 import SaintMartin from '../images/stMartinDeBell-card.png'
 import BridesLesBaines from '../images/brides-les-baines-card.png'
-import PisteMap from '../images/piste-map.jpeg'
 import Orelle from '../images/orelle-card.png'
-import {AiOutlineStar, AiFillStar} from 'react-icons/ai'
-import {BsUmbrellaFill, BsDownload} from 'react-icons/bs'
-import {BiWind} from 'react-icons/bi'
-import {ImCross} from 'react-icons/im'
-
-
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import ResortCard from '../components/resortCard';
-
+import PopupMap from '../components/popupMap';
 
 const Resorts = () =>{
 
@@ -38,15 +31,9 @@ const Resorts = () =>{
 
   return (
     <>
-       {/* POPUP MAP */}
-   <div id='map-popup' className="z-10 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 min-w-[80%] hidden">
-  <img src={PisteMap} alt="piste map" className="object-cover w-full h-full" />
-  <ImCross id="exit-map" size={35} className="absolute w-10 rounded m-2 p-2.5 top-0 left-0 bg-white text-black dark:bg-black dark:text-white  text-xs text-center leading-4 cursor-pointer" />
-  <a href={PisteMap} download><BsDownload size={35} id="downloadButton" className="absolute w-10 rounded m-2 p-2.5 top-0 right-0 bg-white text-black dark:bg-black dark:text-white  text-xs text-center leading-4" /></a>
-</div>
 
 
-
+<PopupMap />
 
 {/* MAIN BODY */}
 <div id='main-body' className="container">

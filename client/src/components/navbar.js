@@ -245,7 +245,7 @@ function NavBar(){
               </div>
             </li>
 
-            <a href='/login'><li className="relative text-primary hover:text-white focus-within:text-white mx-auto rounded-lg p-4 hover:bg-primary dark:text-white">
+            <a href='/login'><li className="relative text-primary hover:text-white focus-within:text-white mx-auto rounded-lg p-4 hover:bg-primary dark:text-white my-4">
               <div
                 className="absolute inset-y-0 left-0 flex items-center pl-3 mx-auto pointer-events-none">
                 <GoSignOut size={25}/>
