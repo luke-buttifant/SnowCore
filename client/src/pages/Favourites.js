@@ -23,8 +23,6 @@ const Favourites = () =>{
       document.getElementById(stars[i].id).classList.toggle("hidden")
     }
   }
-
-
   return (
     <>
 

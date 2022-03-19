@@ -221,12 +221,12 @@ function NavBar(){
             </div>
             </li></a>
 
-            <li className="relative text-primary hover:text-white focus-within:text-white mx-auto rounded-lg p-2 hover:bg-primary dark:text-white">
+            <a href='/about'><li className="relative text-primary hover:text-white focus-within:text-white mx-auto rounded-lg p-2 hover:bg-primary dark:text-white">
               <div
               className="flex items-center mx-auto pointer-events-none">
               <IoPeopleOutline size={25}/>
             </div>
-            </li>
+            </li></a>
 
           </ul>
         </div>

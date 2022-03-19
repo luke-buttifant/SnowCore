@@ -9,6 +9,7 @@ import Profile from "./pages/profile"
 import Register from "./pages/register";
 import Home from "./pages";
 import Footer from "./components/footer";
+import About from "./pages/About";
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
         <Route path='/Login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/profile' element={<Profile />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </Router>
     
