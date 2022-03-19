@@ -25,7 +25,7 @@ function App() {
 
   return (
     <>
-    <div className=" dark:bg-none dark:bg-dark-mode bg-background min-h-screen bg-no-repeat">
+    <div className=" dark:bg-none dark:bg-dark-mode bg-background min-h-screen bg-cover bg-no-repeat">
     <Router>
       <Navbar />
       <Routes>
