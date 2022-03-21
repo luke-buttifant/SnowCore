@@ -10,6 +10,7 @@ import Register from "./pages/register";
 import Home from "./pages";
 import Footer from "./components/footer";
 import About from "./pages/About";
+import Dashboard from "./pages/admin-dashboard";
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
       <Navbar />
       <Routes>
       <Route path='/' element={<Home />} />
+      <Route path='/admin' element={<Dashboard />} />
         <Route path='/Resorts' element={<Resorts />} />
         <Route path='/Favourites' element={<Favourites />} />
         <Route path='/Login' element={<Login />} />

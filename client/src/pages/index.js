@@ -8,16 +8,16 @@ const Home = () =>{
     const [data, setData] = React.useState(null);
 
     React.useEffect(() => {
-      fetch("/api")
+      fetch("/api/users")
         .then((res) => res.json())
         .then((data) => setData(data.message));
     }, []);
 
   return (
     <>
-        {/* <div>
+        <div>
     This is from the backend NODE server: <b>{data}</b>
-    </div> */}
+    </div>
 
     <div className="md:ml-40 ml-5 pt-20">
         <div className="text-secondary">SNOWCORE</div>

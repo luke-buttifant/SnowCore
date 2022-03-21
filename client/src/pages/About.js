@@ -28,12 +28,13 @@ const About = () =>{
             Letraset sheets containing Lorem Ipsum passages, and more recently with desktop 
             publishing software like Aldus PageMaker including versions of Lorem Ipsum.
           </div>
+          <h1 className='text-3xl font-bold pt-10 dark:text-white'>Creators</h1>
           <div className='container'>
-          <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 mt-5'>
+          <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 '>
             <AboutUsCard dp={dp} name="Luke" gitHubLink={"https://github.com/luke-buttifant"} colour={"bg-secondary"}/>
             <AboutUsCard dp={RahulDp} name="Rahul" gitHubLink={"https://github.com/shrestha-rahul"} colour={"bg-[#1C1C38]"} />
-            <AboutUsCard dp={MichalDp} name="Michal" gitHubLink={"https://github.com/luke-buttifant"} colour={"bg-secondary"} />
-            <AboutUsCard dp={IvanDp} name="Ivan" gitHubLink={"https://github.com/luke-buttifant"} colour={"bg-secondary"} />
+            <AboutUsCard dp={MichalDp} name="Michal" gitHubLink={"https://github.com/luke-buttifant"} colour={"bg-[#C6FAD2]"} />
+            <AboutUsCard dp={IvanDp} name="Ivan" gitHubLink={"https://github.com/luke-buttifant"} colour={"bg-[#C5C7FF]"} />
           </div>
 
         <div className='container'>
