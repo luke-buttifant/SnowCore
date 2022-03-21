@@ -1,6 +1,7 @@
 const express = require("express");
 const dotenv = require('dotenv').config();
 const connectDB = require('./database/db')
+const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3001;
 
 //Database Connection
@@ -9,6 +10,7 @@ connectDB()
 const app = express();
 
 app.use(express.json())
+app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: false }))
 
 //User Routes
@@ -19,8 +21,8 @@ app.get("/api", (req, res) => {
   });
 
 
-  
-  
-app.listen(PORT, () => {
+
+
+  app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
 })
