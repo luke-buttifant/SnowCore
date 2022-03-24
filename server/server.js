@@ -3,7 +3,7 @@ const dotenv = require('dotenv').config();
 const connectDB = require('./database/db')
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3001;
-const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
+const { errorHandler } = require("./middlewares/errorMiddleware");
 
 //Database Connection
 connectDB()
@@ -17,13 +17,12 @@ app.use(express.urlencoded({ extended: false }))
 //User Routes
 app.use('/api/users', require('./routes/UserRoutes'))
 
-app.use(notFound)
-app.use(errorHandler)
-
 app.get("/api", (req, res) => {
     res.json({ message: "Hello from server!" });
   });
 
+ 
+  app.use(errorHandler)
 
 
 

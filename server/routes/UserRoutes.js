@@ -6,7 +6,7 @@ const verify = require('../middlewares/verifyToken')
 
 
 //User Controller
-router.get('/', getUsers)
+router.get('/',verify, getUsers)
 router.post('/', registerUser)
 router.post('/login', authUser)
 router.get('/currentUser',verify, currentUserInfo)
