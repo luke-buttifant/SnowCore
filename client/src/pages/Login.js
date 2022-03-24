@@ -48,7 +48,6 @@ const Login = () =>{
                 })
             }
         catch(err){
-            // SHOULD RETURN ERROR MESSAGE BUT DOESNT
             setError(err.response.data.message);
             setLoading(false)
         }
