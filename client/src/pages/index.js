@@ -1,20 +1,33 @@
-import React from "react"
+import {useState,React} from "react"
 import "../App.css"
 import Illustration from '../images/ski-illustration.png';
 import Footer from '../components/footer'
 import { useNavigate } from "react-router-dom"
 import {useEffect} from 'react'
+import axios from "axios";
 
 
 const Home = () =>{
   let navigate = useNavigate()
 
   useEffect(() => {
-    const userInfo = localStorage.getItem("jwt");
-    if (!userInfo){
-      navigate("/login")
-    }
-  }, [navigate]);
+      userAuthenticated();
+    }, [navigate]);
+   
+
+const [data, setData] = useState({})
+
+  const userAuthenticated = async () => {
+      var user = await axios.get("/api/users/currentUser", {headers: {
+      "x-access-token": localStorage.getItem("jwt")
+    }}).then((response) => {
+      setData(response.data)
+      if(response.data.message == "authentication failed"){
+        localStorage.removeItem("jwt");
+        navigate("/login")
+      }
+    })
+  }
 
     // const [data, setData] = React.useState(null);
 

@@ -14,10 +14,6 @@ const Profile = () =>{
   let navigate = useNavigate()
 
   useEffect(() => {
-      const userInfo = localStorage.getItem("jwt");
-      if (!userInfo){
-        navigate("/login")
-      }
       userAuthenticated();
     }, [navigate]);
    
@@ -25,11 +21,14 @@ const Profile = () =>{
 const [data, setData] = useState({})
 
   const userAuthenticated = async () => {
-    await axios.get("/api/users/currentUser", {headers: {
+      var user = await axios.get("/api/users/currentUser", {headers: {
       "x-access-token": localStorage.getItem("jwt")
     }}).then((response) => {
       setData(response.data)
-     
+      if(response.data.message == "authentication failed"){
+        localStorage.removeItem("jwt");
+        navigate("/login")
+      }
     })
   }
 

@@ -16,8 +16,8 @@ import axios  from 'axios'
 function NavBar(){
   let navigate = useNavigate()
   
-  useEffect(() => {
-    userAuthenticated();
+  useEffect(async () => {
+    await userAuthenticated();
   }, []);
 
 const [data, setData] = useState({})

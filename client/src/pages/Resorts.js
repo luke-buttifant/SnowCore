@@ -1,4 +1,4 @@
-import {React, useEffect} from 'react';
+import {React, useEffect, useState} from 'react';
 import valThorens from '../images/val-thorens-card.jpg';
 import Courchevel from '../images/Courchevel-card.jpg';
 import LesMenuires from '../images/Les-menuires-card.png';
@@ -12,15 +12,29 @@ import ResortCard from '../components/resortCard';
 import PopupMap from '../components/popupMap';
 import { useNavigate } from 'react-router-dom';
 
+import axios from 'axios';
+
 const Resorts = () =>{
   let navigate = useNavigate()
 
   useEffect(() => {
-    const userInfo = localStorage.getItem("jwt");
-    if (!userInfo){
-      navigate("/login")
-    }
-  }, [navigate]);
+      userAuthenticated();
+    }, [navigate]);
+   
+
+const [data, setData] = useState({})
+
+  const userAuthenticated = async () => {
+      var user = await axios.get("/api/users/currentUser", {headers: {
+      "x-access-token": localStorage.getItem("jwt")
+    }}).then((response) => {
+      setData(response.data)
+      if(response.data.message == "authentication failed"){
+        localStorage.removeItem("jwt");
+        navigate("/login")
+      }
+    })
+  }
 
  function toggleMap(){
    const map = document.getElementById("map-popup")

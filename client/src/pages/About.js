@@ -1,4 +1,4 @@
-import {React,useEffect} from 'react';
+import {React,useEffect, useState} from 'react';
 import dp from '../images/dp.png'
 import {AiOutlineMail, AiOutlinePhone} from 'react-icons/ai'
 import AboutUsCard from '../components/aboutUsCard';
@@ -7,16 +7,30 @@ import MichalDp from '../images/michal-dp.png'
 import IvanDp from '../images/ivan-dp.webp'
 import { GoLocation } from 'react-icons/go';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 
 const About = () =>{
   let navigate = useNavigate()
 
   useEffect(() => {
-    const userInfo = localStorage.getItem("jwt");
-    if (!userInfo){
-      navigate("/login")
-    }
-  }, [navigate]);
+      userAuthenticated();
+    }, [navigate]);
+   
+
+const [data, setData] = useState({})
+
+  const userAuthenticated = async () => {
+      var user = await axios.get("/api/users/currentUser", {headers: {
+      "x-access-token": localStorage.getItem("jwt")
+    }}).then((response) => {
+      setData(response.data)
+      if(response.data.message == "authentication failed"){
+        localStorage.removeItem("jwt");
+        navigate("/login")
+      }
+    })
+  }
   return (
       <>
       <div className='container'>

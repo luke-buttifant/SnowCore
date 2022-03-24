@@ -4,11 +4,23 @@ const Contact = () =>{
   let navigate = useNavigate()
 
   useEffect(() => {
-    const userInfo = localStorage.getItem("jwt");
-    if (!userInfo){
-      navigate("/login")
-    }
-  }, [navigate]);
+      userAuthenticated();
+    }, [navigate]);
+   
+
+const [data, setData] = useState({})
+
+  const userAuthenticated = async () => {
+      var user = await axios.get("/api/users/currentUser", {headers: {
+      "x-access-token": localStorage.getItem("jwt")
+    }}).then((response) => {
+      setData(response.data)
+      if(response.data.message == "authentication failed"){
+        localStorage.removeItem("jwt");
+        navigate("/login")
+      }
+    })
+  }
   return (
       <h1>CONTACT</h1>
   );
