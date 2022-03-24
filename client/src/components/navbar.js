@@ -16,7 +16,9 @@ import axios  from 'axios'
 function NavBar(){
   let navigate = useNavigate()
   
-
+  useEffect(() => {
+    userAuthenticated();
+  }, []);
 
 const [data, setData] = useState({})
 
@@ -25,7 +27,6 @@ const [data, setData] = useState({})
       "x-access-token": localStorage.getItem("jwt")
     }}).then((response) => {
       setData(response.data)
-     
     })
   }
 
