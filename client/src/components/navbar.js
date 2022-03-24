@@ -156,7 +156,7 @@ const [data, setData] = useState({})
               />
             </div>
           <div className="text-center">
-              <div className="text-md text-primary text-center mt-2 dark:text-white">Luke Buttifant</div>
+              <div className="text-md text-primary text-center mt-2 dark:text-white">{data.first_name + " " + data.last_name}</div>
             </div>
         </div>
         <div className="px-6 pt-4 pb-8">

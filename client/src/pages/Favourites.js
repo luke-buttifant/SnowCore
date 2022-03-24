@@ -1,4 +1,4 @@
-import {React, useEffect }from 'react';
+import {React, useEffect, useState }from 'react';
 import valThorens from '../images/val-thorens-card.jpg';
 import Courchevel from '../images/Courchevel-card.jpg';
 import LesMenuires from '../images/Les-menuires-card.png';
@@ -8,6 +8,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import dp from '../images/dp.png'
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
 
 
 const Favourites = () =>{
@@ -18,7 +20,19 @@ const Favourites = () =>{
     if (!userInfo){
       navigate("/login")
     }
+    userAuthenticated();
   }, [navigate]);
+
+
+const [data, setData] = useState({})
+
+  const userAuthenticated = async () => {
+    await axios.get("/api/users/currentUser", {headers: {
+      "x-access-token": localStorage.getItem("jwt")
+    }}).then((response) => {
+      setData(response.data)
+    })
+  }
 
   const ToggleStar = event => {
     //Gets the 'name' value from the star that is clicked
@@ -36,9 +50,9 @@ const Favourites = () =>{
     <>
 
 <div className="">
-          <img className="w-52 mx-auto rounded-full p-4" src={dp}></img>
+          <img className="w-52 mx-auto rounded-full p-4" src={data.pic}></img>
         
-    <h1 className="text-center text-4xl font-Sora dark:text-white mb-10"> Luke Buttifant</h1>
+    <h1 className="text-center text-4xl font-Sora dark:text-white mb-10">{data.first_name +" "+ data.last_name}</h1>
     <h2 className="text-2xl font-Sora dark:text-white mb-2 text-center"> My Favourites</h2>
     <div className='max-w-[80%] mx-auto'>
 <Swiper className='shadow-lg mb-10'
