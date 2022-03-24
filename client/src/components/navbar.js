@@ -4,13 +4,37 @@ import { AiOutlineSetting, AiOutlineStar } from 'react-icons/ai'
 import { GoSignOut } from 'react-icons/go'
 import {IoBookOutline, IoPeopleOutline} from 'react-icons/io5'
 import dp from '../images/dp.png'
-import {React} from 'react'
+import {React, useEffect, useState} from 'react'
 import {useLocation } from "react-router-dom";
 import Toggle from './ThemeToggle';
 import MobileToggle from './MobileThemeToggle'
+import {useNavigate} from 'react-router-dom'
+import axios  from 'axios'
+
 
 
 function NavBar(){
+  let navigate = useNavigate()
+  
+  useEffect(() => {
+    const userInfo = localStorage.getItem("jwt");
+    if (!userInfo){
+      navigate("/login")
+    }
+    userAuthenticated();
+  }, [navigate]);
+
+const [data, setData] = useState({})
+
+  const userAuthenticated = async () => {
+    await axios.get("/api/users/currentUser", {headers: {
+      "x-access-token": localStorage.getItem("jwt")
+    }}).then((response) => {
+      setData(response.data)
+     
+    })
+  }
+
   const withouSidebarRoutes = ["/login", "/register"];
 
   function toggleNav(){
@@ -22,6 +46,11 @@ function NavBar(){
 
   const {pathname} = useLocation();
   if (withouSidebarRoutes.some((item) => pathname.includes(item))) return null;
+
+  function logOut(){
+    localStorage.removeItem("jwt");
+    navigate('/login');
+  }
   
   return(
     <>
@@ -123,7 +152,7 @@ function NavBar(){
             >
               <img
                 className="rounded-full mx-auto text-center"
-                src={dp}
+                src={data.pic}
                 alt=""
               />
             </div>
@@ -145,18 +174,12 @@ function NavBar(){
               >Settings</a
               >
             </li>
-            <li className="relative text-primary dark:text-white hover:text-white focus-within:text-white">
-              <div
-                className="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none mt-2"
-              >
-                <GoSignOut size={30} className="ml-2"/>
-              </div>
-              <a
-                href="/login"
-                className="inline-block w-full py-2 pl-14 text-m rounded hover:bg-primary focus:outline-none focus:ring-1 focus:ring-gray-500 focus:bg-primary focus:text-white"
-              >Sign Out</a
-              >
-            </li>
+            <button type='button' onClick={logOut}><li className="relative text-primary dark:text-white hover:text-white focus-within:text-white">
+            <div
+              className="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none mt-2">
+              <GoSignOut size={30} className="ml-2"/></div>
+            <div className="inline-block w-full py-2 pl-14 text-m rounded hover:bg-primary focus:outline-none focus:ring-1 focus:ring-gray-500 focus:bg-secondary focus:text-white">Sign Out</div>
+          </li></button>
           </ul>
           {/* LIGHT MODE TOGGLE */}
           <Toggle />
@@ -245,12 +268,12 @@ function NavBar(){
               </div>
             </li>
 
-            <a href='/login'><li className="relative text-primary hover:text-white focus-within:text-white mx-auto rounded-lg p-4 hover:bg-primary dark:text-white my-4">
-              <div
-                className="absolute inset-y-0 left-0 flex items-center pl-3 mx-auto pointer-events-none">
-                <GoSignOut size={25}/>
-              </div>
-            </li></a>
+            <button type='button' onClick={logOut}><li className="relative text-primary hover:text-white focus-within:text-white mx-auto rounded-lg p-4 hover:bg-primary dark:text-white mt-4">
+            <div
+              className="absolute inset-y-0 left-0 flex items-center pl-3 mx-auto pointer-events-none">
+              <GoSignOut size={25}/>
+            </div>
+          </li></button>
 
           </ul>
           <MobileToggle />

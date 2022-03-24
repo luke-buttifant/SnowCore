@@ -11,10 +11,13 @@ import Home from "./pages";
 import Footer from "./components/footer";
 import About from "./pages/About";
 import Dashboard from "./pages/admin-dashboard";
+import { useNavigate } from "react-router-dom"
+import {useEffect} from 'react'
 
 
 function App() {
 
+  
   if (localStorage.theme === 'dark') {
     document.documentElement.classList.add('dark')
     document.documentElement.classList.remove('bg-background')
@@ -31,7 +34,7 @@ function App() {
     <Router>
       <Navbar />
       <Routes>
-      <Route path='/' element={<Home />} />
+      <Route path='/' element={<Home />}/>
       <Route path='/admin' element={<Dashboard />} />
         <Route path='/Resorts' element={<Resorts />} />
         <Route path='/Favourites' element={<Favourites />} />

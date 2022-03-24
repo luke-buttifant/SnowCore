@@ -2,6 +2,8 @@ import React from "react"
 import "../App.css"
 import Illustration from '../images/ski-illustration.png';
 import Footer from '../components/footer'
+import { useNavigate } from "react-router-dom"
+import {useEffect} from 'react'
 
 
 const Home = () =>{
@@ -12,6 +14,8 @@ const Home = () =>{
         .then((res) => res.json())
         .then((data) => setData(data.message));
     }, []);
+    
+
 
   return (
     <>

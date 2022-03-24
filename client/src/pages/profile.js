@@ -5,16 +5,33 @@ import {RiLockPasswordLine} from 'react-icons/ri'
 import {FiSettings, FiLogOut} from 'react-icons/fi'
 import {ImBin} from 'react-icons/im'
 import {AiOutlineStar } from 'react-icons/ai'
+import axios from "axios";
+import React, { useEffect, useRef, useState } from "react";
+
 const Profile = () =>{
  
 
-	
+  useEffect(() => {
+    userAuthenticated();
+  }, []);
+
+const [data, setData] = useState({})
+
+  const userAuthenticated = async () => {
+    await axios.get("/api/users/currentUser", {headers: {
+      "x-access-token": localStorage.getItem("jwt")
+    }}).then((response) => {
+      setData(response.data)
+     
+    })
+  }
+
   return (
       <>
       <div className="container">
-          <img className="w-52 mx-auto rounded-full p-4" src={dp}></img>
+          <img className="w-52 mx-auto rounded-full p-4" src={data.pic}></img>
         
-    <h1 className="text-center text-4xl font-Sora dark:text-white"> Luke Buttifant</h1>
+    <h1 className="text-center text-4xl font-Sora dark:text-white">{data.first_name} {data.last_name}</h1>
     <hr className="w-96 mx-auto mb-8 dark:opacity-25"></hr>
     <div className="grid grid-cols-1 lg:grid-cols-2 bg-white dark:bg-dark-mode-secondary rounded-lg shadow-lg mx-auto md:max-w-[70%]">
       <div className="container">
@@ -34,16 +51,16 @@ const Profile = () =>{
       <h1 className="text-center text-3xl text-gray-600 dark:text-white font-bold m-5">Edit Profile</h1>
       <div className="grid grid-rows-9 gap-2">
       <div><label className="text-gray-500 dark:text-white" htmlFor="name">Username</label></div>
-      <div><input className="min-w-full dark:bg-dark-mode-secondary   p-2" name="name" type="text" placeholder="Luke Buttifant"/></div>
+      <div><input className="min-w-full dark:bg-dark-mode-secondary   p-2" name="name" type="text" placeholder={data.first_name + " " + data.last_name}/></div>
       <hr className="dark:opacity-25"></hr>
       <div><label className="text-gray-500 dark:text-white" htmlFor="email">Email Address</label></div>
-      <div><input className="min-w-full dark:bg-dark-mode-secondary p-2" name="email" type="text" placeholder="Luke123@gmail.com"/></div>
+      <div><input className="min-w-full dark:bg-dark-mode-secondary p-2" name="email" type="text" placeholder={data.email}/></div>
       <hr className="dark:opacity-25"></hr>
       <div><label className="text-gray-500 dark:text-white" htmlFor="gender">Gender</label></div>
-      <div><input className="min-w-full dark:bg-dark-mode-secondary p-2" name="gender" type="text" placeholder="Male"/></div>
+      <div><input className="min-w-full dark:bg-dark-mode-secondary p-2" name="gender" type="text" placeholder={data.gender}/></div>
       <hr className="dark:opacity-25"></hr>
       <div><label className="text-gray-500 dark:text-white" htmlFor="dob">D.O.B</label></div>
-      <div><input className="min-w-full dark:bg-dark-mode-secondary p-2" name="dob" type="text" placeholder="06.07.2000"/></div>
+      <div><input className="min-w-full dark:bg-dark-mode-secondary p-2" name="dob" type="text" placeholder={data.dob}/></div>
       <hr className="dark:opacity-25"></hr>
       <div className="mx-auto"><button className="bg-primary dark:bg-green-200 hover:bg-secondary dark:hover:bg-white p-4 text-lg lg:text-2xl w-48 lg:pl-10 lg:pr-10 lg:min-w-full rounded-lg  m-5 text-white dark:text-black font-bold" type="button">Update</button></div>
       </div>
