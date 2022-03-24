@@ -7,13 +7,20 @@ import {ImBin} from 'react-icons/im'
 import {AiOutlineStar } from 'react-icons/ai'
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () =>{
  
+  let navigate = useNavigate()
 
   useEffect(() => {
-    userAuthenticated();
-  }, []);
+      const userInfo = localStorage.getItem("jwt");
+      if (!userInfo){
+        navigate("/login")
+      }
+      userAuthenticated();
+    }, [navigate]);
+   
 
 const [data, setData] = useState({})
 

@@ -16,13 +16,7 @@ import axios  from 'axios'
 function NavBar(){
   let navigate = useNavigate()
   
-  useEffect(() => {
-    const userInfo = localStorage.getItem("jwt");
-    if (!userInfo){
-      navigate("/login")
-    }
-    userAuthenticated();
-  }, [navigate]);
+
 
 const [data, setData] = useState({})
 
@@ -46,6 +40,10 @@ const [data, setData] = useState({})
 
   const {pathname} = useLocation();
   if (withouSidebarRoutes.some((item) => pathname.includes(item))) return null;
+  if (withouSidebarRoutes.some((item) => pathname.includes(item))) {
+    
+  }
+
 
   function logOut(){
     localStorage.removeItem("jwt");

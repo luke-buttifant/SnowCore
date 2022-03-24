@@ -1,4 +1,4 @@
-import React from 'react';
+import {React, useEffect }from 'react';
 import valThorens from '../images/val-thorens-card.jpg';
 import Courchevel from '../images/Courchevel-card.jpg';
 import LesMenuires from '../images/Les-menuires-card.png';
@@ -7,9 +7,18 @@ import ResortCard from '../components/resortCard';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import dp from '../images/dp.png'
+import { useNavigate } from 'react-router-dom';
 
 
 const Favourites = () =>{
+  let navigate = useNavigate()
+
+  useEffect(() => {
+    const userInfo = localStorage.getItem("jwt");
+    if (!userInfo){
+      navigate("/login")
+    }
+  }, [navigate]);
 
   const ToggleStar = event => {
     //Gets the 'name' value from the star that is clicked

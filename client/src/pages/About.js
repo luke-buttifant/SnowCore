@@ -1,4 +1,4 @@
-import React from 'react';
+import {React,useEffect} from 'react';
 import dp from '../images/dp.png'
 import {AiOutlineMail, AiOutlinePhone} from 'react-icons/ai'
 import AboutUsCard from '../components/aboutUsCard';
@@ -6,8 +6,17 @@ import RahulDp from '../images/rahulDp.jpg'
 import MichalDp from '../images/michal-dp.png'
 import IvanDp from '../images/ivan-dp.webp'
 import { GoLocation } from 'react-icons/go';
+import { useNavigate } from 'react-router-dom';
 
 const About = () =>{
+  let navigate = useNavigate()
+
+  useEffect(() => {
+    const userInfo = localStorage.getItem("jwt");
+    if (!userInfo){
+      navigate("/login")
+    }
+  }, [navigate]);
   return (
       <>
       <div className='container'>

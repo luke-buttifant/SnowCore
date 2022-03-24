@@ -187,7 +187,7 @@ const Register = () =>{
                                     </div>
                                    
                             </button>
-                            <a href="/register" className="text-sm font-sans font-medium text-gray-500 underline mx-auto text-center">
+                            <a href="/login" className="text-sm font-sans font-medium text-gray-500 underline mx-auto text-center">
                         Already have an account? Sign in
                         </a>
                         </div>

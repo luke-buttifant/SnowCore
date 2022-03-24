@@ -7,6 +7,15 @@ import {useEffect} from 'react'
 
 
 const Home = () =>{
+  let navigate = useNavigate()
+
+  useEffect(() => {
+    const userInfo = localStorage.getItem("jwt");
+    if (!userInfo){
+      navigate("/login")
+    }
+  }, [navigate]);
+  
     const [data, setData] = React.useState(null);
 
     React.useEffect(() => {
