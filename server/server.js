@@ -10,6 +10,8 @@ connectDB()
 
 const app = express();
 
+app.use('/public', express.static('public'));
+
 app.use(express.json())
 app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: false }))
@@ -21,10 +23,7 @@ app.get("/api", (req, res) => {
     res.json({ message: "Hello from server!" });
   });
 
- 
   app.use(errorHandler)
-
-
 
   app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);

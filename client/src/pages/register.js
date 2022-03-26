@@ -73,7 +73,7 @@ const Register = () =>{
             navigate('/')
         }
         catch (error){
-            // setError(error.response.data.message)
+            setError(error.response.data.message)
             setLoading(false)
             console.log("failed")
         }
