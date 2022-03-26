@@ -69,7 +69,7 @@ const [data, setData] = useState({})
       <form onSubmit={onFormSubmit}>
       <div className="container">
         
-          <img className="w-52 mx-auto rounded-full p-4" src={data.pic}></img>
+          <img className="w-52 h-52 mx-auto rounded-full p-4" src={data.pic}></img>
           <div className="text-center">
           <input type="file" className=" text-center w-full text-sm text-slate-500
       file:mr-4 file:py-2 file:px-4
