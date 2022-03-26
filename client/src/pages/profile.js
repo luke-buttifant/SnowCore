@@ -17,6 +17,12 @@ const Profile = () =>{
     }, [navigate]);
 
   const [file, setFile] = useState(null)
+  const [first_name, setFirstName] = useState();
+  const [last_name, setLastName] = useState();
+  const [email, setEmail] = useState();
+  const [gender, setGender] = useState();
+  const [dob, setDob] = useState();
+  
 
   const onFormSubmit = (e) => {
     e.preventDefault();
@@ -24,11 +30,28 @@ const Profile = () =>{
     const formData = new FormData();
     formData.append('photo', file);
     formData.append('_id', data._id)
+    if(first_name !== undefined){
+      formData.append('first_name', first_name)
+    }
+    if(last_name !== undefined){
+      formData.append('last_name', last_name)
+    }
+    if(email !== undefined){
+      formData.append('email', email)
+    }
+    if(gender !== undefined){
+      formData.append('gender', gender)
+    }
+    if(dob !== undefined){
+      formData.append('dob', dob)
+    }
+    
     const config = {
       headers: {
         'content-type': 'multipart/form-data',
       }
     }
+
    axios.post('/api/users/uploadImage', formData, config).then((response) => {
       console.log(response.data.filename);
       alert("Succesfully uploaded image");
@@ -37,7 +60,6 @@ const Profile = () =>{
       console.log('error', err)
     })
     
-    // axios.post('/api/users/updateUser', {_id: data._id,first_name: data.first_name, last_name: data.last_name, gender:data.gender,dob:data.dob,pic:`images/` })
   }
 
 
@@ -102,18 +124,18 @@ const [data, setData] = useState({})
       <div className="grid grid-rows-9 gap-2">
       <div><label className="text-gray-500 dark:text-white" htmlFor="name">Fullname</label></div>
       <div className="grid grid-cols-2">
-        <input className="min-w-full dark:bg-dark-mode-secondary   p-2" name="name" defaultValue={data.first_name} type="text"/>
-        <input className="min-w-full dark:bg-dark-mode-secondary  mx-2 p-2" name="name" defaultValue={data.last_name} type="text"/>
+        <input className="min-w-full dark:bg-dark-mode-secondary   p-2" name="name" defaultValue={data.first_name} type="text" onChange={(e) => setFirstName(e.target.value)}/>
+        <input className="min-w-full dark:bg-dark-mode-secondary  mx-2 p-2" name="name" defaultValue={data.last_name} type="text" onChange={(e) => setLastName(e.target.value)}/>
       </div>
       <hr className="dark:opacity-25"></hr>
       <div><label className="text-gray-500 dark:text-white" htmlFor="email">Email Address</label></div>
-      <div><input className="min-w-full dark:bg-dark-mode-secondary p-2" name="email" type="text" defaultValue={data.email}/></div>
+      <div><input className="min-w-full dark:bg-dark-mode-secondary p-2" name="email" type="text" defaultValue={data.email} onChange={(e) => setEmail(e.target.value)}/></div>
       <hr className="dark:opacity-25"></hr>
       <div><label className="text-gray-500 dark:text-white" htmlFor="gender">Gender</label></div>
-      <div><input className="min-w-full dark:bg-dark-mode-secondary p-2" name="gender" type="text" defaultValue={data.gender}/></div>
+      <div><input className="min-w-full dark:bg-dark-mode-secondary p-2" name="gender" type="text" defaultValue={data.gender} onChange={(e) => setGender(e.target.value)}/></div>
       <hr className="dark:opacity-25"></hr>
       <div><label className="text-gray-500 dark:text-white" htmlFor="dob">D.O.B</label></div>
-      <div><input className="min-w-full dark:bg-dark-mode-secondary p-2" name="dob" type="text" defaultValue={data.dob}/></div>
+      <div><input className="min-w-full dark:bg-dark-mode-secondary p-2" name="dob" type="text" defaultValue={data.dob} onChange={(e) => setDob(e.target.value)}/></div>
       <hr className="dark:opacity-25"></hr>
       <div className="mx-auto"><button type="submit" className="bg-primary dark:bg-green-200 hover:bg-secondary dark:hover:bg-white p-4 text-lg lg:text-2xl w-48 lg:pl-10 lg:pr-10 lg:min-w-full rounded-lg  m-5 text-white dark:text-black font-bold">Update</button></div>
       </div>

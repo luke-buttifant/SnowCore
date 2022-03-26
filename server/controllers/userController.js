@@ -118,16 +118,46 @@ const uploadImage = upload.single('photo')
 
 const uploadReq = async (req, res) => {
     console.log(req.file);
-    var filename = req.file.filename;
-    const _id = req.body._id;
+    try{
+        var filename = req.file.filename;
+        const _id = req.body._id;
+        const first_name = req.body.first_name
+        const last_name = req.body.last_name;
+        const gender = req.body.gender
+        const dob = req.body.dob
 
-    await User.findByIdAndUpdate(_id,{
-            pic: `images/${filename}`
+        await User.findByIdAndUpdate(_id,{
+                pic: `images/${filename}`,
+                first_name: first_name,
+                last_name: last_name,
+                gender: gender, 
+                dob: dob, 
+
+        }),
+        res.status(200).json({
+            success: 'success',
+            filename: filename
+        })
+    }
+    catch{
+        const _id = req.body._id;
+        const first_name = req.body.first_name
+        const last_name = req.body.last_name;
+        const gender = req.body.gender
+        const dob = req.body.dob
+
+        await User.findByIdAndUpdate(_id,{
+            first_name: first_name,
+            last_name: last_name,
+            gender: gender, 
+            dob: dob, 
+
     }),
     res.status(200).json({
-        success: 'success',
-        filename: filename
+        success: 'success'
     })
+    }
+
     
 }
 
