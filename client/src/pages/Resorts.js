@@ -25,9 +25,14 @@ const Resorts = () =>{
 const [data, setData] = useState({})
 
   const userAuthenticated = async () => {
-      var user = await axios.get("/api/users/currentUser", {headers: {
+      var user = await axios.get("api/favourite/getResorts", {headers: {
       "x-access-token": localStorage.getItem("jwt")
     }}).then((response) => {
+      const resortList = [];
+      const result = Object.values(response.data).map(value => {
+        resortList.push(value)
+      })
+   
       setData(response.data)
       if(response.data.message == "authentication failed"){
         localStorage.removeItem("jwt");
@@ -91,34 +96,16 @@ const [data, setData] = useState({})
       onSlideChange={() => console.log('slide change')}
       onSwiper={(swiper) => console.log(swiper)}
     >
-      <SwiperSlide>
-        <ResortCard src={Courchevel} title={"Courchevel"} name={"courchevel"} favouriteCount={"267"} degrees={"-3"} rain={"0"} wind={"10"}/>
-      </SwiperSlide>
-
-      <SwiperSlide>
-        <ResortCard src={valThorens} title={"Val Thorens"} name={"valThorens"} favouriteCount={"101"} degrees={"-2"} rain={"5"} wind={"45"}/>
-      </SwiperSlide>
-
-      <SwiperSlide>
-        <ResortCard src={LesMenuires} title={"Les Menuires"} name={"LesMenuires"} favouriteCount={"546"} degrees={"-2"} rain={"20"} wind={"65"}/>
-      </SwiperSlide>
-
-      <SwiperSlide>
-        <ResortCard src={SaintMartin} title={"St Martin De Belleville"} name={"stMartin"} favouriteCount={"743"} degrees={"2"} rain={"26"} wind={"10"}/>
-      </SwiperSlide>
-
-      <SwiperSlide>
-        <ResortCard src={Orelle} title={"Orelle"} name={"orelle"} degrees={"5"} favouriteCount={"253"} rain={"5"} wind={"45"}/>
-      </SwiperSlide>
-
-      <SwiperSlide>
-        <ResortCard src={BridesLesBaines} title={"Brides Les Baines"} name={"brideLesBain"} favouriteCount={"436"} degrees={"-1"} rain={"510"} wind={"45"}/>
-      </SwiperSlide>
-
-      <SwiperSlide>
-        <ResortCard src={meribel} title={"Meribel"} name={"meribel"} favouriteCount={"184"} degrees={"-1"} rain={"510"} wind={"45"}/>
-      </SwiperSlide>
-
+         {Object.keys(data).map((resortData)=>{
+           return(  
+              <SwiperSlide>
+              <ResortCard src={data[resortData].src} title={data[resortData].resort_Title} name={data[resortData].resort_Title} favouriteCount={data[resortData].favouriteCount} degrees={data[resortData].degrees} rain={data[resortData].rain} wind={data[resortData].wind}/>
+            </SwiperSlide>
+          
+             )
+           })
+           
+         }
     </Swiper>
 
     <div className="min-w-max">

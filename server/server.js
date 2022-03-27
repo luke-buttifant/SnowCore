@@ -14,6 +14,7 @@ app.use(express.json())
 app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: false }))
 
+
 //User Routes
 app.use('/api/users', require('./routes/UserRoutes'))
 
@@ -21,6 +22,10 @@ app.get("/api", (req, res) => {
     res.json({ message: "Hello from server!" });
   });
 
+//Favourite Resorts API
+app.use('/api/favourite', require('./routes/FavouriteRoutes'))
+
+ 
  
   app.use(errorHandler)
 

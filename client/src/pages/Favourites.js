@@ -16,11 +16,15 @@ const Favourites = () =>{
   let navigate = useNavigate()
 
   useEffect(() => {
+     favouritesAsync();
       userAuthenticated();
+     
     }, [navigate]);
    
 
 const [data, setData] = useState({})
+const [resortCardData, setResortCardData] = useState({})
+
 
   const userAuthenticated = async () => {
       var user = await axios.get("/api/users/currentUser", {headers: {
@@ -34,6 +38,22 @@ const [data, setData] = useState({})
     })
   }
 
+  const favouritesAsync = async () => {
+  var favouritesAwait = await axios.get("/api/favourite/getFavouriteResorts", {headers: {
+    "x-access-token": localStorage.getItem("jwt")
+  }}).then((response) => {
+    const resortList = [];
+      const result = Object.values(response.data).map(value => {
+        resortList.push(value)
+      })
+      setResortCardData( (response.data))
+     
+      if(response.data.message == "authentication failed"){
+        localStorage.removeItem("jwt");
+        navigate("/login")
+      }
+    })
+  }
   const ToggleStar = event => {
     //Gets the 'name' value from the star that is clicked
     var star = event.currentTarget.name;
@@ -83,17 +103,16 @@ const [data, setData] = useState({})
       onSwiper={(swiper) => console.log(swiper)}
     >
 
-<SwiperSlide>
-        <ResortCard src={Courchevel} title={"Courchevel"} name={"courchevel"} favouriteCount={"267"} degrees={"-3"} rain={"0"} wind={"10"}/>
-      </SwiperSlide>
-
-      <SwiperSlide>
-        <ResortCard src={valThorens} title={"Val Thorens"} name={"valThorens"} favouriteCount={"101"} degrees={"-2"} rain={"5"} wind={"45"}/>
-      </SwiperSlide>
-
-      <SwiperSlide>
-        <ResortCard src={LesMenuires} title={"Les Menuires"} name={"LesMenuires"} favouriteCount={"546"} degrees={"-2"} rain={"20"} wind={"65"}/>
-      </SwiperSlide>
+ {Object.keys(resortCardData).map((resortData)=>{
+           return(  
+              <SwiperSlide>
+              <ResortCard src={resortCardData[resortData].src} title={resortCardData[resortData].resort_Title} name={resortCardData[resortData].resort_Title} favouriteCount={resortCardData[resortData].favouriteCount} degrees={resortCardData[resortData].degrees} rain={resortCardData[resortData].rain} wind={resortCardData[resortData].wind}/>
+            </SwiperSlide>
+          
+             )
+           })
+           
+         }
 
     </Swiper>
 </div>
@@ -102,6 +121,9 @@ const [data, setData] = useState({})
 
 </div>
 </>
+
   );
+
+
 }
 export default Favourites;

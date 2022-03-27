@@ -1,10 +1,11 @@
 import {AiOutlineStar, AiFillStar} from 'react-icons/ai'
 import {BsUmbrellaFill, BsDownload} from 'react-icons/bs'
 import {BiWind} from 'react-icons/bi'
+import axios from "axios"
 
 
 const ResortCard = ({ src, title, name, favouriteCount, degrees, rain, wind}) =>  {
-
+ 
     const ToggleStar = event => {
         //Gets the 'name' value from the star that is clicked
         var star = event.currentTarget.name;
@@ -15,6 +16,16 @@ const ResortCard = ({ src, title, name, favouriteCount, degrees, rain, wind}) =>
         //i.e. hidden => visible || visible => hidden
         for (let i = 0; i < stars.length; i++) {
           document.getElementById(stars[i].id).classList.toggle("hidden")
+        }
+        const favouritesAsync = async () => {
+          const {data} = await axios.post(
+            "/api/favourite/addFavourite",
+            {star}
+        ).then((response) => {
+            localStorage.setItem('jwt', response.data.token);
+            //navigate("/")
+            //setLoading(false)
+        })
         }
       }
 

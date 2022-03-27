@@ -1,4 +1,5 @@
 const User = require('../model/userModel')
+const Favourite = require('../model/favouriteModel')
 const asyncHandler = require('express-async-handler');
 const generateToken = require('../utils/generateJWT');
 require("dotenv").config();
@@ -12,6 +13,7 @@ const getUsers = async (req, res) => {
 
 const registerUser = asyncHandler(async (req, res) => {
     const {first_name, last_name, email, password, gender,dob, is_admin} = req.body;
+    const [  courchevel,meribel, brides_Les_Bains, les_Menuires, saint_Martin_De_Belleville,val_Thorens, orelle] = [true,true,false,false,false,false,false]
 
     const userExists = await User.findOne({email});
 
@@ -31,6 +33,9 @@ const registerUser = asyncHandler(async (req, res) => {
             res.status(400)
             throw new Error("Error Occured!")
         }
+        user_ID=user._id;
+        const favourite = await Favourite.create({user_ID, courchevel, meribel,brides_Les_Bains,les_Menuires,saint_Martin_De_Belleville,val_Thorens,orelle})
+        
 });
 
 const authUser = asyncHandler(async (req, res) => {
