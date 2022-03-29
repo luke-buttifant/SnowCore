@@ -97,7 +97,7 @@ const [data, setData] = useState({})
                   >
                     <CgProfile size={30} className="ml-2"/>
                   </div>
-                  <a href='/profile'
+                  <a href='/authenticate'
                     className="inline-block w-full py-2 pl-14 text-m rounded hover:bg-primary focus:outline-none hover:text-white focus:ring-1 focus:ring-gray-500 focus:bg-primary focus:text-white text-primary dark:hover:bg-gray-600 dark:text-white"
                   >Profile</a>
                 </div>
@@ -221,7 +221,7 @@ const [data, setData] = useState({})
             </li>
             </a>
 
-            <a href='/profile'><li className=" text-primary hover:text-white focus-within:text-white mx-auto rounded-lg p-2 hover:bg-primary dark:text-white">
+            <a href='/authenticate'><li className=" text-primary hover:text-white focus-within:text-white mx-auto rounded-lg p-2 hover:bg-primary dark:text-white">
               <div
               className="flex items-center pointer-events-none pl-1">
               <CgProfile size={25}/>

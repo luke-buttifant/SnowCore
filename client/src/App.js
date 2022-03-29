@@ -5,17 +5,18 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Resorts from "./pages/Resorts"
 import Favourites from "./pages/Favourites"
 import Login from "./pages/Login"
-import Profile from "./pages/profile"
 import Register from "./pages/register";
 import Home from "./pages";
 import Footer from "./components/footer";
 import About from "./pages/About";
 import Dashboard from "./pages/admin-dashboard";
-import { useNavigate } from "react-router-dom"
-import {useEffect} from 'react'
+import Authenticate from "./pages/authenticate";
+import Profile from "./pages/profile";
+import AdminDashboard from "./pages/admin-dashboard";
 
 
 function App() {
+  
 
   
   if (localStorage.theme === 'dark') {
@@ -40,7 +41,11 @@ function App() {
         <Route path='/Favourites' element={<Favourites />} />
         <Route path='/Login' element={<Login />} />
         <Route path='/register' element={<Register />} />
-        <Route path='/profile' element={<Profile />} />
+      <Route path='/authenticate' element={<Authenticate />} />
+      <Route path='/profile' element={<Profile />} />
+      <Route path='/admin-dashboard' element={<AdminDashboard />} />
+        
+        
         <Route path="/about" element={<About />} />
       </Routes>
     </Router>

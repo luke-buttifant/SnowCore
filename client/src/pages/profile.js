@@ -123,19 +123,19 @@ const [data, setData] = useState({})
       <h1 className="text-center text-3xl text-gray-600 dark:text-white font-bold m-5">Edit Profile</h1>
       <div className="grid grid-rows-9 gap-2">
       <div><label className="text-gray-500 dark:text-white" htmlFor="name">Fullname</label></div>
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-2 dark:text-white">
         <input className="min-w-full dark:bg-dark-mode-secondary   p-2" name="name" defaultValue={data.first_name} type="text" onChange={(e) => setFirstName(e.target.value)}/>
         <input className="min-w-full dark:bg-dark-mode-secondary  mx-2 p-2" name="name" defaultValue={data.last_name} type="text" onChange={(e) => setLastName(e.target.value)}/>
       </div>
       <hr className="dark:opacity-25"></hr>
       <div><label className="text-gray-500 dark:text-white" htmlFor="email">Email Address</label></div>
-      <div><input className="min-w-full dark:bg-dark-mode-secondary p-2" name="email" type="text" defaultValue={data.email} onChange={(e) => setEmail(e.target.value)}/></div>
+      <div><input className="min-w-full dark:bg-dark-mode-secondary p-2 dark:text-white" name="email" type="text" defaultValue={data.email} onChange={(e) => setEmail(e.target.value)}/></div>
       <hr className="dark:opacity-25"></hr>
       <div><label className="text-gray-500 dark:text-white" htmlFor="gender">Gender</label></div>
-      <div><input className="min-w-full dark:bg-dark-mode-secondary p-2" name="gender" type="text" defaultValue={data.gender} onChange={(e) => setGender(e.target.value)}/></div>
+      <div><input className="min-w-full dark:bg-dark-mode-secondary p-2 dark:text-white" name="gender" type="text" defaultValue={data.gender} onChange={(e) => setGender(e.target.value)}/></div>
       <hr className="dark:opacity-25"></hr>
       <div><label className="text-gray-500 dark:text-white" htmlFor="dob">D.O.B</label></div>
-      <div><input className="min-w-full dark:bg-dark-mode-secondary p-2" name="dob" type="text" defaultValue={data.dob} onChange={(e) => setDob(e.target.value)}/></div>
+      <div><input className="min-w-full dark:bg-dark-mode-secondary p-2 dark:text-white" name="dob" type="text" defaultValue={data.dob} onChange={(e) => setDob(e.target.value)}/></div>
       <hr className="dark:opacity-25"></hr>
       <div className="mx-auto"><button type="submit" className="bg-primary dark:bg-green-200 hover:bg-secondary dark:hover:bg-white p-4 text-lg lg:text-2xl w-48 lg:pl-10 lg:pr-10 lg:min-w-full rounded-lg  m-5 text-white dark:text-black font-bold">Update</button></div>
       </div>
