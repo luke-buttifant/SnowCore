@@ -13,6 +13,7 @@ import Dashboard from "./pages/admin-dashboard";
 import Authenticate from "./pages/authenticate";
 import Profile from "./pages/profile";
 import AdminDashboard from "./pages/admin-dashboard";
+import Resort from "./pages/resortPage";
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
       <Route path='/authenticate' element={<Authenticate />} />
       <Route path='/profile' element={<Profile />} />
       <Route path='/admin-dashboard' element={<AdminDashboard />} />
+      <Route path='/resort-page' element={<Resort />} />
         
         
         <Route path="/about" element={<About />} />

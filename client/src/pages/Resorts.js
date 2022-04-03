@@ -99,7 +99,7 @@ const [data, setData] = useState({})
          {Object.keys(data).map((resortData)=>{
            return(  
               <SwiperSlide>
-              <ResortCard src={data[resortData].src} title={data[resortData].resort_Title} name={data[resortData].resort_Title} favouriteCount={data[resortData].favouriteCount} degrees={data[resortData].degrees} rain={data[resortData].rain} wind={data[resortData].wind}/>
+              <a href='/resort-page'><ResortCard src={data[resortData].src} title={data[resortData].resort_Title} name={data[resortData].resort_Title} favouriteCount={data[resortData].favouriteCount} degrees={data[resortData].degrees} rain={data[resortData].rain} wind={data[resortData].wind}/></a>
             </SwiperSlide>
           
              )
