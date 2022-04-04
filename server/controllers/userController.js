@@ -47,7 +47,7 @@ const registerUser = asyncHandler(async (req, res) => {
             throw new Error("Error Occured!")
         }
         user_ID=user._id;
-        const favourite = await Favourite.create({user_ID, courchevel, meribel,brides_Les_Bains,les_Menuires,saint_Martin_De_Belleville,val_Thorens,orelle})
+        const favourite = await Favourite.create({user_ID, courchevel,val_Thorens,les_Menuires,saint_Martin_De_Belleville, orelle, brides_Les_Bains,meribel})
         
 });
 

@@ -2,31 +2,83 @@ import {AiOutlineStar, AiFillStar} from 'react-icons/ai'
 import {BsUmbrellaFill, BsDownload} from 'react-icons/bs'
 import {BiWind} from 'react-icons/bi'
 import axios from "axios"
+import {React, useEffect, useState }from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
-const ResortCard = ({ src, title, name, favouriteCount, degrees, rain, wind}) =>  {
- 
+const ResortCard = ({ src, title, name, favouriteCount, degrees, rain, wind , favouriteToogle}) =>  {
+  let outlineStar=""
+  let filledStar=""  
+  
+  const addResort = async (star) => {
+    const {data} = await axios.post(
+      "/api/favourite/addResort",
+      {star} ,{headers: {
+        "x-access-token": localStorage.getItem("jwt")}}
+  ).then((response) => {
+      localStorage.setItem('jwt', response.data.token);
+      console.log("response from post")
+      //navigate("/")
+      //setLoading(false)
+  })
+  }
+    
+  const removeResort = async (star) => {
+    const {data} = await axios.post(
+      "/api/favourite/removeResort",
+      {star} ,{headers: {
+        "x-access-token": localStorage.getItem("jwt")}}
+  ).then((response) => {
+      localStorage.setItem('jwt', response.data.token);
+      console.log("response from post")
+      //navigate("/")
+      //setLoading(false)
+  })
+  }
+
+    const starTrue = ()=> {
+      if(favouriteToogle == true )
+      {
+         outlineStar="hidden";
+         filledStar="" ;
+      }
+      else
+      {
+         outlineStar="";
+         filledStar="hidden";
+        console.log("FALSE");
+      }
+    }
+    starTrue()
     const ToggleStar = event => {
         //Gets the 'name' value from the star that is clicked
         var star = event.currentTarget.name;
+     
+
         //Both the filled star and the outlined star have the same name so they both get put into the 'stars' variable.
         var stars = document.getElementsByName(star);
-    
+        console.log(stars)
         //looping through through the stars array and toggling hidden on each one
         //i.e. hidden => visible || visible => hidden
         for (let i = 0; i < stars.length; i++) {
           document.getElementById(stars[i].id).classList.toggle("hidden")
         }
-        const favouritesAsync = async () => {
-          const {data} = await axios.post(
-            "/api/favourite/addFavourite",
-            {star}
-        ).then((response) => {
-            localStorage.setItem('jwt', response.data.token);
-            //navigate("/")
-            //setLoading(false)
-        })
+        var starID = event.currentTarget.id;
+        console.log(starID)
+
+        if(starID==star+"Outline")
+        {
+          addResort(star);
+
         }
+          else if ((starID==star+"Filled"))
+          {
+          removeResort(star)
+          }
+          else{
+            console.log("Something went wrong")
+          }
+
       }
 
     return(
@@ -37,10 +89,10 @@ const ResortCard = ({ src, title, name, favouriteCount, degrees, rain, wind}) =>
   <div className="font-bold text-3xl mb-2 text-center text-primary dark:text-white">{title}</div>
   <div className='grid grid-cols-2 dark:text-white'>
     <div className='text-sm lg:text-sm overflow-hidden'>Saint-Bon-Tarentaise, <br className='hidden lg:flex'></br> France</div>
-    <div className='flex mx-auto text-2xl'> <button id={name + "Outline"} name={name} className="hidden" onClick={ToggleStar}><AiOutlineStar  cursor={"pointer"} size={35} /></button>
-    <button id={name + "Filled"} name={name} onClick={ToggleStar}><AiFillStar className='text-primary dark:text-white' size={35} cursor={"pointer"} /> </button>{favouriteCount}</div>
+    <div className='flex mx-auto text-2xl'> <button id={name + "Outline"} name={name} className={outlineStar} onClick={ToggleStar}><AiOutlineStar  cursor={"pointer"} size={35} /></button>
+    <button id={name + "Filled"} name={name} onClick={ToggleStar} className={filledStar}><AiFillStar className='text-primary dark:text-white' size={35} cursor={"pointer"} /> </button>{favouriteCount}</div>
   </div>
-  
+      
   <div className='grid grid-cols-3 mt-10 mb-2 dark:text-white'>
     <div>{degrees}{'\u00b0'}C</div>
     <div className='flex'> <BsUmbrellaFill size={25}/> {rain}%</div>
@@ -48,8 +100,10 @@ const ResortCard = ({ src, title, name, favouriteCount, degrees, rain, wind}) =>
   </div>
 </div>
 </div>
+
         </>
     )
+    
 }
 
 export default ResortCard;

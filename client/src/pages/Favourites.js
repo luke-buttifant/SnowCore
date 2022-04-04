@@ -102,11 +102,10 @@ const [resortCardData, setResortCardData] = useState({})
       onSlideChange={() => console.log('slide change')}
       onSwiper={(swiper) => console.log(swiper)}
     >
-
  {Object.keys(resortCardData).map((resortData)=>{
            return(  
               <SwiperSlide>
-              <ResortCard src={resortCardData[resortData].src} title={resortCardData[resortData].resort_Title} name={resortCardData[resortData].resort_Title} favouriteCount={resortCardData[resortData].favouriteCount} degrees={resortCardData[resortData].degrees} rain={resortCardData[resortData].rain} wind={resortCardData[resortData].wind}/>
+              <ResortCard src={resortCardData[resortData].src} title={resortCardData[resortData].resort_Title} name={resortCardData[resortData].resort_name} favouriteCount={resortCardData[resortData].favouriteCount} degrees={resortCardData[resortData].degrees} rain={resortCardData[resortData].rain} wind={resortCardData[resortData].wind} favouriteToogle={true} />
             </SwiperSlide>
           
              )

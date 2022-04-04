@@ -10,11 +10,7 @@ const favouriteSchema = mongoose.Schema(
       type: Boolean,
       required: [true, 'Please add a first name'],
     },
-    meribel: {
-      type: Boolean,
-      required: [true, 'Please add a first name'],
-    },
-    brides_Les_Bains: {
+    val_Thorens: {
       type: Boolean,
       required: [true, 'Please add a first name'],
     },
@@ -26,11 +22,15 @@ const favouriteSchema = mongoose.Schema(
       type: Boolean,
       required: [true, 'Please add a first name'],
     },
-    val_Thorens: {
+    orelle: {
       type: Boolean,
       required: [true, 'Please add a first name'],
     },
-    orelle: {
+    brides_Les_Bains: {
+      type: Boolean,
+      required: [true, 'Please add a first name'],
+    },
+    meribel: {
       type: Boolean,
       required: [true, 'Please add a first name'],
     },

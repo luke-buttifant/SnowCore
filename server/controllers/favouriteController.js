@@ -6,6 +6,16 @@ require("dotenv").config();
 
 // Get favourites resorts
 // Route: /api/favourites
+
+const getFavouriteData = asyncHandler(async (req, res) => {
+    try{
+    const favourites = await Favourite.findOne({user_ID:req.userId});
+    res.send(favourites)
+    }catch(err){
+        console.log(err);
+    }
+});
+
 const favouriteResorts = asyncHandler(async (req, res) => {
     try{
         listOfFavourites=[];
@@ -15,9 +25,10 @@ const favouriteResorts = asyncHandler(async (req, res) => {
             if (Object.values(favourites)[x]==true)
             {
                 let resortName=Object.keys(favourites)[x];
-                resortName=resortName.replace(/_/g, ' ');
-                resortName=resortName.charAt(0).toLocaleUpperCase() + resortName.slice(1);
-                const resort = await Resorts.findOne({resort_Title:resortName});
+               // resortName=resortName.replace(/_/g, ' ');
+                //resortName=resortName.charAt(0).toLocaleUpperCase() + resortName.slice(1);
+                const resort = await Resorts.findOne({resort_name:resortName});
+                console.log(resort,"resort")
                 listOfFavourites.push(resort);
                         }
            
@@ -32,7 +43,17 @@ const favouriteResorts = asyncHandler(async (req, res) => {
 const resortData = asyncHandler(async (req, res) => {
     try{
         const resort = await Resorts.find();
-        res.send(resort)
+        if(req.userId)
+        {
+            const favourites = await Favourite.findOne({user_ID:req.userId});
+            const list=[]
+            list.push(resort)
+            list.push(favourites)
+
+            res.send(list)
+        }
+     
+        //res.send(resort)
     }catch(err){
         console.log(err);
     }
@@ -51,16 +72,55 @@ const createResort = asyncHandler(async (req, res) => {
     }
 })
 
-const setFavouriteResort = asyncHandler(async (req, res) => {
+const addFavouriteResort = asyncHandler(async (req, res) => {
     try{
-        const {favouriteResortTrue} = req.body;
-        const favourites = await Favourite.updateOne({favouriteResortTrue},{$set:true})
-        console.log("DZIALA HURA");
-         res.send("WORKS")
+       
+        const favouriteResortTrue = req.body;
+        //Add resort to favourites
+        const favourites = await Favourite.updateOne(
+            {user_ID: req.userId},
+             {$set: {[favouriteResortTrue.star] : true}});
+
+        //Find number of likes
+         const likes = await Resorts.findOne({resort_name:favouriteResortTrue.star});
+
+        //Add one like to resort
+        const resorts = await Resorts.updateOne(
+            {"resort_name":favouriteResortTrue.star},
+             {$set: {"favouriteCount" : likes.favouriteCount+1}});
+
+        console.log(favourites)
+        console.log(resorts)
+         res.send("Updated:")
+    }catch(err){
+        console.log(err);
+    }
+})
+
+const removeFavouriteResort = asyncHandler(async (req, res) => {
+    try{
+       
+        const favouriteResortTrue = req.body;
+        //Add resort to favourites
+        const favourites = await Favourite.updateOne(
+            {user_ID: req.userId},
+             {$set: {[favouriteResortTrue.star] : false}});
+
+        //Find number of likes
+         const likes = await Resorts.findOne({resort_name:favouriteResortTrue.star});
+
+        //Add one like to resort
+        const resorts = await Resorts.updateOne(
+            {"resort_name":favouriteResortTrue.star},
+             {$set: {"favouriteCount" : likes.favouriteCount-1}});
+
+        console.log(favourites)
+        console.log(resorts)
+         res.send("Updated:")
     }catch(err){
         console.log(err);
     }
 })
 
 
-module.exports = { favouriteResorts, resortData,createResort,setFavouriteResort}
+module.exports = { favouriteResorts, resortData,createResort,addFavouriteResort,getFavouriteData,removeFavouriteResort}

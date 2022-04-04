@@ -23,17 +23,27 @@ const Resorts = () =>{
    
 
 const [data, setData] = useState({})
+const [data1, setData1] = useState({})
+
 
   const userAuthenticated = async () => {
       var user = await axios.get("api/favourite/getResorts", {headers: {
+        "Content-type": "application/json",
       "x-access-token": localStorage.getItem("jwt")
     }}).then((response) => {
-      const resortList = [];
-      const result = Object.values(response.data).map(value => {
-        resortList.push(value)
-      })
-   
-      setData(response.data)
+      let favouriteList=[];
+      for(var x = 0; x <Object.keys(response.data[1]).length-1; x++) {
+        if (Object.values(response.data[1])[x]===true || Object.values(response.data[1])[x]==false )
+        {
+          console.log(Object.values(response.data[1])[x]);
+          favouriteList.push(Object.values(response.data[1])[x]);
+        }
+
+      }
+      setData1(favouriteList)
+      setData(response.data[0])
+    
+      console.log(response.data[1])
       if(response.data.message == "authentication failed"){
         localStorage.removeItem("jwt");
         navigate("/login")
@@ -41,6 +51,7 @@ const [data, setData] = useState({})
     })
   }
 
+         // {console.log(data[0],"KOK")}
  function toggleMap(){
    const map = document.getElementById("map-popup")
    map.classList.remove("hidden")
@@ -96,10 +107,13 @@ const [data, setData] = useState({})
       onSlideChange={() => console.log('slide change')}
       onSwiper={(swiper) => console.log(swiper)}
     >
+   
+
+
          {Object.keys(data).map((resortData)=>{
            return(  
               <SwiperSlide>
-              <ResortCard src={data[resortData].src} title={data[resortData].resort_Title} name={data[resortData].resort_Title} favouriteCount={data[resortData].favouriteCount} degrees={data[resortData].degrees} rain={data[resortData].rain} wind={data[resortData].wind}/>
+              <ResortCard src={data[resortData].src} title={data[resortData].resort_Title} name={data[resortData].resort_name} favouriteCount={data[resortData].favouriteCount} degrees={data[resortData].degrees} rain={data[resortData].rain} wind={data[resortData].wind} favouriteToogle={data1[resortData]}/>
             </SwiperSlide>
           
              )
