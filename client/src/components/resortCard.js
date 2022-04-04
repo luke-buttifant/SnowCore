@@ -11,6 +11,7 @@ const ResortCard = ({ src, title, name, favouriteCount, degrees, rain, wind , fa
   let filledStar=""  
   
   const addResort = async (star) => {
+    try{
     const {data} = await axios.post(
       "/api/favourite/addResort",
       {star} ,{headers: {
@@ -21,9 +22,13 @@ const ResortCard = ({ src, title, name, favouriteCount, degrees, rain, wind , fa
       //navigate("/")
       //setLoading(false)
   })
+    } catch{
+      console.log("Something Went Wrong")
+    }
   }
     
   const removeResort = async (star) => {
+    try{
     const {data} = await axios.post(
       "/api/favourite/removeResort",
       {star} ,{headers: {
@@ -34,6 +39,10 @@ const ResortCard = ({ src, title, name, favouriteCount, degrees, rain, wind , fa
       //navigate("/")
       //setLoading(false)
   })
+} catch{
+  console.log("Something Went Wrong")
+
+}
   }
 
     const starTrue = ()=> {
