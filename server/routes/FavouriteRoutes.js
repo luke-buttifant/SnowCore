@@ -10,7 +10,6 @@ router.get('/getResorts',verify, resortData)
 router.get('/createResorts', createResort)
 router.post('/addResort',verify, addFavouriteResort)
 router.post('/removeResort',verify, removeFavouriteResort)
-
 router.get('/getFavouriteData',verify, getFavouriteData)
 
 

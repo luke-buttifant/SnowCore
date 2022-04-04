@@ -39,6 +39,7 @@ const [resortCardData, setResortCardData] = useState({})
   }
 
   const favouritesAsync = async () => {
+    try{
   var favouritesAwait = await axios.get("/api/favourite/getFavouriteResorts", {headers: {
     "x-access-token": localStorage.getItem("jwt")
   }}).then((response) => {
@@ -53,6 +54,11 @@ const [resortCardData, setResortCardData] = useState({})
         navigate("/login")
       }
     })
+  }
+  catch(err){
+    console.log(err)
+
+  }
   }
   const ToggleStar = event => {
     //Gets the 'name' value from the star that is clicked

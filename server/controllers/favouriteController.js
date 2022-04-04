@@ -91,7 +91,7 @@ const addFavouriteResort = asyncHandler(async (req, res) => {
 
         console.log(favourites)
         console.log(resorts)
-         res.send("Updated:")
+        res.send(favourites)
     }catch(err){
         console.log(err);
     }
@@ -116,7 +116,7 @@ const removeFavouriteResort = asyncHandler(async (req, res) => {
 
         console.log(favourites)
         console.log(resorts)
-         res.send("Updated:")
+        res.send(favourites)
     }catch(err){
         console.log(err);
     }

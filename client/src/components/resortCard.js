@@ -13,17 +13,19 @@ const ResortCard = ({ src, title, name, favouriteCount, degrees, rain, wind , fa
   const addResort = async (star) => {
     try{
     const {data} = await axios.post(
+      
       "/api/favourite/addResort",
       {star} ,{headers: {
+        "Content-type": "application/json",
         "x-access-token": localStorage.getItem("jwt")}}
   ).then((response) => {
-      localStorage.setItem('jwt', response.data.token);
+    window.location.reload()
       console.log("response from post")
       //navigate("/")
       //setLoading(false)
   })
-    } catch{
-      console.log("Something Went Wrong")
+    }catch(err){
+      console.log(err)
     }
   }
     
@@ -32,20 +34,22 @@ const ResortCard = ({ src, title, name, favouriteCount, degrees, rain, wind , fa
     const {data} = await axios.post(
       "/api/favourite/removeResort",
       {star} ,{headers: {
+        "Content-type": "application/json",
         "x-access-token": localStorage.getItem("jwt")}}
   ).then((response) => {
-      localStorage.setItem('jwt', response.data.token);
+    window.location.reload()
       console.log("response from post")
       //navigate("/")
       //setLoading(false)
   })
-} catch{
-  console.log("Something Went Wrong")
+  } catch(err){
+  console.log(err)
 
-}
+    }
   }
 
-    const starTrue = ()=> {
+  
+  const starTrue = ()=> {
       if(favouriteToogle == true )
       {
          outlineStar="hidden";
