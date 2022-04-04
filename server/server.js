@@ -26,6 +26,7 @@ app.get("/api", (req, res) => {
 
 //Favourite Resorts API
 app.use('/api/favourite', require('./routes/FavouriteRoutes'))
+app.use('/api/weather', require('./routes/weatherRoutes'))
 
  
  

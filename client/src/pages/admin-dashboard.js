@@ -2,7 +2,7 @@ import ApexCharts from 'apexcharts'
 import { useEffect } from 'react'
 import AdminNav from '../components/adminNav'
 
-const Dashboard = () =>{
+const AdminDashboard = () =>{
 
       var Users = [100,200,300,400,500,600, 700]
       var favourites = [235, 300, 325, 200, 134]
@@ -215,4 +215,4 @@ const Dashboard = () =>{
         </>
     );
   }
-  export default Dashboard;
+  export default AdminDashboard;

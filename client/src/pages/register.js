@@ -28,7 +28,6 @@ const Register = () =>{
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(false)
     const [message, setMessage] = useState(null)
-    const [value, setValue] = useState();
 
 
     let navigate = useNavigate()
@@ -43,7 +42,6 @@ const Register = () =>{
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    const school = value;
 
 
     if(password !== repeatPassword){
@@ -61,7 +59,7 @@ const Register = () =>{
             const dob = moment(dobInput).format("DD/MM/YYYY").toString();
             const {data} = await axios.post(
                 "/api/users",
-                {first_name, last_name, email, password, gender, dob, school}
+                {first_name, last_name, email, password, gender, dob}
             ).then((response) => {
                 localStorage.setItem('jwt', response.data.token);
                 navigate("/")

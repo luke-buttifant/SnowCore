@@ -101,6 +101,7 @@ const Login = () =>{
                             <a href="/register" className="text-sm font-sans font-medium text-gray-500 underline mx-auto text-center">
                         Don´t have an account? Sign up
                         </a>
+                        <h1 className="mt-2 text-xl font-bold text-red-400">Admin: <br></br> email: Admin@admin.com <br></br>pass: admin123</h1>
                         </div>
                         </form>
     

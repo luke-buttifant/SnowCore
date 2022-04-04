@@ -70,7 +70,7 @@ const [resortCardData, setResortCardData] = useState({})
     <>
 
 <div className="">
-          <img className="w-52 mx-auto rounded-full p-4" src={data.pic}></img>
+          <img className="w-52 h-52 mx-auto rounded-full p-4" src={data.pic}></img>
         
     <h1 className="text-center text-4xl font-Sora dark:text-white mb-10">{data.first_name +" "+ data.last_name}</h1>
     <h2 className="text-2xl font-Sora dark:text-white mb-2 text-center"> My Favourites</h2>
