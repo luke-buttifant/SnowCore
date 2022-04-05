@@ -20,9 +20,6 @@ const ResortCard = ({ src, title, name, favouriteCount, degrees, rain, wind , fa
         "x-access-token": localStorage.getItem("jwt")}}
   ).then((response) => {
     window.location.reload()
-      console.log("response from post")
-      //navigate("/")
-      //setLoading(false)
   })
     }catch(err){
       console.log(err)
@@ -38,9 +35,6 @@ const ResortCard = ({ src, title, name, favouriteCount, degrees, rain, wind , fa
         "x-access-token": localStorage.getItem("jwt")}}
   ).then((response) => {
     window.location.reload()
-      console.log("response from post")
-      //navigate("/")
-      //setLoading(false)
   })
   } catch(err){
   console.log(err)
