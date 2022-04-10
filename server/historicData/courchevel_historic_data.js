@@ -28912,4 +28912,4 @@ const courchevel_historic_data =
         }
        ]
 
-export default courchevel_historic_data;
+module.exports = courchevel_historic_data

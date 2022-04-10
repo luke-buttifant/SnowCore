@@ -12,6 +12,8 @@
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "apexcharts": "^3.33.2",
+    "average-array": "^1.0.0",
+    "danfojs": "^1.1.0",
     "date-fns": "^2.28.0",
     "file-loader": "^6.2.0",
     "moment": "^2.29.1",
@@ -21,6 +23,7 @@
     "react-icons": "^4.3.1",
     "react-router-dom": "^6.2.1",
     "react-scripts": "^5.0.0",
+    "stats-lite": "^2.2.0",
     "swiper": "^8.0.7",
     "web-vitals": "^2.1.4"
   },

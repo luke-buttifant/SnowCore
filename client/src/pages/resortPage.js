@@ -6,6 +6,12 @@ import { DataGrid } from '@mui/x-data-grid';
 import { IoConstructOutline } from "react-icons/io5";
 
 const Resort = () =>{
+
+ 
+
+
+
+
    
     const [data, setData] = useState({})
     const [weather, setWeather] = useState({})
