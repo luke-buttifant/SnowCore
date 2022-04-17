@@ -7,13 +7,18 @@ const avg = require('average-array');
 const courchevel_historic_data = require('../historicData/courchevel_historic_data')
 
 
-const request = `https://api.weatherunlocked.com/api/resortforecast/333005?app_id=${process.env.API_APP_ID}&app_key=${process.env.API_APP_KEY}`
+const request = `https://api.weatherunlocked.com/api/resortforecast/333005?hourly_interval=6&app_id=${process.env.API_APP_ID}&app_key=${process.env.API_APP_KEY}`
 
 
 const getWeather = async (req, res) => { 
     const weather = await axios.get(request)
-    console.log(weather.data)
-    res.status(200).json(weather.data)
+    var days = []
+    for(let i = 0;i < weather.data.forecast.length; i++){
+        if(weather.data.forecast[i].time === "13:00"){
+            days.push(weather.data.forecast[i])
+        }
+    }
+    res.status(200).json(days)
 }
 const average = arr => arr.reduce((a,b) => a + b, 0) / arr.length;
 
@@ -30,8 +35,9 @@ const BestTimeToSki = async (req, res) => {
     sub_df = df.fillNa(0, {columns: ["snowdepth"]})
     sub_df.setIndex({column: "datetime",drop: true, inplace: true})
     var row = await getTimeframe(sub_df)
-    row.print()
-    res.send(dfd.toJSON(row))
+    var index = row.index
+    var result = []
+    res.send(row.index)
 }
 
 
