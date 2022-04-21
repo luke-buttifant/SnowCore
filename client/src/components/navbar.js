@@ -173,12 +173,12 @@ const [data, setData] = useState({})
               >Settings</a
               >
             </li>
-            <button type='button' onClick={logOut}><li className="relative text-primary dark:text-white hover:text-white focus-within:text-white">
+            <li onClick={logOut} className="relative text-primary dark:text-white hover:text-white focus-within:text-white">
             <div
               className="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none mt-2">
               <GoSignOut size={30} className="ml-2"/></div>
-            <div className="inline-block w-full py-2 pl-14 text-m rounded hover:bg-primary focus:outline-none focus:ring-1 focus:ring-gray-500 focus:bg-secondary focus:text-white">Sign Out</div>
-          </li></button>
+            <div className="inline-block w-full py-2 pl-14 text-m rounded hover:bg-primary focus:outline-none focus:ring-1 focus:ring-gray-500 focus:bg-secondary focus:text-white cursor-pointer">Sign Out</div>
+          </li>
           </ul>
           {/* LIGHT MODE TOGGLE */}
           <Toggle />
