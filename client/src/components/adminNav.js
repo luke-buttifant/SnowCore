@@ -40,7 +40,7 @@ const AdminNav = () => {
                 <div className="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none p-2">
                     <FiUsers size={30}/>
                   </div>
-                  <a href='/profile'
+                  <a href='/users'
                     className="inline-block w-full py-2 pl-14 text-m rounded hover:bg-primary focus:outline-none hover:text-white focus:ring-1 focus:ring-gray-500 focus:bg-primary focus:text-white text-primary dark:hover:bg-gray-600 dark:text-white"
                   >Users</a>
             </li>
