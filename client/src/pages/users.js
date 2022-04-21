@@ -10,20 +10,32 @@ const Users = () =>{
 
     useEffect(() => {
       userAuthenticated();
+      usersDataGrid();
+      getUsersrData();
       }, [navigate]);
 
-      const userData = useState({})
+      const [data, setData] = useState({})
+
+      const [users, userData] = useState({})
+
 
       const userAuthenticated = async () => {
-        var user = await axios.get("/api/users", {headers: {
-          "Content-type": "application/json",
-          "x-access-token": localStorage.getItem("jwt")
-        }})
-          .then((response) => {
-            userData(response.data)
-            usersDataGrid()
-          })
-      };
+        var user = await axios.get("/api/users/currentUser", {headers: {
+        "x-access-token": localStorage.getItem("jwt")
+      }}).then((response) => {
+        setData(response.data)
+        if(response.data.message == "authentication failed"){
+          localStorage.removeItem("jwt");
+          navigate("/login")
+        }
+      })
+    }
+
+    const getUsersrData = async () => {
+      await axios.get("/api/users").then((response) => {
+      console.log(response.data)
+      userData(response.data)
+    })};
 
       function usersDataGrid() {
         const { data } = userData({
