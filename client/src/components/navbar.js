@@ -267,12 +267,12 @@ const [data, setData] = useState({})
               </div>
             </li>
 
-            <button type='button' onClick={logOut}><li className="relative text-primary hover:text-white focus-within:text-white mx-auto rounded-lg p-4 hover:bg-primary dark:text-white mt-4">
+            <li onClick={logOut} className="relative text-primary hover:text-white focus-within:text-white mx-auto rounded-lg p-4 hover:bg-primary dark:text-white mt-4 cursor-pointer">
             <div
               className="absolute inset-y-0 left-0 flex items-center pl-3 mx-auto pointer-events-none">
               <GoSignOut size={25}/>
             </div>
-          </li></button>
+          </li>
 
           </ul>
           <MobileToggle />
