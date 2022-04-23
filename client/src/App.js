@@ -20,7 +20,8 @@ import Users from "./pages/users";
 function App() {
   
 
-  
+  console.log(process.env.MONGO_URI)
+
   if (localStorage.theme === 'dark') {
     document.documentElement.classList.add('dark')
     document.documentElement.classList.remove('bg-background')

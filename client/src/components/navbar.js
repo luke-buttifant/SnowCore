@@ -4,13 +4,12 @@ import { AiOutlineSetting, AiOutlineStar } from 'react-icons/ai'
 import { GoSignOut } from 'react-icons/go'
 import {IoBookOutline, IoPeopleOutline} from 'react-icons/io5'
 import dp from '../images/dp.png'
-import {React, useEffect, useState} from 'react'
+import {React, useEffect, useState, lazy} from 'react'
 import {useLocation } from "react-router-dom";
 import Toggle from './ThemeToggle';
 import MobileToggle from './MobileThemeToggle'
 import {useNavigate} from 'react-router-dom'
 import axios  from 'axios'
-
 
 
 function NavBar(){
@@ -156,7 +155,7 @@ const [data, setData] = useState({})
               />
             </div>
           <div className="text-center">
-              <div className="text-md text-primary text-center mt-2 dark:text-white">{data.first_name + " " + data.last_name}</div>
+              <div className="text-md text-primary text-center mt-2 dark:text-white">{data.first_name == undefined || null ? "Loading..." : data.first_name + " " + data.last_name}</div>
             </div>
         </div>
         <div className="px-6 pt-4 pb-8">

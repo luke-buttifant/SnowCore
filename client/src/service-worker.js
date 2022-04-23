@@ -21,67 +21,52 @@ clientsClaim();
 // even if you decide not to use precaching. See https://cra.link/PWA
 precacheAndRoute(self.__WB_MANIFEST);
 
-const cacheName = 'version_1';
-const cacheAssets = [
-    '/client/public/index.html',
-    '/client/src/index.css',
-];
-
-
 // Set up App Shell-style routing, so that all navigation requests
 // are fulfilled with your index.html shell. Learn more at
 // https://developers.google.com/web/fundamentals/architecture/app-shell
 const fileExtensionRegexp = new RegExp('/[^/?]+\\.[^/]+$');
 registerRoute(
-// Return false to exempt requests from being fulfilled by index.html.
-({ request, url }) => {
+  // Return false to exempt requests from being fulfilled by index.html.
+  ({ request, url }) => {
     // If this isn't a navigation, skip.
     if (request.mode !== 'navigate') {
-    return false;
+      return false;
     } // If this is a URL that starts with /_, skip.
 
     if (url.pathname.startsWith('/_')) {
-    return false;
+      return false;
     } // If this looks like a URL for a resource, because it contains // a file extension, skip.
 
     if (url.pathname.match(fileExtensionRegexp)) {
-    return false;
+      return false;
     } // Return true to signal that we want to use the handler.
 
     return true;
-},
-createHandlerBoundToURL(process.env.PUBLIC_URL + '/client/public/index.html')
+  },
+  createHandlerBoundToURL(process.env.PUBLIC_URL + '/index.html')
 );
 
 // An example runtime caching route for requests that aren't handled by the
 // precache, in this case same-origin .png requests like those from in public/
 registerRoute(
-// Add in any other file extensions or routing criteria as needed.
-({ url }) => url.origin === self.location.origin && url.pathname.endsWith('.png'), // Customize this strategy as needed, e.g., by changing to CacheFirst.
-new StaleWhileRevalidate({
+  // Add in any other file extensions or routing criteria as needed.
+  ({ url }) => url.origin === self.location.origin && url.pathname.endsWith('.png'), // Customize this strategy as needed, e.g., by changing to CacheFirst.
+  new StaleWhileRevalidate({
     cacheName: 'images',
     plugins: [
-    // Ensure that once this runtime cache reaches a maximum size the
-    // least-recently used images are removed.
-    new ExpirationPlugin({ maxEntries: 50 }),
+      // Ensure that once this runtime cache reaches a maximum size the
+      // least-recently used images are removed.
+      new ExpirationPlugin({ maxEntries: 50 }),
     ],
-})
+  })
 );
 
 // This allows the web app to trigger skipWaiting via
 // registration.waiting.postMessage({type: 'SKIP_WAITING'})
 self.addEventListener('message', (event) => {
-if (event.data && event.data.type === 'SKIP_WAITING') {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
     self.skipWaiting();
-}
+  }
 });
-
-self.addEventListener('install', function(event) {
-    event.waitUntil(
-      caches.open(cacheName).then(function(cache) {
-        return cache.addAll(cacheAssets);
-      })
-    );
-  });
 
 // Any other custom service worker logic can go here.
