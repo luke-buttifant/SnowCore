@@ -4,9 +4,15 @@ const connectDB = require('./database/db')
 const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3001;
 const { errorHandler } = require("./middlewares/errorMiddleware");
+const emailService = require('./email/emailService')
+const cron = require('node-cron');
 
 //Database Connection
 connectDB()
+cron.schedule('6 13 * * *', () => {
+  console.log('running a task every minute');
+
+});
 
 const app = express();
 
