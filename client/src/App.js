@@ -14,12 +14,14 @@ import Authenticate from "./pages/authenticate";
 import Profile from "./pages/profile";
 import AdminDashboard from "./pages/admin-dashboard";
 import Resort from "./pages/resortPage";
+import Users from "./pages/users";
 
 
 function App() {
   
 
-  
+  console.log(process.env.MONGO_URI)
+
   if (localStorage.theme === 'dark') {
     document.documentElement.classList.add('dark')
     document.documentElement.classList.remove('bg-background')
@@ -46,7 +48,7 @@ function App() {
       <Route path='/profile' element={<Profile />} />
       <Route path='/admin-dashboard' element={<AdminDashboard />} />
       <Route path='/resort-page' element={<Resort />} />
-        
+      <Route path='/users' element={<Users />} />
         
         <Route path="/about" element={<About />} />
       </Routes>

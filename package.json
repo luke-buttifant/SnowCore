@@ -10,9 +10,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
+    "@mui/material": "^5.6.2",
+    "@mui/styled-engine-sc": "^5.6.1",
+    "@mui/x-data-grid": "^5.9.0",
+    "average-array": "^1.0.0",
     "axios": "^0.26.1",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.2",
+    "danfojs-node": "^1.1.0",
     "dotenv": "^16.0.0",
     "express": "^4.17.2",
     "express-async-handler": "^1.2.0",
@@ -23,6 +30,7 @@
     "node-cron": "^3.0.0",
     "nodemailer": "^6.7.3",
     "nodemon": "^2.0.15",
+    "styled-components": "^5.3.5",
     "uuid": "^8.3.2"
   }
 }

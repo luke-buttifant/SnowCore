@@ -7,7 +7,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         'login-illustration': "url('./images/loginIllustration.jpg')",
-        'background': "url('./images/background2.png')"
+        'background': "url('./images/background2.webp')"
       },
       colors: {
         "dark-mode": "#26252A",

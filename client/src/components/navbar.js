@@ -4,13 +4,12 @@ import { AiOutlineSetting, AiOutlineStar } from 'react-icons/ai'
 import { GoSignOut } from 'react-icons/go'
 import {IoBookOutline, IoPeopleOutline} from 'react-icons/io5'
 import dp from '../images/dp.png'
-import {React, useEffect, useState} from 'react'
+import {React, useEffect, useState, lazy} from 'react'
 import {useLocation } from "react-router-dom";
 import Toggle from './ThemeToggle';
 import MobileToggle from './MobileThemeToggle'
 import {useNavigate} from 'react-router-dom'
 import axios  from 'axios'
-
 
 
 function NavBar(){
@@ -156,7 +155,7 @@ const [data, setData] = useState({})
               />
             </div>
           <div className="text-center">
-              <div className="text-md text-primary text-center mt-2 dark:text-white">{data.first_name + " " + data.last_name}</div>
+              <div className="text-md text-primary text-center mt-2 dark:text-white">{data.first_name == undefined || null ? "Loading..." : data.first_name + " " + data.last_name}</div>
             </div>
         </div>
         <div className="px-6 pt-4 pb-8">
@@ -173,12 +172,12 @@ const [data, setData] = useState({})
               >Settings</a
               >
             </li>
-            <button type='button' onClick={logOut}><li className="relative text-primary dark:text-white hover:text-white focus-within:text-white">
+            <li onClick={logOut} className="relative text-primary dark:text-white hover:text-white focus-within:text-white">
             <div
               className="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none mt-2">
               <GoSignOut size={30} className="ml-2"/></div>
-            <div className="inline-block w-full py-2 pl-14 text-m rounded hover:bg-primary focus:outline-none focus:ring-1 focus:ring-gray-500 focus:bg-secondary focus:text-white">Sign Out</div>
-          </li></button>
+            <div className="inline-block w-full py-2 pl-14 text-m rounded hover:bg-primary focus:outline-none focus:ring-1 focus:ring-gray-500 focus:bg-secondary focus:text-white cursor-pointer">Sign Out</div>
+          </li>
           </ul>
           {/* LIGHT MODE TOGGLE */}
           <Toggle />
@@ -267,12 +266,12 @@ const [data, setData] = useState({})
               </div>
             </li>
 
-            <button type='button' onClick={logOut}><li className="relative text-primary hover:text-white focus-within:text-white mx-auto rounded-lg p-4 hover:bg-primary dark:text-white mt-4">
+            <li onClick={logOut} className="relative text-primary hover:text-white focus-within:text-white mx-auto rounded-lg p-4 hover:bg-primary dark:text-white mt-4 cursor-pointer">
             <div
               className="absolute inset-y-0 left-0 flex items-center pl-3 mx-auto pointer-events-none">
               <GoSignOut size={25}/>
             </div>
-          </li></button>
+          </li>
 
           </ul>
           <MobileToggle />
