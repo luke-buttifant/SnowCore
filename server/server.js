@@ -30,11 +30,12 @@ app.get("/api", (req, res) => {
     res.json({ message: "Hello from server!" });
   });
 
-//Favourite Resorts API
+//Favourite Resorts Routes
 app.use('/api/favourite', require('./routes/FavouriteRoutes'))
 app.use('/api/weather', require('./routes/weatherRoutes'))
 
- 
+ //Admin dashbaord Routes
+app.use('/api/dashboard', require('./routes/adminDashBoard'))
  
   app.use(errorHandler)
 

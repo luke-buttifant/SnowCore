@@ -1,11 +1,134 @@
 import ApexCharts from 'apexcharts'
-import { useEffect } from 'react'
+import {React, useEffect, useState }from 'react';
 import AdminNav from '../components/adminNav'
+import axios from 'axios';
 
 const AdminDashboard = () =>{
+ // let navigate = useNavigate()
 
+  const [data, setData] = useState({})
+  const [eachFavData, eachFav] = useState({})
+  const [load, loadStatment] = useState(false)
+ // loadStatment=false;
+  const allFavourites = async () => {
+    try{
+  var favouritesAwait = await axios.get("/api/dashboard/getAllFavourites",
+  ).then((response) => {
+    console.log("RESPONSe",response.data.allValues)
+    setData(response.data.allValues)
+
+    var favourites = [235, 300, 325, 200, 0,response.data.allValues]
+
+    var favouriteOptions = {
+      series: [{ 
+      data: favourites
+    }],
+      chart: {
+      type: 'area',
+      height: 160,
+      sparkline: {
+        enabled: true
+      },
+    },
+    stroke: {
+      curve: 'straight'
+    },
+    fill: {
+      opacity: 0.3,
+    },
+    yaxis: {
+      min: 0
+    },
+    colors: ['#FF7373'],
+    title: {
+      text: response.data.allValues,
+      offsetX: 0,
+      style: {
+        fontSize: '24px',
+      }
+    },
+    subtitle: {
+      text: 'Favourites',
+      offsetX: 0,
+      style: {
+        fontSize: '14px',
+      }
+    }
+    };
+    var favouritesChart = new ApexCharts(document.getElementById("favourites"), favouriteOptions);
+    favouritesChart.render();
+      if(response.data.message == "authentication failed"){
+      
+       // localStorage.removeItem("jwt");
+       // navigate("/login")
+      }
+    })
+  }
+  catch(err){
+    console.log(err)
+
+  }
+}
+
+const eachFavourites = async () => {
+  try{
+var favouritesAwait = await axios.get("/api/dashboard/getEachFavourites",
+).then((response) => {
+  eachFav(response.data)
+      var favouritesBarChart = {
+        chart: {
+          type: 'bar'
+        },
+        title: {
+          text: 'Most favourite resort: '+response.data.maxLikeResort + " with " +response.data.maxLike+" likes! ",
+          align: 'left'
+        },
+        series: [{
+          data: [{
+            x: 'Courchevel',
+            y: response.data.courchevel
+          }, {
+            x: 'Val Thorens',
+            y: response.data.val_Thorens
+          }, {
+            x: 'Les Menuires',
+            y: response.data.les_Menuires
+          }
+          , {
+            x: 'Meribel',
+            y: response.data.meribel
+          }
+          , {
+            x: 'Brides Les Bains',
+            y: response.data.brides_Les_Baines
+          }
+          , {
+            x: 'Orelle',
+            y: response.data.orelle
+          }
+          , {
+            x: 'Saint-Martin de Belleville',
+            y: response.data.saint_Martin_De_Belleville
+          }
+        ]
+        }]
+      }
+      var favouritesBar = new ApexCharts(document.getElementById("favouritesBar"), favouritesBarChart);
+      favouritesBar.render();
+
+
+     // localStorage.removeItem("jwt");
+     // navigate("/login")
+    }
+  )
+}
+catch(err){
+  console.log(err)
+
+}
+}
+      
       var Users = [100,200,300,400,500,600, 700]
-      var favourites = [235, 300, 325, 200, 134]
 
       
       var userOptions = {
@@ -45,42 +168,7 @@ const AdminDashboard = () =>{
       }
       };
 
-      var favouriteOptions = {
-        series: [{ 
-        data: favourites
-      }],
-        chart: {
-        type: 'area',
-        height: 160,
-        sparkline: {
-          enabled: true
-        },
-      },
-      stroke: {
-        curve: 'straight'
-      },
-      fill: {
-        opacity: 0.3,
-      },
-      yaxis: {
-        min: 0
-      },
-      colors: ['#FF7373'],
-      title: {
-        text: '134',
-        offsetX: 0,
-        style: {
-          fontSize: '24px',
-        }
-      },
-      subtitle: {
-        text: 'Favourites',
-        offsetX: 0,
-        style: {
-          fontSize: '14px',
-        }
-      }
-      };
+     
 
             
       var linegraphOptions = {
@@ -116,55 +204,24 @@ const AdminDashboard = () =>{
       }
       };
 
-      var favouritesBarChart = {
-        chart: {
-          type: 'bar'
-        },
-        series: [{
-          data: [{
-            x: 'Courchevel',
-            y: 10
-          }, {
-            x: 'Val Thorens',
-            y: 18
-          }, {
-            x: 'Les Menuires',
-            y: 32
-          }
-          , {
-            x: 'Meribel',
-            y: 13
-          }
-          , {
-            x: 'Brides Les Bains',
-            y: 24
-          }
-          , {
-            x: 'Orelle',
-            y: 14
-          }
-          , {
-            x: 'Saint-Martin de Belleville',
-            y: 20
-          }
-        ]
-        }]
-      }
+    
 
       useEffect(() =>{
+        allFavourites();
+        eachFavourites();
+    
         var userChart = new ApexCharts(document.getElementById("users"), userOptions);
         userChart.render();
-
-        var favouritesChart = new ApexCharts(document.getElementById("favourites"), favouriteOptions);
-        favouritesChart.render();
+        
+       
 
         var userLine = new ApexCharts(document.getElementById("userLinegraph"), linegraphOptions);
         userLine.render();
 
-        var favouritesBar = new ApexCharts(document.getElementById("favouritesBar"), favouritesBarChart);
-        favouritesBar.render();
-      }
-      )
+   
+
+      },[]
+      );
 
     
 
