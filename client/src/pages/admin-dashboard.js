@@ -90,7 +90,7 @@ var favouritesAwait = await axios.get("/api/dashboard/getEachFavourites",
           type: 'bar'
         },
         title: {
-          text: 'Most favourite resort: '+response.data.maxLikeResort + " with " +response.data.maxLike+" likes! ",
+          text: 'Most favourited: '+response.data.maxLikeResort + "(" +response.data.maxLike+")",
           align: 'left'
         },
         series: [{
