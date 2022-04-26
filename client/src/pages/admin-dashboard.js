@@ -6,19 +6,26 @@ import axios from 'axios';
 const AdminDashboard = () =>{
  // let navigate = useNavigate()
 
-  const [data, setData] = useState({})
-  const [eachFavData, eachFav] = useState({})
-  const [load, loadStatment] = useState(false)
+  //const [data, setData] = useState({})
+  //const [eachFavData, eachFav] = useState({})
+ // const [load, loadStatment] = useState(false)
  // loadStatment=false;
+ const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+ const day = new Date();
+ let month = months[day.getMonth()];
+
   const allFavourites = async () => {
     try{
   var favouritesAwait = await axios.get("/api/dashboard/getAllFavourites",
   ).then((response) => {
-    console.log("RESPONSe",response.data.allValues)
-    setData(response.data.allValues)
-
-    var favourites = [235, 300, 325, 200, 0,response.data.allValues]
-
+   // console.log("RESPONSe",response.data.allValues)
+    //setData(response.data.allValues)
+    //console.log(response.data.M3)
+    console.log(Object.keys(response.data))
+    console.log(response.data)
+ 
+    var favourites = [Object.values(response.data)[0], Object.values(response.data)[1], Object.values(response.data)[2], Object.values(response.data)[3], response.data.allValues]
+    console.log(favourites)
     var favouriteOptions = {
       series: [{ 
       data: favourites
@@ -50,9 +57,14 @@ const AdminDashboard = () =>{
     subtitle: {
       text: 'Favourites',
       offsetX: 0,
-      style: {
+      style: {  
         fontSize: '14px',
       }
+    },
+    xaxis: {
+      categories: [Object.keys(response.data)[0], Object.keys(response.data)[1], Object.keys(response.data)[2], Object.keys(response.data)[3] ,month],
+      //categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+
     }
     };
     var favouritesChart = new ApexCharts(document.getElementById("favourites"), favouriteOptions);
@@ -74,7 +86,7 @@ const eachFavourites = async () => {
   try{
 var favouritesAwait = await axios.get("/api/dashboard/getEachFavourites",
 ).then((response) => {
-  eachFav(response.data)
+  //eachFav(response.data)
       var favouritesBarChart = {
         chart: {
           type: 'bar'
@@ -127,7 +139,7 @@ catch(err){
 
 }
 }
-      
+
       var Users = [100,200,300,400,500,600, 700]
 
       
@@ -168,55 +180,71 @@ catch(err){
       }
       };
 
-     
+ const allUsers = async () => {
+    try{
+  var favouritesAwait1 = await axios.get("/api/dashboard/getAllUsers",
+  ).then((response) => {
+    console.log(Object.keys(response.data))
+    console.log(response.data)  
+    var linegraphOptions = {
+      series: [{
+        name: "Desktops",
+        data:  [Object.values(response.data)[0], Object.values(response.data)[1], Object.values(response.data)[2], Object.values(response.data)[3], response.data.currentNrUsers]
 
-            
-      var linegraphOptions = {
-        series: [{
-          name: "Desktops",
-          data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
-      }],
-        chart: {
-        height: 350,
-        type: 'line',
-        zoom: {
-          enabled: false
-        }
-      },
-      dataLabels: {
+    }],
+      chart: {
+      height: 350,
+      type: 'line',
+      zoom: {
         enabled: false
-      },
-      stroke: {
-        curve: 'straight'
-      },
-      title: {
-        text: 'User Timeline',
-        align: 'left'
-      },
-      grid: {
-        row: {
-          colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-          opacity: 0.5
-        },
-      },
-      xaxis: {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
       }
-      };
+    },
+    dataLabels: {
+      enabled: false
+    },
+    stroke: {
+      curve: 'straight'
+    },
+    title: {
+      text: 'User Timeline',
+      align: 'left'
+    },
+    grid: {
+      row: {
+        colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+        opacity: 0.5
+      },
+    },
+    xaxis: {
+      categories: [Object.keys(response.data)[0], Object.keys(response.data)[1], Object.keys(response.data)[2], Object.keys(response.data)[3] ,month],
+    }
+    };
+    var userLine = new ApexCharts(document.getElementById("userLinegraph"), linegraphOptions);
+    userLine.render();
+  }
+  )
+
+}
+catch(err){
+  console.log(err)
+
+}
+};
+            
+      
 
     
 
       useEffect(() =>{
         allFavourites();
         eachFavourites();
-    
+        allUsers();
         var userChart = new ApexCharts(document.getElementById("users"), userOptions);
         userChart.render();
         
        
 
-        var userLine = new ApexCharts(document.getElementById("userLinegraph"), linegraphOptions);
-        userLine.render();
+        
 
    
 

@@ -5,12 +5,21 @@ const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 3001;
 const { errorHandler } = require("./middlewares/errorMiddleware");
 const emailService = require('./email/emailService')
+const monthlyData = require('./monthlyData/monthlyData')
 const cron = require('node-cron');
 
 //Database Connection
 connectDB()
 cron.schedule('6 13 * * *', () => {
-  console.log('running a task every minute');
+  emailService()
+  console.log('Run every ?? Cake is a lie..');
+
+});
+//save data about users
+cron.schedule('59 23 31 * * *', () => {
+  monthlyData.creataDataSet();
+  
+  console.log('Run every month');
 
 });
 

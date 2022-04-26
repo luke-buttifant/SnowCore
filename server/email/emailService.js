@@ -12,8 +12,8 @@ var transporter = nodemailer.createTransport({
 var mailOptions = {
   from: 'SnowCoreOfficial@outlook.com, ',
   to: 'SnowCoreOfficial@outlook.com, ',
-  subject: 'Sending Email using Node.js',
-  text: 'That was easy!'
+  subject: 'Snowfall Alert',
+  text: 'Freshly snow today fell in the villages of: Please pay attention as it may be dangerous. This message was generated automatically. If necessary, please contact our Snowcore team.'
 };
 
 const emailService = async () => {
