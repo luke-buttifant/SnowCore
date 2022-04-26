@@ -16,7 +16,7 @@ cron.schedule('6 13 * * *', () => {
 
 });
 //save data about users
-cron.schedule('59 23 31 * * *', () => {
+cron.schedule('* 59 23 31 * * *', () => {
   monthlyData.creataDataSet();
   
   console.log('Run every month');
