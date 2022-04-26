@@ -15,7 +15,7 @@ const getAllFavouriteData = asyncHandler(async (req, res) => {
    
      // monthlyModel.findByIdAndRemove("626729f8f50799bed0131e5b").exec()
     try{
-    collectionData= await Resorts.find()
+    collectionData= await (await Resorts.find())
     //Showing only first 4 months
     monthlyData= await monthlyModel.find().sort({$natural:-1}).limit(4)
     console.log("KOK",monthlyData)

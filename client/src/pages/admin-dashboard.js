@@ -36,10 +36,11 @@ const AdminDashboard = () =>{
       },
     },
     stroke: {
-      curve: 'straight'
+      curve: 'smooth'
     },
     fill: {
-      opacity: 0.3,
+      type: 'gradient',
+
     },
     yaxis: {
       min: 0
@@ -136,47 +137,7 @@ catch(err){
 
 const getUsers = async () => {
   var users = await axios.get("/api/users")
-        console.log(users.data.length)
         setUserCount(users.data.length)
-  var userOptions = {
-    series: [{ 
-    data: [users.data.length]
-  }],
-    chart: {
-    type: 'area',
-    height: 160,
-    sparkline: {
-      enabled: true
-    },
-  },
-  stroke: {
-    curve: 'straight'
-  },
-  fill: {
-    opacity: 0.3,
-  },
-  yaxis: {
-    min: 0
-  },
-  colors: ['#c6fad2'],
-  title: {
-    text: '600',
-    offsetX: 0,
-    style: {
-      fontSize: '24px',
-    }
-  },
-  subtitle: {
-    text: 'Users',
-    offsetX: 0,
-    style: {
-      fontSize: '14px',
-    }
-  }
-  };
-
-  var userChart = new ApexCharts(document.getElementById("users"), userOptions);
-  userChart.render();
   
 }
       
@@ -191,7 +152,7 @@ const getUsers = async () => {
     console.log(response.data)  
     var linegraphOptions = {
       series: [{
-        name: "Desktops",
+        name: "Users",
         data:  [Object.values(response.data)[0], Object.values(response.data)[1], Object.values(response.data)[2], Object.values(response.data)[3], response.data.currentNrUsers]
 
     }],
@@ -206,11 +167,17 @@ const getUsers = async () => {
       enabled: false
     },
     stroke: {
-      curve: 'straight'
+      curve: 'smooth'
+    },
+    sparkline: {
+      enabled: false
     },
     title: {
       text: 'User Timeline',
       align: 'left'
+    },
+    fill:{
+      type: 'gradient'
     },
     grid: {
       row: {
@@ -249,7 +216,18 @@ catch(err){
     return (
         <>
         <AdminNav />
-        <div className='grid grid-cols-1 lg:grid-cols-2 lg:gap-20 gap-4 lg:px-20 px-0'>
+        <div className='grid grid-cols-1 lg:px-20 mx-auto'>
+        <div className=" mx-10">
+            <div className='m-0 mx-auto '>
+        <div className=' bg-white rounded-lg dark:bg-dark-mode-secondary shadow-lg '>
+        <div id='favourites'></div>
+        </div>
+
+        </div>
+            </div>
+        </div>
+
+        <div className='grid grid-cols-1 lg:grid-cols-2 lg:gap-20 gap-4 lg:px-20 px-0 mt-10'>
             <div className=" mx-10">
             <div className='m-0 mx-auto '>
         <div className=' bg-white rounded-lg dark:bg-dark-mode-secondary shadow-lg'>
@@ -263,16 +241,6 @@ catch(err){
             <div className='m-0 mx-auto'>
         <div className=' bg-white rounded-lg dark:bg-dark-mode-secondary shadow-lg '>
         <div  id='favouritesBar'></div>
-        </div>
-
-        </div>
-            </div>
-
-
-            <div className=" mx-10">
-            <div className='m-0 mx-auto '>
-        <div className=' bg-white rounded-lg dark:bg-dark-mode-secondary shadow-lg '>
-        <div id='favourites'></div>
         </div>
 
         </div>
