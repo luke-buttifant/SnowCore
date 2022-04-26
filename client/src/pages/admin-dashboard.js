@@ -2,25 +2,23 @@ import ApexCharts from 'apexcharts'
 import {React, useEffect, useState }from 'react';
 import AdminNav from '../components/adminNav'
 import axios from 'axios';
+import { useFirstRender } from '@mui/x-data-grid';
 
 const AdminDashboard = () =>{
- // let navigate = useNavigate()
+  // let navigate = useNavigate()
+  const [userCount, setUserCount] = useState()
 
-  //const [data, setData] = useState({})
-  //const [eachFavData, eachFav] = useState({})
- // const [load, loadStatment] = useState(false)
- // loadStatment=false;
+
  const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
  const day = new Date();
  let month = months[day.getMonth()];
+
+
 
   const allFavourites = async () => {
     try{
   var favouritesAwait = await axios.get("/api/dashboard/getAllFavourites",
   ).then((response) => {
-   // console.log("RESPONSe",response.data.allValues)
-    //setData(response.data.allValues)
-    //console.log(response.data.M3)
     console.log(Object.keys(response.data))
     console.log(response.data)
  
@@ -127,58 +125,63 @@ var favouritesAwait = await axios.get("/api/dashboard/getEachFavourites",
       }
       var favouritesBar = new ApexCharts(document.getElementById("favouritesBar"), favouritesBarChart);
       favouritesBar.render();
-
-
-     // localStorage.removeItem("jwt");
-     // navigate("/login")
     }
   )
 }
 catch(err){
   console.log(err)
-
 }
 }
 
-      var Users = [100,200,300,400,500,600, 700]
 
+const getUsers = async () => {
+  var users = await axios.get("/api/users")
+        console.log(users.data.length)
+        setUserCount(users.data.length)
+  var userOptions = {
+    series: [{ 
+    data: [users.data.length]
+  }],
+    chart: {
+    type: 'area',
+    height: 160,
+    sparkline: {
+      enabled: true
+    },
+  },
+  stroke: {
+    curve: 'straight'
+  },
+  fill: {
+    opacity: 0.3,
+  },
+  yaxis: {
+    min: 0
+  },
+  colors: ['#c6fad2'],
+  title: {
+    text: '600',
+    offsetX: 0,
+    style: {
+      fontSize: '24px',
+    }
+  },
+  subtitle: {
+    text: 'Users',
+    offsetX: 0,
+    style: {
+      fontSize: '14px',
+    }
+  }
+  };
+
+  var userChart = new ApexCharts(document.getElementById("users"), userOptions);
+  userChart.render();
+  
+}
       
-      var userOptions = {
-        series: [{ 
-        data: Users
-      }],
-        chart: {
-        type: 'area',
-        height: 160,
-        sparkline: {
-          enabled: true
-        },
-      },
-      stroke: {
-        curve: 'straight'
-      },
-      fill: {
-        opacity: 0.3,
-      },
-      yaxis: {
-        min: 0
-      },
-      colors: ['#c6fad2'],
-      title: {
-        text: '600',
-        offsetX: 0,
-        style: {
-          fontSize: '24px',
-        }
-      },
-      subtitle: {
-        text: 'Users',
-        offsetX: 0,
-        style: {
-          fontSize: '14px',
-        }
-      }
-      };
+
+
 
  const allUsers = async () => {
     try{
@@ -231,22 +234,12 @@ catch(err){
 }
 };
             
-      
-
-    
 
       useEffect(() =>{
         allFavourites();
         eachFavourites();
         allUsers();
-        var userChart = new ApexCharts(document.getElementById("users"), userOptions);
-        userChart.render();
-        
-       
-
-        
-
-   
+        getUsers();
 
       },[]
       );
@@ -258,25 +251,9 @@ catch(err){
         <AdminNav />
         <div className='grid grid-cols-1 lg:grid-cols-2 lg:gap-20 gap-4 lg:px-20 px-0'>
             <div className=" mx-10">
-            <div className='m-0 mx-auto'>
-        <div className=' bg-white rounded-lg dark:bg-dark-mode-secondary shadow-lg min-h-max'>
-        <div id='users'></div>
-
-        </div>
-
-        </div>
-            </div>
-            <div className=" mx-10">
             <div className='m-0 mx-auto '>
         <div className=' bg-white rounded-lg dark:bg-dark-mode-secondary shadow-lg'>
-        <div id='favourites'></div>
-        </div>
-
-        </div>
-            </div>
-            <div className=" mx-10">
-            <div className='m-0 mx-auto '>
-        <div className=' bg-white rounded-lg dark:bg-dark-mode-secondary shadow-lg'>
+          <div className='text-center font-bold'>Total Users: {userCount}</div>
         <div id='userLinegraph'></div>
         </div>
 
@@ -284,7 +261,7 @@ catch(err){
             </div>
             <div className=" mx-10">
             <div className='m-0 mx-auto'>
-        <div className=' bg-white rounded-lg dark:bg-dark-mode-secondary shadow-lg'>
+        <div className=' bg-white rounded-lg dark:bg-dark-mode-secondary shadow-lg '>
         <div  id='favouritesBar'></div>
         </div>
 
@@ -292,7 +269,14 @@ catch(err){
             </div>
 
 
+            <div className=" mx-10">
+            <div className='m-0 mx-auto '>
+        <div className=' bg-white rounded-lg dark:bg-dark-mode-secondary shadow-lg '>
+        <div id='favourites'></div>
+        </div>
 
+        </div>
+            </div>
         </div>
 
 
