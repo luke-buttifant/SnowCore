@@ -109,7 +109,7 @@ const [data, setData] = useState({})
                 <AiOutlineStar size={30} className="ml-2"/>
               </div>
               <a
-                href="#"
+                href="/Favourites"
                 className="inline-block w-full py-2 pl-14  text-m rounded hover:bg-primary focus:outline-none focus:ring-1 focus:ring-gray-500 focus:bg-primary focus:text-white dark:hover:bg-gray-600 dark:text-white"
               >Favourites</a
               >
@@ -121,7 +121,7 @@ const [data, setData] = useState({})
                 <IoBookOutline size={30} className="ml-2"/>
               </div>
               <a
-                href="#"
+                href="/Resorts"
                 className="inline-block w-full py-2 pl-14 text-m rounded hover:bg-primary focus:outline-none focus:ring-1 focus:ring-gray-500 focus:bg-primary focus:text-white dark:hover:bg-gray-600 dark:text-white"
               >Resorts</a
               >
@@ -133,7 +133,7 @@ const [data, setData] = useState({})
                 < IoPeopleOutline size={30} className="ml-2"/>
               </div>
               <a
-                href="#"
+                href="/about"
                 className="inline-block w-full py-2 pl-14 text-m rounded hover:bg-primary focus:outline-none focus:ring-1 focus:ring-gray-500 focus:bg-primary focus:text-white dark:hover:bg-gray-600 dark:text-white"
               >About Us</a
               >
