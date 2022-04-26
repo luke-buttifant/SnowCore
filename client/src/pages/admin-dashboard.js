@@ -136,7 +136,6 @@ catch(err){
 
 const getUsers = async () => {
   var users = await axios.get("/api/users")
-        console.log(users.data.length)
         setUserCount(users.data.length)
   var userOptions = {
     series: [{ 
@@ -191,7 +190,7 @@ const getUsers = async () => {
     console.log(response.data)  
     var linegraphOptions = {
       series: [{
-        name: "Desktops",
+        name: "Users",
         data:  [Object.values(response.data)[0], Object.values(response.data)[1], Object.values(response.data)[2], Object.values(response.data)[3], response.data.currentNrUsers]
 
     }],
