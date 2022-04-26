@@ -56,8 +56,8 @@ const [data, setData] = useState({})
           <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 '>
             <AboutUsCard dp={dp} name="Luke" gitHubLink={"https://github.com/luke-buttifant"} colour={"bg-secondary"}/>
             <AboutUsCard dp={RahulDp} name="Rahul" gitHubLink={"https://github.com/shrestha-rahul"} colour={"bg-[#1C1C38]"} />
-            <AboutUsCard dp={MichalDp} name="Michal" gitHubLink={"https://github.com/luke-buttifant"} colour={"bg-[#C6FAD2]"} />
-            <AboutUsCard dp={IvanDp} name="Ivan" gitHubLink={"https://github.com/luke-buttifant"} colour={"bg-[#C5C7FF]"} />
+            <AboutUsCard dp={MichalDp} name="Michal" gitHubLink={"https://github.com/Misterius-code"} colour={"bg-[#C6FAD2]"} />
+            <AboutUsCard dp={IvanDp} name="Ivan" gitHubLink={"https://github.com/3bilyi81"} colour={"bg-[#C5C7FF]"} />
           </div>
 
         <div className='container'>
