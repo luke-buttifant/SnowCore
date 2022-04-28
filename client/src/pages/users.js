@@ -5,11 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { DataGrid } from '@mui/x-data-grid';
 import AdminNav from "../components/adminNav";
 //import { Button } from 'react-bootstrap';
-import {
-  randomCreatedDate,
-  randomTraderName,
-  randomUpdatedDate,
-} from '@mui/x-data-grid-generator';
 import Snackbar from '@mui/material/Snackbar';
 import Dialog from '@mui/material/Dialog';
 import DialogTitle from '@mui/material/DialogTitle';
