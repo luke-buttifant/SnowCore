@@ -116,6 +116,22 @@ const Users = () =>{
 
     try {
       // Make the HTTP request to save in the backend
+      
+        await axios.get("/api/users/adminDataUpdate", {
+          first_name: users,
+          last_name: users,
+          email: users,
+          gender: users,
+          dob: users
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+    
+      
       const response = await mutateRow(newRow);
       setSnackbar({ children: 'User successfully saved', severity: 'success' });
       resolve(response);

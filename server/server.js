@@ -35,6 +35,8 @@ app.use(express.urlencoded({ extended: false }))
 //User Routes
 app.use('/api/users', require('./routes/UserRoutes'))
 
+app.use('/api/users/adminDataUpdate', require('./routes/UserRoutes'))
+
 app.get("/api", (req, res) => {
     res.json({ message: "Hello from server!" });
   });

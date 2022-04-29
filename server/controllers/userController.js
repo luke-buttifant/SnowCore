@@ -79,6 +79,22 @@ const currentUserInfo = asyncHandler(async (req, res) => {
 })
 
 const updateUserInfo = asyncHandler(async (req, res) => {
+    const {_id, first_name, last_name, email, gender,dob,pic, is_admin} = req.body;
+    try{
+        await User.findByIdAndUpdate(_id,{
+            first_name: first_name,
+            last_name: last_name,
+            gender: gender, 
+            dob: dob, 
+            pic: pic,
+            is_admin: is_admin
+        } );
+    }catch(err){
+        console.log(err);
+    }
+})
+
+const adminDataUpdate = asyncHandler(async (req, res) => {
     const {_id, first_name, last_name, email, gender,dob,pic} = req.body;
     try{
         await User.findByIdAndUpdate(_id,{
@@ -168,4 +184,4 @@ const uploadReq = async (req, res) => {
 
 
 
-module.exports = { getUsers, registerUser, authUser, currentUserInfo, uploadImage, uploadReq, updateUserInfo}
+module.exports = { getUsers, registerUser, authUser, currentUserInfo, uploadImage, uploadReq, updateUserInfo, adminDataUpdate}
