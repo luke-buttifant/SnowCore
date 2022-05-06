@@ -1,12 +1,15 @@
 import "../App.css"
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { DataGrid } from '@mui/x-data-grid';
+import {BsCloudSnow} from "react-icons/bs"
+import {WiStrongWind} from "react-icons/wi"
 import { IoConstructOutline } from "react-icons/io5";
 import CourchevelDisplayPic from "../images/courchevel-display.png"
 
 const Resort = () =>{
+  let location = useLocation();
    
     const [data, setData] = useState({})
     const [weather, setWeather] = useState({})
@@ -41,7 +44,6 @@ const Resort = () =>{
 
   const getWeatherData = async () => {
     await axios.get("/api/weather/getWeather").then((response) => {
-    console.log(response.data)
     setWeather(response.data)
   })
   await axios.get("/api/weather/bestTimeToSki").then((response) => {
@@ -51,29 +53,44 @@ const Resort = () =>{
   })
 }
 
+function getDayName(dateStr)
+{
+    var splitDate = dateStr.split('/');
+    var month = splitDate[1] - 1;
+    var date = new Date(splitDate[2], month, splitDate[0]);
+    return date.toLocaleDateString("en-gb", {weekday: "short"})       
+}
 
 
   
 let rows = []
   for(let i = 0; i < weather.length; i++){
-      rows.push({id: i,date: weather[i].date, time: weather[i].time, snowdepth: weather[i].snow_mm, temp_c: weather[i].base.temp_c, morning: weather[i].base.wx_desc,afternoon: weather[i].mid.wx_desc,evening: weather[i].upper.wx_desc, windSpeed: weather[i].base.windspd_max_mph })
+      rows.push({id: i, date: getDayName(weather[i].date.toString()),
+         snowdepth: weather[i].snow_in, temp_c: weather[i].base.temp_c, 
+          windSpeed: weather[i].base.windspd_max_mph, 
+           icon: weather[i].base.wx_icon })
     }
-
+console.log(rows)
   return (
       <>
-      <div className="min-w-[60%] pt-10">
+      <div className="min-h-screen min-w-screen bg-white">
+      <div className="min-w-[60%] pt-7 px-14 pb-4 bg-white">
         <img className="w-[80%] mx-auto rounded-lg" src={CourchevelDisplayPic}></img>
       </div>
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-10 m-10 bg-white p-10">
-        <div>
-        <div className="h-96 w-[100%] mx-auto text-center">
-          {rows.map((row) => <div className="flex flex-col">{row.date} {row.temp_c} &#8451; {row.time} {row.windSpeed}</div>)}
+      <h1 className="text-center font-bold text-3xl">{location.state.title}</h1>
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-10 m-10 bg-white my-5 rounded-lg">
+        <div className="h-96 w-[100%] sm:w-[60%] mx-auto">
+          {rows.map((row) => <div key={row.id} className="grid grid-cols-5 mx-auto text-center text-primary font-bold divide-y my-4"><div className="font-bold">{row.date}</div>
+           <img className="w-14 mx-auto" src={`/weather-icons/${row.icon}`}></img> 
+           <div className="font-bold text-primary">{row.temp_c} &#8451;</div>
+            <div className="flex flex-row"><BsCloudSnow size={30} className="mt-1 mr-2" />{row.snowdepth}</div>
+             <div className="flex flex-row"><WiStrongWind size={30}  />{row.windSpeed}</div>
+             </div>)}
       </div>
-        </div>
         <div className="max-w-[400px] mx-auto">
           
-          <div className="text-center bg-primary font-bold max-w-[80%] text-white rounded-r-lg py-2 "><div className="">Best time to visit?</div></div>
-          <div className="flex flex-col gap-0 mx-auto text-center">
+          <div className="text-center bg-primary font-bold max-w-[100%] text-white rounded-r-lg py-2 "><div className="text-2xl">Best time to visit?</div></div>
+          <div className="flex flex-col gap-1 mx-auto text-center">
             <div> Based on the previous 3 years of historical weather 
           data, we have predicted that the best time to visit is:</div>
           <div className="flex flex-row gap-5 mx-auto">
@@ -96,7 +113,7 @@ let rows = []
           </div>
         </div>
       </div>
-
+      </div>
      
 
     </>

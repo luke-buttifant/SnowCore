@@ -51,7 +51,6 @@ const [data1, setData1] = useState({})
     })
   }
 
-         // {console.log(data[0],"KOK")}
  function toggleMap(){
    const map = document.getElementById("map-popup")
    map.classList.remove("hidden")
