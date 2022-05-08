@@ -150,12 +150,12 @@ const [data, setData] = useState({})
             >
               <img
                 className="rounded-full mx-auto text-center"
-                src={data.pic}
+                src={data.pic == undefined || null ? "/images/profile-pic.png" : data.pic}
                 alt=""
               />
             </div>
           <div className="text-center">
-              <div className="text-md text-primary text-center mt-2 dark:text-white">{data.first_name == undefined || null ? "Loading..." : data.first_name + " " + data.last_name}</div>
+              <div className="text-md text-primary text-center mt-2 dark:text-white">{data.first_name == undefined || null ? "Guest" : data.first_name + " " + data.last_name}</div>
             </div>
         </div>
         <div className="px-6 pt-4 pb-8">

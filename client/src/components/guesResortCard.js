@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { Link, useLocation} from 'react-router-dom';
 
 
-const ResortCard = ({ src, title, name, favouriteCount, degrees, rain, wind , favouriteToogle, isLoggedIn}) =>  {
+const GuestResortCard = ({ src, title, name, favouriteCount, degrees, rain, wind , favouriteToogle, isLoggedIn}) =>  {
   let outlineStar=""
   let filledStar=""  
   let location = useLocation()
@@ -99,8 +99,7 @@ const ResortCard = ({ src, title, name, favouriteCount, degrees, rain, wind , fa
       <Link to={ "/resort-page"} state={{title: title}}><div className="font-bold text-2xl mb-2 text-center text-primary dark:text-white">{title}</div></Link>
         <div className='grid grid-cols-2 dark:text-white'>
           <div className='text-sm lg:text-sm overflow-hidden'>Saint-Bon-Tarentaise, <br className='hidden lg:flex'></br> France</div>
-          <div className='flex mx-auto text-2xl'> <button id={name + "Outline"} name={name} className={outlineStar} onClick={ToggleStar}><AiOutlineStar  cursor={"pointer"} size={35} /></button>
-          <button id={name + "Filled"} name={name} onClick={ToggleStar} className={filledStar}><AiFillStar className='text-primary dark:text-white' size={35} cursor={"pointer"} /> </button>
+          <div className='flex mx-auto text-2xl'> <button disabled id={name + "Outline"} name={name} className={outlineStar} onClick={ToggleStar}><AiOutlineStar size={35} /></button>
           {favouriteCount}</div>
         </div>
             
@@ -118,4 +117,4 @@ const ResortCard = ({ src, title, name, favouriteCount, degrees, rain, wind , fa
      
 }
 
-export default ResortCard;
+export default GuestResortCard;

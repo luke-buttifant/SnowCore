@@ -43,19 +43,10 @@ const favouriteResorts = asyncHandler(async (req, res) => {
 const resortData = asyncHandler(async (req, res) => {
     try{
         const resort = await Resorts.find();
-        if(req.userId)
-        {
-            const favourites = await Favourite.findOne({user_ID:req.userId});
-            const list=[]
-            list.push(resort)
-            list.push(favourites)
-
-            res.send(list)
+        res.send(resort)
         }
-     
-        //res.send(resort)
-    }catch(err){
-        console.log(err);
+    catch{
+        res.send("failed")
     }
 })
 

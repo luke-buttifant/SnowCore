@@ -6,7 +6,7 @@ const verify = require('../middlewares/verifyToken')
 
 //favourite Controller
 router.get('/getFavouriteResorts',verify, favouriteResorts)
-router.get('/getResorts',verify, resortData)
+router.get('/getResorts', resortData)
 router.get('/createResorts', createResort)
 router.post('/addResort',verify, addFavouriteResort)
 router.post('/removeResort',verify, removeFavouriteResort)

@@ -14,18 +14,35 @@ import { useNavigate } from 'react-router-dom';
 import ReactLoading from "react-loading";
 
 import axios from 'axios';
+import GuestResortCard from '../components/guesResortCard';
 
 const Resorts = () =>{
   let navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(true)
+  const [resortData, setResortData] = useState()
+  const [isLoggedIn, setIsLoggedIn] = useState()
 
   useEffect(() => {
+    userAuthenticated();
       getResorts();
+      
     }, [navigate]);
    
 
-const [data, setData] = useState({})
-const [data1, setData1] = useState({})
+    const userAuthenticated = async () => {
+      var user = await axios.get("/api/users/currentUser", {headers: {
+      "x-access-token": localStorage.getItem("jwt")
+    }}).then((response) => {
+      if(response.data.message == "authentication failed"){
+        localStorage.removeItem("jwt");
+        setIsLoggedIn(false)
+      }
+      else{
+        setIsLoggedIn(true)
+      }
+    })
+  }
+
 
 
   const getResorts = async () => {
@@ -33,16 +50,8 @@ const [data1, setData1] = useState({})
         "Content-type": "application/json",
       "x-access-token": localStorage.getItem("jwt")
     }}).then((response) => {
-      let favouriteList=[];
-      for(var x = 0; x <Object.keys(response.data[1]).length-1; x++) {
-        if (Object.values(response.data[1])[x]===true || Object.values(response.data[1])[x]==false )
-        {
-          console.log(Object.values(response.data[1])[x]);
-          favouriteList.push(Object.values(response.data[1])[x]);
-        }
-      }
-      setData1(favouriteList)
-      setData(response.data[0])
+      console.log(response.data)
+      setResortData(response.data)
       setIsLoading(false)
     })
   }
@@ -103,20 +112,14 @@ const [data1, setData1] = useState({})
       onSlideChange={() => console.log('slide change')}
       onSwiper={(swiper) => console.log(swiper)}
     >
-   
-
-
-         {Object.keys(data).map((resortData)=>{
-           return(  
-              <SwiperSlide>
-              <ResortCard src={data[resortData].src} title={data[resortData].resort_Title} name={data[resortData].resort_name} favouriteCount={data[resortData].favouriteCount} degrees={data[resortData].degrees} rain={data[resortData].rain} wind={data[resortData].wind} favouriteToogle={data1[resortData]} />
-            </SwiperSlide>
-          
-             )
-           })
-           
-         }
-    </Swiper>
+      {isLoggedIn ? resortData.map((data) => 
+                        <SwiperSlide key={data.resort_Title}>
+                        <ResortCard key={data.resort_Title} src={data.src} title={data.resort_Title} name={data.resort_name} favouriteCount={data.favouriteCount} degrees={data.degrees} rain={data.rain} wind={data.wind} />
+                      </SwiperSlide> )  : resortData.map((data) => 
+                            <SwiperSlide key={data.resort_Title}>
+                            <GuestResortCard key={data.resort_Title} src={data.src} title={data.resort_Title} name={data.resort_name} favouriteCount={data.favouriteCount} degrees={data.degrees} rain={data.rain} wind={data.wind} />
+                          </SwiperSlide>)}
+      </Swiper>
 
     <div className="min-w-max">
       <div className='mx-auto text-center'>
