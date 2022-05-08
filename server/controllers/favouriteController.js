@@ -19,14 +19,11 @@ const getFavouriteData = asyncHandler(async (req, res) => {
 const favouriteResorts = asyncHandler(async (req, res) => {
     try{
         listOfFavourites=[];
-        //const favourites = await Favourite.findOne({user_ID:req.userId});
         const favourites = await Favourite.findOne({user_ID:req.userId}).lean();
         for(var x = 0; x <Object.keys(favourites).length-1; x++) {
             if (Object.values(favourites)[x]==true)
             {
                 let resortName=Object.keys(favourites)[x];
-               // resortName=resortName.replace(/_/g, ' ');
-                //resortName=resortName.charAt(0).toLocaleUpperCase() + resortName.slice(1);
                 const resort = await Resorts.findOne({resort_name:resortName});
                 console.log(resort,"resort")
                 listOfFavourites.push(resort);
@@ -41,14 +38,21 @@ const favouriteResorts = asyncHandler(async (req, res) => {
 
 
 const resortData = asyncHandler(async (req, res) => {
-    try{
-        const resort = await Resorts.find();
-        res.send(resort)
+    const resort = await Resorts.find();
+        if(req.query.user_id){
+            console.log("found user id...")
+            const favourites = await Favourite.findOne({user_ID: req.query.user_id})
+            console.log(favourites)
+            const list = []
+            list.push(resort)
+            list.push(favourites)
+            res.send({resorts: resort, favourites: favourites})
         }
-    catch{
-        res.send("failed")
+        else{
+            res.send(resort)
+        }
     }
-})
+)
 
 
 

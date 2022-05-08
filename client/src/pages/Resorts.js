@@ -19,12 +19,14 @@ import GuestResortCard from '../components/guesResortCard';
 const Resorts = () =>{
   let navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(true)
-  const [resortData, setResortData] = useState()
+  const [resortData, setResortData] = useState([])
   const [isLoggedIn, setIsLoggedIn] = useState()
+  const [favourites, setFavourites] = useState([])
+  const [userInfo, setUserInfo] = useState()
 
   useEffect(() => {
     userAuthenticated();
-      getResorts();
+   
       
     }, [navigate]);
    
@@ -36,8 +38,10 @@ const Resorts = () =>{
       if(response.data.message == "authentication failed"){
         localStorage.removeItem("jwt");
         setIsLoggedIn(false)
+        getResorts();
       }
       else{
+        getResorts(response.data._id)
         setIsLoggedIn(true)
       }
     })
@@ -45,16 +49,36 @@ const Resorts = () =>{
 
 
 
-  const getResorts = async () => {
-      var user = await axios.get("api/favourite/getResorts", {headers: {
-        "Content-type": "application/json",
-      "x-access-token": localStorage.getItem("jwt")
-    }}).then((response) => {
-      console.log(response.data)
-      setResortData(response.data)
-      setIsLoading(false)
-    })
+  const getResorts = async (user_id) => {
+    const config = {
+      headers: {
+          "Content-type":"application/json"
+      }
   }
+      await axios.get("api/favourite/getResorts", {params:{user_id: user_id}}, config).then((response) => {
+        console.log(response.data)
+        var resort = response.data.resorts
+        setIsLoading(false)
+        if(user_id){
+          for(let i = 0; i < resort.length; i++){
+            Object.keys(response.data.favourites).forEach(function(key){
+              if(key.toLowerCase() == resort[i].resort_name.toLowerCase()){
+                resort[i].favourite = response.data.favourites[key]
+              }
+            })
+          }
+          console.log(resort)
+          setResortData(resort)
+        }
+        else{
+          setResortData(response.data.resorts)
+        }
+
+      }
+      )
+    }
+
+
 
  function toggleMap(){
    const map = document.getElementById("map-popup")
@@ -108,13 +132,10 @@ const Resorts = () =>{
           spaceBetween: 10,
         },
       }}
-      
-      onSlideChange={() => console.log('slide change')}
-      onSwiper={(swiper) => console.log(swiper)}
     >
       {isLoggedIn ? resortData.map((data) => 
                         <SwiperSlide key={data.resort_Title}>
-                        <ResortCard key={data.resort_Title} src={data.src} title={data.resort_Title} name={data.resort_name} favouriteCount={data.favouriteCount} degrees={data.degrees} rain={data.rain} wind={data.wind} />
+                        <ResortCard key={data.resort_Title} src={data.src} title={data.resort_Title} name={data.resort_name} favouriteCount={data.favouriteCount} degrees={data.degrees} rain={data.rain} wind={data.wind} favouriteToogle={data.favourite} />
                       </SwiperSlide> )  : resortData.map((data) => 
                             <SwiperSlide key={data.resort_Title}>
                             <GuestResortCard key={data.resort_Title} src={data.src} title={data.resort_Title} name={data.resort_name} favouriteCount={data.favouriteCount} degrees={data.degrees} rain={data.rain} wind={data.wind} />
