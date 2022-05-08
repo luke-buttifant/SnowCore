@@ -47,6 +47,9 @@ const Register = () =>{
     if(password !== repeatPassword){
         setMessage('Passwords do not match!')
     }
+    else if(!moment(dobInput,"DD/MM/YYYY", true).isValid()){
+        setMessage('Date of birth is invalid!')
+    }
     else{
         setMessage(null)
         try{

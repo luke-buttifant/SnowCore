@@ -75,8 +75,8 @@ let rows = []
       <>
       {isLoading ? <ReactLoading type={"spinningBubbles"} color={"#000"} className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"/> : 
       <div className="min-h-screen min-w-screen bg-white">
-      <div className="min-w-[60%] pt-7 px-14 pb-4 bg-white">
-        <img className="w-[80%] mx-auto rounded-lg" src={CourchevelDisplayPic}></img>
+      <div className="min-w-[60%] md:pt-7 md:px-14 pb-4 bg-white">
+        <img className="w-[100%] px-2 sm:w-[80%] mx-auto rounded-lg" src={CourchevelDisplayPic}></img>
       </div>
       <h1 className="text-center font-bold text-3xl">{location.state.title}</h1>
       

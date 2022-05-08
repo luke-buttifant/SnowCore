@@ -15,7 +15,7 @@ import Profile from "./pages/profile";
 import AdminDashboard from "./pages/admin-dashboard";
 import Resort from "./pages/resortPage";
 import Users from "./pages/users";
-
+import Password from "./pages/password";
 
 function App() {
   
@@ -49,6 +49,7 @@ function App() {
       <Route path='/admin-dashboard' element={<AdminDashboard />} />
       <Route path='/resort-page' element={<Resort />} />
       <Route path='/users' element={<Users />} />
+      <Route path="/changePassword" element={<Password />} />
         
         <Route path="/about" element={<About />} />
       </Routes>

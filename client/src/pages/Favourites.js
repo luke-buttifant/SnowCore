@@ -9,11 +9,13 @@ import 'swiper/css';
 import dp from '../images/dp.png'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import ReactLoading from "react-loading"
 
 
 
 const Favourites = () =>{
   let navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
      favouritesAsync();
@@ -48,7 +50,7 @@ const [resortCardData, setResortCardData] = useState({})
         resortList.push(value)
       })
       setResortCardData( (response.data))
-     
+     setIsLoading(false)
       if(response.data.message == "authentication failed"){
         localStorage.removeItem("jwt");
         navigate("/login")
@@ -72,7 +74,10 @@ const [resortCardData, setResortCardData] = useState({})
       document.getElementById(stars[i].id).classList.toggle("hidden")
     }
   }
-  return (
+  if(isLoading){ return (
+    <ReactLoading type={"spinningBubbles"} color={"#000"} className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"/>
+   )}
+   else return (
     <>
 
 <div className="">
@@ -81,7 +86,7 @@ const [resortCardData, setResortCardData] = useState({})
     <h1 className="text-center text-4xl font-Sora dark:text-white mb-10">{data.first_name +" "+ data.last_name}</h1>
     <h2 className="text-2xl font-Sora dark:text-white mb-2 text-center"> My Favourites</h2>
     <div className='max-w-[80%] mx-auto'>
-<Swiper className='shadow-lg mb-10'
+<Swiper autoHeight className='shadow-lg mb-10'
       grabCursor={true}
       spaceBetween={10}
       navigation={true}

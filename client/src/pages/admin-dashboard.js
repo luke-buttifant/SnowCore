@@ -87,6 +87,7 @@ var favouritesAwait = await axios.get("/api/dashboard/getEachFavourites",
 ).then((response) => {
   //eachFav(response.data)
       var favouritesBarChart = {
+        height: 'auto',
         chart: {
           type: 'bar'
         },
@@ -217,7 +218,7 @@ catch(err){
         <>
         <AdminNav />
         <div className='grid grid-cols-1 lg:px-20 mx-auto'>
-        <div className=" mx-10">
+        <div className="mx-2 md:mx-10">
             <div className='m-0 mx-auto '>
         <div className=' bg-white rounded-lg dark:bg-dark-mode-secondary shadow-lg '>
         <div id='favourites'></div>
@@ -228,7 +229,7 @@ catch(err){
         </div>
 
         <div className='grid grid-cols-1 lg:grid-cols-2 lg:gap-20 gap-4 lg:px-20 px-0 mt-10'>
-            <div className=" mx-10">
+            <div className="mx-2 md:mx-10">
             <div className='m-0 mx-auto '>
         <div className=' bg-white rounded-lg dark:bg-dark-mode-secondary shadow-lg'>
           <div className='text-center font-bold'>Total Users: {userCount}</div>
@@ -237,10 +238,10 @@ catch(err){
 
         </div>
             </div>
-            <div className=" mx-10">
+            <div className="mx-2 md:mx-10">
             <div className='m-0 mx-auto'>
         <div className=' bg-white rounded-lg dark:bg-dark-mode-secondary shadow-lg '>
-        <div  id='favouritesBar'></div>
+        <div   id='favouritesBar'></div>
         </div>
 
         </div>

@@ -11,14 +11,16 @@ import 'swiper/css';
 import ResortCard from '../components/resortCard';
 import PopupMap from '../components/popupMap';
 import { useNavigate } from 'react-router-dom';
+import ReactLoading from "react-loading";
 
 import axios from 'axios';
 
 const Resorts = () =>{
   let navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-      userAuthenticated();
+      getResorts();
     }, [navigate]);
    
 
@@ -26,7 +28,7 @@ const [data, setData] = useState({})
 const [data1, setData1] = useState({})
 
 
-  const userAuthenticated = async () => {
+  const getResorts = async () => {
       var user = await axios.get("api/favourite/getResorts", {headers: {
         "Content-type": "application/json",
       "x-access-token": localStorage.getItem("jwt")
@@ -38,16 +40,10 @@ const [data1, setData1] = useState({})
           console.log(Object.values(response.data[1])[x]);
           favouriteList.push(Object.values(response.data[1])[x]);
         }
-
       }
       setData1(favouriteList)
       setData(response.data[0])
-    
-      console.log(response.data[1])
-      if(response.data.message == "authentication failed"){
-        localStorage.removeItem("jwt");
-        navigate("/login")
-      }
+      setIsLoading(false)
     })
   }
 
@@ -67,19 +63,20 @@ const [data1, setData1] = useState({})
   })
  }
 
-  return (
+ if(isLoading){ return (
+  <ReactLoading type={"spinningBubbles"} color={"#000"} className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"/>
+ )}
+ else return (
     <>
-
-
 <PopupMap />
 
-{/* MAIN BODY */}
-<div id='main-body' className="container">
+
+<div className="container">
   
-    <h1 className="text-center text-4xl font-Sora dark:text-white mb-20 pt-20 font-bold"> Three Valleys Ski Resort</h1>
+    <h1 className="text-center text-4xl font-Sora dark:text-white mb-20 md:pt-20 pt-4 font-bold"> Three Valleys Ski Resort</h1>
     </div>
     <div className='max-w-[80%] mx-auto'>
-<Swiper id="swiper" className='shadow-lg mb-10'
+<Swiper autoHeight id="swiper" className='shadow-lg mb-10'
       grabCursor={true}
       spaceBetween={10}
       navigation={true}
