@@ -108,7 +108,7 @@ const Resorts = () =>{
 <PopupMap />
 
 
-<div className="container">
+<div id='main-body' className="container">
   
     <h1 className="text-center text-4xl font-Sora dark:text-white mb-20 md:pt-20 pt-4 font-bold"> Three Valleys Ski Resort</h1>
     </div>
