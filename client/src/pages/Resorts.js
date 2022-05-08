@@ -56,10 +56,11 @@ const Resorts = () =>{
       }
   }
       await axios.get("api/favourite/getResorts", {params:{user_id: user_id}}, config).then((response) => {
+        var guestResort = response.data.resorts
         console.log(response.data)
         var resort = response.data.resorts
-        setIsLoading(false)
-        if(user_id){
+        
+        if(user_id != undefined || null){
           for(let i = 0; i < resort.length; i++){
             Object.keys(response.data.favourites).forEach(function(key){
               if(key.toLowerCase() == resort[i].resort_name.toLowerCase()){
@@ -71,11 +72,14 @@ const Resorts = () =>{
           setResortData(resort)
         }
         else{
-          setResortData(response.data.resorts)
+          setResortData(response.data)
         }
-
+        setIsLoading(false)
       }
       )
+    }
+    function button(){
+      console.log(resortData)
     }
 
 
@@ -136,10 +140,12 @@ const Resorts = () =>{
       {isLoggedIn ? resortData.map((data) => 
                         <SwiperSlide key={data.resort_Title}>
                         <ResortCard key={data.resort_Title} src={data.src} title={data.resort_Title} name={data.resort_name} favouriteCount={data.favouriteCount} degrees={data.degrees} rain={data.rain} wind={data.wind} favouriteToogle={data.favourite} />
-                      </SwiperSlide> )  : resortData.map((data) => 
+                      </SwiperSlide> )  :
+                       resortData.map((data) => 
                             <SwiperSlide key={data.resort_Title}>
                             <GuestResortCard key={data.resort_Title} src={data.src} title={data.resort_Title} name={data.resort_name} favouriteCount={data.favouriteCount} degrees={data.degrees} rain={data.rain} wind={data.wind} />
                           </SwiperSlide>)}
+
       </Swiper>
 
     <div className="min-w-max">
