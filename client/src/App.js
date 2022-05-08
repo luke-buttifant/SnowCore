@@ -19,9 +19,6 @@ import Password from "./pages/password";
 import HistoricalData from "./pages/historicalData";
 
 function App() {
-  
-
-  console.log(process.env.MONGO_URI)
 
   if (localStorage.theme === 'dark') {
     document.documentElement.classList.add('dark')

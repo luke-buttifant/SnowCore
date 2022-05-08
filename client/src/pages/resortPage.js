@@ -24,7 +24,7 @@ const Resort = () => {
   useEffect(() => {
     // userAuthenticated();
     getWeatherData();
-  }, [navigate]);
+  }, []);
 
   // const userAuthenticated = async () => {
   //   var user = await axios
@@ -43,16 +43,15 @@ const Resort = () => {
   // };
 
   const getWeatherData = async () => {
-    await axios.get("/api/weather/getWeather").then((response) => {
+    await axios.get("/api/weather/getWeather", {params: {resort: location.state.title}}).then((response) => {
       setWeather(response.data);
+      console.log(response.data)
       if(response.data.length === 0){
         alert("Sorry! You have reached the API limit, try again soon")
       }
     });
     await axios.get("/api/weather/bestTimeToSki").then((response) => {
       setBestTimeToSki(`${response.data[0]} - ${response.data[41]}`);
-      setMaxSnow(10);
-      setMinSnow(0);
       setIsLoading(false);
     });
   };
@@ -85,17 +84,17 @@ const Resort = () => {
           className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         />
       ) : (
-        <div className="min-h-screen min-w-screen bg-white">
-          <div className="min-w-[60%] pt-7 px-14 pb-4 bg-white">
+        <div className="min-h-screen min-w-screen ">
+          <div className="w-[100%] md:w-[90%] mx-auto   overflow-hidden md:pt-10 pb-10">
             <img
-              className="w-[80%] mx-auto rounded-lg"
-              src={CourchevelDisplayPic}
+              className=" object-cover h-64 w-full md:rounded-lg"
+              src={location.state.img}
             ></img>
           </div>
           <h1 className="text-center font-bold text-3xl">
             {location.state.title}
           </h1>
-          <div className="grid grid-cols-1 xl:grid-cols-2 gap-10 m-10 bg-white my-5 rounded-lg">
+          <div className="grid grid-cols-1 xl:grid-cols-2 gap-10 m-10  my-5 rounded-lg">
             <div className="h-96 w-[100%] sm:w-[60%] mx-auto">
               {rows.map((row) => (
                 <div
@@ -134,15 +133,6 @@ const Resort = () => {
                 <div className="flex flex-row gap-5 mx-auto">
                   <div>Dates: </div>
                   <div>{bestTimeToSki} </div>
-                </div>
-
-                <div className="flex flex-row gap-5 mx-auto">
-                  <div>Max Snow Depth: </div>
-                  <div className="text-center">{maxSnow} </div>
-                </div>
-                <div className="flex flex-row gap-5 mx-auto">
-                  <div>Min Snow Depth: </div>
-                  <div>{minSnow} </div>
                 </div>
                 <div className="mx-auto">
                   

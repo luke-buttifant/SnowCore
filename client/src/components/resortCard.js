@@ -96,7 +96,7 @@ const ResortCard = ({ src, title, name, favouriteCount, degrees, rain, wind , fa
       <div className="max-w-full rounded shadow-lg bg-white dark:bg-dark-mode-secondary">
       <img className="w-full h-full" src={src} alt={name} />
       <div className="px-6 py-4">
-      <Link to={ "/resort-page"} state={{title: title}}><div className="font-bold text-2xl mb-2 text-center text-primary dark:text-white">{title}</div></Link>
+      <Link to={ "/resort-page"} state={{title: title, img: src}}><div className="font-bold text-2xl mb-2 text-center text-primary dark:text-white">{title}</div></Link>
         <div className='grid grid-cols-2 dark:text-white'>
           <div className='text-sm lg:text-sm overflow-hidden'>Saint-Bon-Tarentaise, <br className='hidden lg:flex'></br> France</div>
           <div className='flex mx-auto text-2xl'> <button id={name + "Outline"} name={name} className={outlineStar} onClick={ToggleStar}><AiOutlineStar  cursor={"pointer"} size={35} /></button>

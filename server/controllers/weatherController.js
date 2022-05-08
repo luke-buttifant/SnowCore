@@ -7,10 +7,34 @@ const avg = require('average-array');
 const courchevel_historic_data = require('../historicData/courchevel_historic_data')
 
 
-const request = `https://api.weatherunlocked.com/api/resortforecast/333005?hourly_interval=6&app_id=${process.env.API_APP_ID}&app_key=${process.env.API_APP_KEY}`
+
 
 
 const getWeather = async (req, res) => { 
+    console.log(req.query.resort)
+    if(req.query.resort == "Courchevel"){
+       var resort_id = "333005"
+    }
+    if(req.query.resort == "Val Thorens"){
+        var resort_id = "333020"
+    }
+    if(req.query.resort == "Les Menuires"){
+        var resort_id = "333012"
+    }
+    if(req.query.resort == "Saint Martin De Belleville"){
+        var resort_id = "333031"
+    }
+    if(req.query.resort == "Brides Les Baines"){
+        var resort_id = "54883577"
+    }
+    if(req.query.resort == "Orelle"){
+        var resort_id = "54885193"
+    }
+    if(req.query.resort == "Meribel"){
+        var resort_id = "333014"
+    }
+
+    const request = `https://api.weatherunlocked.com/api/resortforecast/${resort_id}?hourly_interval=6&app_id=${process.env.API_APP_ID}&app_key=${process.env.API_APP_KEY}`
     const weather = await axios.get(request)
     var days = []
     for(let i = 0;i < weather.data.forecast.length; i++){

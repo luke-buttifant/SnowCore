@@ -24,6 +24,7 @@ const HistoricalData = () => {
   const getWeatherData = async () => {
     await axios.get("/api/weather/historicalData").then((response) => {
       setWeather(response.data);
+      console.log(response)
       setIsLoading(false)
     });
   };
