@@ -1,7 +1,7 @@
 import "../App.css";
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link} from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
 import { BsCloudSnow } from "react-icons/bs";
 import { WiStrongWind } from "react-icons/wi";
@@ -45,6 +45,9 @@ const Resort = () => {
   const getWeatherData = async () => {
     await axios.get("/api/weather/getWeather").then((response) => {
       setWeather(response.data);
+      if(response.data.length === 0){
+        alert("Sorry! You have reached the API limit, try again soon")
+      }
     });
     await axios.get("/api/weather/bestTimeToSki").then((response) => {
       setBestTimeToSki(`${response.data[0]} - ${response.data[41]}`);
@@ -142,11 +145,11 @@ const Resort = () => {
                   <div>{minSnow} </div>
                 </div>
                 <div className="mx-auto">
-                  <a href="https://www.les3vallees.com/en">
+                  
                     <button className="text-center bg-primary px-10 py-2 rounded-lg mt-4 text-white">
-                      More Info
+                    <Link to="/historicalData" >More Info</Link>
                     </button>
-                  </a>
+                    
                 </div>
               </div>
             </div>

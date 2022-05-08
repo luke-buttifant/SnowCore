@@ -40,12 +40,7 @@ const favouriteResorts = asyncHandler(async (req, res) => {
 const resortData = asyncHandler(async (req, res) => {
     const resort = await Resorts.find();
         if(req.query.user_id){
-            console.log("found user id...")
             const favourites = await Favourite.findOne({user_ID: req.query.user_id})
-            console.log(favourites)
-            const list = []
-            list.push(resort)
-            list.push(favourites)
             res.send({resorts: resort, favourites: favourites})
         }
         else{

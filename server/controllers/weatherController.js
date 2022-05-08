@@ -20,6 +20,8 @@ const getWeather = async (req, res) => {
     }
     res.status(200).json(days)
 }
+
+
 const average = arr => arr.reduce((a,b) => a + b, 0) / arr.length;
 
 const BestTimeToSki = async (req, res) => {
@@ -38,6 +40,11 @@ const BestTimeToSki = async (req, res) => {
     var index = row.index
     var result = []
     res.send(row.index)
+}
+
+const HistoricalData = async (req, res) => {
+    var data = courchevel_historic_data;
+    res.send(data)
 }
 
 
@@ -63,4 +70,4 @@ function getTimeframe(df){
     
 }
 
-module.exports = {getWeather, BestTimeToSki}
+module.exports = {getWeather, BestTimeToSki, HistoricalData}
