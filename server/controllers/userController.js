@@ -6,16 +6,7 @@ require("dotenv").config();
 const multer = require('multer')
 const express = require('express');
 const {normalize} = require('path')
-
- 
-
-
-
-
-
-
-
-
+const bcrypt = require('bcrypt')
 
 // Get users
 // Route: /api/users
@@ -79,14 +70,16 @@ const currentUserInfo = asyncHandler(async (req, res) => {
 })
 
 const updateUserInfo = asyncHandler(async (req, res) => {
-    const {_id, first_name, last_name, email, gender,dob,pic} = req.body;
+    const {_id, first_name, last_name, email, gender,dob,pic, password} = req.body;
+    console.log(password)
     try{
         await User.findByIdAndUpdate(_id,{
             first_name: first_name,
             last_name: last_name,
             gender: gender, 
             dob: dob, 
-            pic: pic
+            pic: pic,
+            password: password
         } );
     }catch(err){
         console.log(err);
@@ -183,6 +176,16 @@ const uploadReq = async (req, res) => {
     
 }
 
+const updatePassword = async (req, res) => {
+    console.log(req.body)
+    const {id, password} = req.body
+    await User.findByIdAndUpdate(id, {
+        password: password
+    })
+    console.log(password)
+    res.sendStatus(200)
+}
 
 
-module.exports = { getUsers, registerUser, authUser, currentUserInfo, uploadImage, uploadReq, updateUserInfo, adminDataUpdate}
+
+module.exports = { getUsers, registerUser, authUser, currentUserInfo, uploadImage, uploadReq, updateUserInfo, adminDataUpdate, updatePassword}
