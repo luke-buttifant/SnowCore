@@ -91,22 +91,27 @@ const Resort = () => {
               src={location.state.img}
             ></img>
           </div>
-          <h1 className="text-center font-bold text-3xl">
+          <h1 className="text-center font-bold text-3xl dark:text-white">
             {location.state.title}
           </h1>
+          <div class="py-4">
+    <div class="w-[90%] text-center mx-auto border-t border-primary dark:border-white border-1"></div>
+</div>
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-10 m-10  my-5 rounded-lg">
             <div className="h-96 w-[100%] sm:w-[60%] mx-auto">
+              <h1 className="text-center font-bold text-xl dark:text-white">7 Day Forecast</h1>
               {rows.map((row) => (
+                <div className="divide-y my-4 dark:divide-black  rounded-lg ">
                 <div
                   key={row.id}
-                  className="grid grid-cols-5 mx-auto text-center text-primary font-bold divide-y my-4"
+                  className="grid grid-cols-5 mx-auto text-center text-primary dark:text-white font-bold"
                 >
                   <div className="font-bold">{row.date}</div>
                   <img
                     className="w-14 mx-auto"
                     src={`/weather-icons/${row.icon}`}
                   ></img>
-                  <div className="font-bold text-primary">
+                  <div className="font-bold ">
                     {row.temp_c} &#8451;
                   </div>
                   <div className="flex flex-row">
@@ -118,15 +123,15 @@ const Resort = () => {
                     {row.windSpeed}
                   </div>
                 </div>
+                </div>
               ))}
             </div>
-            <div className="max-w-[400px] mx-auto">
+            <div className="max-w-[400px] mx-auto mt-10 pb-20">
               <div className="text-center bg-primary font-bold max-w-[100%] text-white rounded-r-lg py-2 ">
                 <div className="text-2xl">Best time to visit?</div>
               </div>
-              <div className="flex flex-col gap-1 mx-auto text-center">
+              <div className="flex flex-col gap-1 mx-auto text-center dark:text-white">
                 <div>
-                  {" "}
                   Based on the previous 3 years of historical weather data, we
                   have predicted that the best time to visit is:
                 </div>
