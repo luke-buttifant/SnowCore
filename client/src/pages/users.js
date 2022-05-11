@@ -189,7 +189,8 @@ export const Users = () => {
   return (
     <>
     <AdminNav />
-    <div style={{ height: 600, width: '80%', marginInline: "auto", backgroundColor: "white"}}>
+    <div className="bg-white w-[80%] mx-auto dark:bg-dark-mode">
+    <div style={{ height: 600, width: '100%', marginInline: "auto"}}>
     <Box
       sx={{
         height: 600,
@@ -220,6 +221,7 @@ export const Users = () => {
         }}
       />
       </Box>
+      </div>
       {!!snackbar && (
         <Snackbar
           open
