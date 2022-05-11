@@ -86,6 +86,25 @@ const updateUserInfo = asyncHandler(async (req, res) => {
     }
 })
 
+const DataGridUpdate = asyncHandler(async (req, res) => {
+    const {first_name, last_name, email, gender, dob} = req.body;
+    console.log(req.body)
+    try{
+        await User.findOneAndUpdate({email: email}, {
+            first_name: first_name,
+            last_name: last_name, 
+            gender: gender,
+            dob: dob
+        })
+        console.log("succesfully Updated Row")
+        res.send("success")
+    }
+    catch(err){
+        console.log("failed...")
+        res.send(err)
+    }
+})
+
 const adminDataUpdate = asyncHandler(async (req, res) => {
     const {_id, first_name, last_name, email, gender,dob,pic, is_admin} = req.body;
     try{
@@ -188,4 +207,4 @@ const updatePassword = async (req, res) => {
 
 
 
-module.exports = { getUsers, registerUser, authUser, currentUserInfo, uploadImage, uploadReq, updateUserInfo, adminDataUpdate, updatePassword}
+module.exports = { getUsers, registerUser, authUser, currentUserInfo, uploadImage, uploadReq, updateUserInfo, adminDataUpdate, updatePassword, DataGridUpdate}

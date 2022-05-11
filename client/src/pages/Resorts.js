@@ -12,7 +12,6 @@ import ResortCard from '../components/resortCard';
 import PopupMap from '../components/popupMap';
 import { useNavigate } from 'react-router-dom';
 import ReactLoading from "react-loading";
-
 import axios from 'axios';
 import GuestResortCard from '../components/guesResortCard';
 
@@ -77,9 +76,6 @@ const Resorts = () =>{
         setIsLoading(false)
       }
       )
-    }
-    function button(){
-      console.log(resortData)
     }
 
 

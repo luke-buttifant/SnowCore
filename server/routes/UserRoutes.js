@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../model/userModel')
-const {getUsers, authUser, registerUser, currentUserInfo, uploadReq, uploadImage, updateUserInfo, adminDataUpdate, updatePassword} = require('../controllers/userController')
+const {getUsers, authUser, registerUser, currentUserInfo, uploadReq, uploadImage, updateUserInfo, adminDataUpdate, updatePassword, DataGridUpdate} = require('../controllers/userController')
 const verify = require('../middlewares/verifyToken')
 
 
@@ -14,7 +14,7 @@ router.post('/uploadImage', uploadImage, uploadReq)
 router.post('/updateUser', updateUserInfo)
 router.post('/adminDataUpdate', adminDataUpdate)
 router.post('/updatePassword', updatePassword)
-
+router.post('/dataGridUpdate', DataGridUpdate)
 
 
 
