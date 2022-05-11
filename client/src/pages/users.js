@@ -195,12 +195,12 @@ export const Users = () => {
         height: 600,
         width: 1,
         '& .green': {
-          backgroundColor: '#00FF00',
+          backgroundColor: '#77DD77',
           color: '#1a3e72',
         },
         '& .red': {
-          backgroundColor: '#fff',
-          color: '#1a3e72',
+          backgroundColor: '#ff6961',
+          color: '#fff',
         },
       }}
     >
@@ -213,7 +213,7 @@ export const Users = () => {
         onProcessRowUpdateError={handleProcessRowUpdateError}
         experimentalFeatures={{ newEditingApi: true }}
         getCellClassName={(params) => {
-          if (params.field == null) {
+          if (params.field == "first_name" || params.field == "last_name" || params.field == "email" || params.field == "gender" || params.field == "dob") {
             return '';
           }
           return params.value > 0 ? 'green' : 'red';
