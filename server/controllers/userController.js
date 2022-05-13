@@ -196,13 +196,22 @@ const uploadReq = async (req, res) => {
 }
 
 const updatePassword = async (req, res) => {
-    console.log(req.body)
-    const {id, password} = req.body
-    await User.findByIdAndUpdate(id, {
-        password: password
-    })
-    console.log(password)
-    res.sendStatus(200)
+
+    try{
+        const id = req.body.id
+        const password = req.body.password
+        const salt = await bcrypt.genSalt(10);
+        var encyrptedPass = await bcrypt.hash(password, salt);
+        await User.findByIdAndUpdate(id, {
+            password: encyrptedPass
+        })
+        console.log(password)
+        res.send("Password Updated")
+    }
+    catch(err){
+        res.send(err)
+    }
+
 }
 
 
