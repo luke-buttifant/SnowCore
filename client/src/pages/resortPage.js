@@ -26,22 +26,6 @@ const Resort = () => {
     getWeatherData();
   }, []);
 
-  // const userAuthenticated = async () => {
-  //   var user = await axios
-  //     .get("/api/users/currentUser", {
-  //       headers: {
-  //         "x-access-token": localStorage.getItem("jwt"),
-  //       },
-  //     })
-  //     .then((response) => {
-  //       setData(response.data);
-  //       if (response.data.message == "authentication failed") {
-  //         localStorage.removeItem("jwt");
-  //         // navigate("/login");
-  //       }
-  //     });
-  // };
-
   const getWeatherData = async () => {
     await axios.get("/api/weather/getWeather", {params: {resort: location.state.title}}).then((response) => {
       setWeather(response.data);

@@ -7,7 +7,7 @@ require("dotenv").config();
 
 
 
-
+//ADMIN DASHBOARD 
 const creataDataSet = asyncHandler(async (req, res) => {
     collectionDataFav= await Resorts.find()
 
