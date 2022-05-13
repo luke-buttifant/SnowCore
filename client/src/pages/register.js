@@ -1,6 +1,6 @@
 import {React, useState, useEffect} from "react"
 import "../App.css"
-import loginIllustration from '../images/loginIllustration.jpg';
+import loginIllustration from '../images/loginIllustration.webp';
 import moment from "moment";
 import { useNavigate } from "react-router-dom"
 import axios from "axios"

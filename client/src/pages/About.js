@@ -3,7 +3,7 @@ import dp from '../images/dp.png'
 import {AiOutlineMail, AiOutlinePhone} from 'react-icons/ai'
 import AboutUsCard from '../components/aboutUsCard';
 import RahulDp from '../images/rahulDp.jpg'
-import MichalDp from '../images/michal-dp.png'
+import MichalDp from '../images/michal-dp.webp'
 import IvanDp from '../images/ivan-dp.webp'
 import { GoLocation } from 'react-icons/go';
 import { useNavigate } from 'react-router-dom';
@@ -27,10 +27,11 @@ const [data, setData] = useState({})
       setData(response.data)
       if(response.data.message == "authentication failed"){
         localStorage.removeItem("jwt");
-        navigate("/login")
       }
     })
   }
+
+  
   return (
       <>
       <div className='container'>

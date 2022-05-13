@@ -1,18 +1,10 @@
 import {React, useEffect, useState} from 'react';
-import valThorens from '../images/val-thorens-card.jpg';
-import Courchevel from '../images/Courchevel-card.jpg';
-import LesMenuires from '../images/Les-menuires-card.png';
-import meribel from '../images/meribel-card.png'
-import SaintMartin from '../images/stMartinDeBell-card.png'
-import BridesLesBaines from '../images/brides-les-baines-card.png'
-import Orelle from '../images/orelle-card.png'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import ResortCard from '../components/resortCard';
 import PopupMap from '../components/popupMap';
 import { useNavigate } from 'react-router-dom';
 import ReactLoading from "react-loading";
-
 import axios from 'axios';
 import GuestResortCard from '../components/guesResortCard';
 
@@ -78,9 +70,6 @@ const Resorts = () =>{
       }
       )
     }
-    function button(){
-      console.log(resortData)
-    }
 
 
 
@@ -139,11 +128,11 @@ const Resorts = () =>{
     >
       {isLoggedIn ? resortData.map((data) => 
                         <SwiperSlide key={data.resort_Title}>
-                        <ResortCard key={data.resort_Title} src={data.src} title={data.resort_Title} name={data.resort_name} favouriteCount={data.favouriteCount} degrees={data.degrees} rain={data.rain} wind={data.wind} favouriteToogle={data.favourite} />
+                        <ResortCard key={data.resort_Title} src={`/images/${data.src}`} title={data.resort_Title} name={data.resort_name} favouriteCount={data.favouriteCount} degrees={data.degrees} rain={data.rain} wind={data.wind} favouriteToogle={data.favourite} />
                       </SwiperSlide> )  :
                        resortData.map((data) => 
                             <SwiperSlide key={data.resort_Title}>
-                            <GuestResortCard key={data.resort_Title} src={data.src} title={data.resort_Title} name={data.resort_name} favouriteCount={data.favouriteCount} degrees={data.degrees} rain={data.rain} wind={data.wind} />
+                            <GuestResortCard key={data.resort_Title} src={`/images/${data.src}`} title={data.resort_Title} name={data.resort_name} favouriteCount={data.favouriteCount} degrees={data.degrees} rain={data.rain} wind={data.wind} />
                           </SwiperSlide>)}
 
       </Swiper>

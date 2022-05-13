@@ -168,18 +168,6 @@ const [data, setData] = useState({})
         </div>
         <div className="px-6 pt-4 pb-8">
           <ul>
-            <li className="relative text-primary dark:text-white hover:text-white focus-within:text-white">
-              <div
-                className="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none"
-              >
-                < AiOutlineSetting size={30} className="ml-2"/>
-              </div>
-              <a
-                href="#"
-                className="inline-block w-full py-2 pl-14 text-m rounded hover:bg-primary focus:outline-none focus:ring-1 focus:ring-gray-500 focus:bg-primary focus:text-white"
-              >Settings</a
-              >
-            </li>
             {isLoggedIn ? <li onClick={logOut} className="relative text-primary dark:text-white hover:text-white focus-within:text-white">
             <div
               className="absolute inset-y-0 left-0 flex items-center pl-2 pointer-events-none mt-2">
@@ -268,18 +256,11 @@ const [data, setData] = useState({})
         <div className="px-6 pt-8">
           <hr className="border-gray-700" />
         </div>
-        <div className="px-6 pt-4">
+        <div className="px-6 pt-2">
 
-          <ul className="space-y-2">
+          <ul className="">
 
-            <li className="relative text-primary hover:text-white focus-within:text-white mx-auto rounded-lg p-4 hover:bg-primary dark:text-white">
-              <div
-                className="absolute inset-y-0 left-0 flex items-center pl-2.5 pointer-events-none">
-                < AiOutlineSetting size={25}/>
-              </div>
-            </li>
-
-           {isLoggedIn ?  <li onClick={logOut} className="relative text-primary hover:text-white focus-within:text-white mx-auto rounded-lg p-4 hover:bg-primary dark:text-white mt-4 cursor-pointer">
+           {isLoggedIn ?  <li onClick={logOut} className="relative text-primary hover:text-white focus-within:text-white mx-auto rounded-lg p-4 hover:bg-primary dark:text-white  cursor-pointer">
             <div
               className="absolute inset-y-0 left-0 flex items-center pl-3 mx-auto pointer-events-none">
               <GoSignOut size={25}/>

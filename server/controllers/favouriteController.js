@@ -16,6 +16,15 @@ const getFavouriteData = asyncHandler(async (req, res) => {
     }
 });
 
+const getAllFavourites = asyncHandler(async (req, res) => {
+    try{
+        const AllFavourites = await Favourite.find();
+        res.send(AllFavourites)
+    }
+    catch(err){
+        res.send(err)
+    }
+})
 const favouriteResorts = asyncHandler(async (req, res) => {
     try{
         listOfFavourites=[];
@@ -127,4 +136,4 @@ const removeFavouriteResort = asyncHandler(async (req, res) => {
 })
 
 
-module.exports = { favouriteResorts, resortData,createResort,addFavouriteResort,getFavouriteData,removeFavouriteResort}
+module.exports = { favouriteResorts, resortData,createResort,addFavouriteResort,getFavouriteData,removeFavouriteResort, getAllFavourites}

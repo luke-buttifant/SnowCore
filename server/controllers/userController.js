@@ -86,6 +86,25 @@ const updateUserInfo = asyncHandler(async (req, res) => {
     }
 })
 
+const DataGridUpdate = asyncHandler(async (req, res) => {
+    const {first_name, last_name, email, gender, dob} = req.body;
+    console.log(req.body)
+    try{
+        await User.findOneAndUpdate({email: email}, {
+            first_name: first_name,
+            last_name: last_name, 
+            gender: gender,
+            dob: dob
+        })
+        console.log("succesfully Updated Row")
+        res.send("success")
+    }
+    catch(err){
+        console.log("failed...")
+        res.send(err)
+    }
+})
+
 const adminDataUpdate = asyncHandler(async (req, res) => {
     const {_id, first_name, last_name, email, gender,dob,pic, is_admin} = req.body;
     try{
@@ -177,15 +196,24 @@ const uploadReq = async (req, res) => {
 }
 
 const updatePassword = async (req, res) => {
-    console.log(req.body)
-    const {id, password} = req.body
-    await User.findByIdAndUpdate(id, {
-        password: password
-    })
-    console.log(password)
-    res.sendStatus(200)
+
+    try{
+        const id = req.body.id
+        const password = req.body.password
+        const salt = await bcrypt.genSalt(10);
+        var encyrptedPass = await bcrypt.hash(password, salt);
+        await User.findByIdAndUpdate(id, {
+            password: encyrptedPass
+        })
+        console.log(password)
+        res.send("Password Updated")
+    }
+    catch(err){
+        res.send(err)
+    }
+
 }
 
 
 
-module.exports = { getUsers, registerUser, authUser, currentUserInfo, uploadImage, uploadReq, updateUserInfo, adminDataUpdate, updatePassword}
+module.exports = { getUsers, registerUser, authUser, currentUserInfo, uploadImage, uploadReq, updateUserInfo, adminDataUpdate, updatePassword, DataGridUpdate}

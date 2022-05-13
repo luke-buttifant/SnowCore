@@ -1,7 +1,4 @@
 import {React, useEffect, useState }from 'react';
-import valThorens from '../images/val-thorens-card.jpg';
-import Courchevel from '../images/Courchevel-card.jpg';
-import LesMenuires from '../images/Les-menuires-card.png';
 import {AiOutlineStar, AiFillStar} from 'react-icons/ai'
 import ResortCard from '../components/resortCard';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -116,7 +113,7 @@ const [resortCardData, setResortCardData] = useState({})
  {Object.keys(resortCardData).map((resortData)=>{
            return(  
               <SwiperSlide>
-              <ResortCard src={resortCardData[resortData].src} title={resortCardData[resortData].resort_Title} name={resortCardData[resortData].resort_name} favouriteCount={resortCardData[resortData].favouriteCount} degrees={resortCardData[resortData].degrees} rain={resortCardData[resortData].rain} wind={resortCardData[resortData].wind} favouriteToogle={true} />
+              <ResortCard src={`/images/${resortCardData[resortData].src}`} title={resortCardData[resortData].resort_Title} name={resortCardData[resortData].resort_name} favouriteCount={resortCardData[resortData].favouriteCount} degrees={resortCardData[resortData].degrees} rain={resortCardData[resortData].rain} wind={resortCardData[resortData].wind} favouriteToogle={true} />
             </SwiperSlide>
           
              )

@@ -103,12 +103,6 @@ const ResortCard = ({ src, title, name, favouriteCount, degrees, rain, wind , fa
           <button id={name + "Filled"} name={name} onClick={ToggleStar} className={filledStar}><AiFillStar className='text-primary dark:text-white' size={35} cursor={"pointer"} /> </button>
           {favouriteCount}</div>
         </div>
-            
-        {/* <div className='grid grid-cols-3 mt-10 mb-2 dark:text-white'>
-          <div>{degrees}{'\u00b0'}C</div>
-          <div className='flex'> <BsUmbrellaFill size={25}/> {rain}%</div>
-          <div className='flex'> <BiWind size={25}/> {wind}%</div>
-        </div> */}
       </div>
       </div>
               </>
