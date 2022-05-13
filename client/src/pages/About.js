@@ -27,10 +27,11 @@ const [data, setData] = useState({})
       setData(response.data)
       if(response.data.message == "authentication failed"){
         localStorage.removeItem("jwt");
-        navigate("/login")
       }
     })
   }
+
+  
   return (
       <>
       <div className='container'>
