@@ -1,24 +1,9 @@
-import {useState,React} from "react"
+import {React} from "react"
 import "../App.css"
 import Illustration from '../images/ski-illustration.png';
-import Footer from '../components/footer'
-import { useNavigate } from "react-router-dom"
-import {useEffect} from 'react'
-import axios from "axios";
 
 
 const Home = () =>{
-  let navigate = useNavigate()
-
-  useEffect(() => {
-      // userAuthenticated();
-    }, [navigate]);
-   
-
-const [data, setData] = useState({})
-    
-
-
   return (
     <>
 <div className="grid lg:grid-cols-2 grid-cols-1">
@@ -33,10 +18,8 @@ const [data, setData] = useState({})
 </div>
 <div className="grid lg:grid-cols-3 grid-cols-1">
   <div className="hidden lg:grid"></div>
-  <div className="mr-48 lg:col-span-2 pt-10 lg:pt-0 mx-auto"><img className="min-w-[140%] lg:min-w-[80%] lg:max-w-[80%] mx-auto lg:mt-20" src={Illustration}></img></div>
+  <div className="mr-48 lg:col-span-2 pt-10 lg:pt-0 mx-auto dark:hidden"><img className="min-w-[140%] lg:min-w-[80%] lg:max-w-[80%] mx-auto lg:mt-20" src={Illustration}></img></div>
 </div>
-    
-    
         </>
   );
 }

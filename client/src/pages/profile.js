@@ -1,12 +1,11 @@
 import "../App.css"
-import dp from "../images/dp.png";
 import {AiOutlineProfile} from 'react-icons/ai'
 import {RiLockPasswordLine} from 'react-icons/ri'
-import {FiSettings, FiLogOut, FiPrinter} from 'react-icons/fi'
+import {FiSettings, FiLogOut} from 'react-icons/fi'
 import {ImBin} from 'react-icons/im'
 import {AiOutlineStar } from 'react-icons/ai'
 import axios from "axios";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ReactLoading from "react-loading"
 
