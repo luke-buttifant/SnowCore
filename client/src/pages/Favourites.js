@@ -113,7 +113,7 @@ const [resortCardData, setResortCardData] = useState({})
  {Object.keys(resortCardData).map((resortData)=>{
            return(  
               <SwiperSlide>
-              <ResortCard src={resortCardData[resortData].src} title={resortCardData[resortData].resort_Title} name={resortCardData[resortData].resort_name} favouriteCount={resortCardData[resortData].favouriteCount} degrees={resortCardData[resortData].degrees} rain={resortCardData[resortData].rain} wind={resortCardData[resortData].wind} favouriteToogle={true} />
+              <ResortCard src={`/images/${resortCardData[resortData].src}`} title={resortCardData[resortData].resort_Title} name={resortCardData[resortData].resort_name} favouriteCount={resortCardData[resortData].favouriteCount} degrees={resortCardData[resortData].degrees} rain={resortCardData[resortData].rain} wind={resortCardData[resortData].wind} favouriteToogle={true} />
             </SwiperSlide>
           
              )

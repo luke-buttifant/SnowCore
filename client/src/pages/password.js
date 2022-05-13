@@ -8,6 +8,8 @@ import {AiOutlineStar } from 'react-icons/ai'
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 
 const Password = () =>{
   let navigate = useNavigate()
@@ -20,25 +22,25 @@ const Password = () =>{
   const [repeatPassword, setRepeatPassword] = useState();
   
 
-  const onFormSubmit = (e) => {
+  const onFormSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append('_id', data._id)
-    formData.append('password', newPassword)
-    
-    const config = {
-      headers: {
-        'content-type': 'multipart/form-data',
-      }
+    if(newPassword != repeatPassword){
+      setErrorOpen(true)
+      return
     }
-   axios.post('/api/users/updatePassword', formData, config).then((response) => {
-      alert(response);
-    }).catch((err) => {
-      console.log('error', err)
-    })
+    else{
+      await axios.post('/api/users/updatePassword', {id: data._id, password: newPassword}).then((response) => {
+         console.log(response)
+         setOpen(true);
+       }).catch((err) => {
+         console.log('error', err)
+       })
+    }
+
   }
 
 
+  
     
 
 
@@ -59,8 +61,32 @@ const [data, setData] = useState({})
     })
   }
 
+  const [open, setOpen] = useState(false);
+  const [errorOpen, setErrorOpen] = useState(false)
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const errorHandleClose = () => {
+    setErrorOpen(false);
+  };
+
+
   return (
       <>
+
+<Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+  <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+    Password Succesfully Changed!
+  </Alert>
+</Snackbar>
+<Snackbar open={errorOpen} autoHideDuration={6000} onClose={errorHandleClose}>
+  <Alert onClose={errorHandleClose} severity="error" sx={{ width: '100%' }}>
+   Passwords Must Match!
+  </Alert>
+</Snackbar>
+
       <form onSubmit={onFormSubmit}>
       <div className="container">
         
@@ -87,10 +113,10 @@ const [data, setData] = useState({})
       <h1 className="text-center text-3xl text-gray-600 dark:text-white font-bold m-5">Edit Profile</h1>
       <div className="flex flex-col gap-2 mt-10">
       <div><label className="text-gray-500 dark:text-white" htmlFor="password">New Password</label></div>
-      <div><input className="min-w-full dark:bg-dark-mode-secondary p-2 dark:text-white" name="newPassword" type="password" defaultValue={123} onChange={(e) => setNewPassword(e.target.value)}/></div>
+      <div><input className="min-w-full dark:bg-dark-mode-secondary p-2 dark:text-white" name="newPassword" type="password" placeholder="password" onChange={(e) => setNewPassword(e.target.value)}/></div>
       <hr className="dark:opacity-25"></hr>
       <div><label className="text-gray-500 dark:text-white" htmlFor="newPassword">Repeat Password</label></div>
-      <div><input className="min-w-full dark:bg-dark-mode-secondary p-2 dark:text-white" name="repeatPassword" type="password" defaultValue={123} onChange={(e) => setRepeatPassword(e.target.value)}/></div>
+      <div><input className="min-w-full dark:bg-dark-mode-secondary p-2 dark:text-white" name="repeatPassword" type="password" placeholder="password" onChange={(e) => setRepeatPassword(e.target.value)}/></div>
       <hr className="dark:opacity-25"></hr>
       <div className="mx-auto"><button type="submit" className="bg-primary dark:bg-green-200 hover:bg-secondary dark:hover:bg-white p-4 text-lg lg:text-2xl w-48 lg:pl-10 lg:pr-10 lg:min-w-full rounded-lg  m-5 text-white dark:text-black font-bold">Update</button></div>
       </div>

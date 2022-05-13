@@ -128,7 +128,7 @@ const Resorts = () =>{
     >
       {isLoggedIn ? resortData.map((data) => 
                         <SwiperSlide key={data.resort_Title}>
-                        <ResortCard key={data.resort_Title} src={data.src} title={data.resort_Title} name={data.resort_name} favouriteCount={data.favouriteCount} degrees={data.degrees} rain={data.rain} wind={data.wind} favouriteToogle={data.favourite} />
+                        <ResortCard key={data.resort_Title} src={`/images/${data.src}`} title={data.resort_Title} name={data.resort_name} favouriteCount={data.favouriteCount} degrees={data.degrees} rain={data.rain} wind={data.wind} favouriteToogle={data.favourite} />
                       </SwiperSlide> )  :
                        resortData.map((data) => 
                             <SwiperSlide key={data.resort_Title}>
