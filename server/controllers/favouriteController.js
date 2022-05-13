@@ -1,6 +1,6 @@
 const Favourite = require('../model/favouriteModel')
 const Resorts = require('../model/resortModelv2')
-
+const User = require('../model/userModel')
 const asyncHandler = require('express-async-handler');
 require("dotenv").config();
 
@@ -64,7 +64,6 @@ const createResort = asyncHandler(async (req, res) => {
 
 const addFavouriteResort = asyncHandler(async (req, res) => {
     try{
-       
         const favouriteResortTrue = req.body;
         //Add resort to favourites
         const favourites = await Favourite.updateOne(
@@ -78,7 +77,15 @@ const addFavouriteResort = asyncHandler(async (req, res) => {
         const resorts = await Resorts.updateOne(
             {"resort_name":favouriteResortTrue.star},
              {$set: {"favouriteCount" : likes.favouriteCount+1}});
-
+        //find user email 
+        const useremail = await User.findById(req.userId);
+        
+        //insert email to resort
+        const resorts1 = await Resorts.updateOne(
+                {"resort_name":favouriteResortTrue.star},
+                 {$push: {"snowAlerts" : useremail.email}});
+        console.log("WORK"+useremail.email)
+        console.log(resorts1)
         console.log(favourites)
         console.log(resorts)
         res.send(favourites)
@@ -103,6 +110,13 @@ const removeFavouriteResort = asyncHandler(async (req, res) => {
         const resorts = await Resorts.updateOne(
             {"resort_name":favouriteResortTrue.star},
              {$set: {"favouriteCount" : likes.favouriteCount-1}});
+             //find user email
+             const useremail = await User.findById(req.userId);
+        
+             //insert email to resort
+             const resorts1 = await Resorts.updateOne(
+                     {"resort_name":favouriteResortTrue.star},
+                      {$pull: {"snowAlerts" : useremail.email}});
 
         console.log(favourites)
         console.log(resorts)

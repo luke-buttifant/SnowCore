@@ -11,7 +11,7 @@ const cors = require("cors");
 
 //Database Connection
 connectDB();
-cron.schedule("6 13 * * *", () => {
+cron.schedule("10 * * * * *", () => {
   emailService();
   console.log("Run every ?? Cake is a lie..");
 });
