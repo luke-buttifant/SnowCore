@@ -3,10 +3,6 @@ import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { DataGrid } from "@mui/x-data-grid";
-import { BsCloudSnow } from "react-icons/bs";
-import { WiStrongWind } from "react-icons/wi";
-import { IoConstructOutline } from "react-icons/io5";
-import CourchevelDisplayPic from "../images/courchevel-display.png";
 import ReactLoading from "react-loading";
 
 const HistoricalData = () => {

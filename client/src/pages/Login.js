@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from "react";
 import "../App.css";
-import loginIllustration from "../images/loginIllustration.jpg";
+import loginIllustration from "../images/loginIllustration.webp";
 import axios from "axios";
 import Spinner from "../components/spinner";
 import ErrorMessage from "../components/errorMessage";

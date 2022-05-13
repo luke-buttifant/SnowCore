@@ -1,7 +1,4 @@
 import {React, useEffect, useState }from 'react';
-import valThorens from '../images/val-thorens-card.jpg';
-import Courchevel from '../images/Courchevel-card.jpg';
-import LesMenuires from '../images/Les-menuires-card.png';
 import {AiOutlineStar, AiFillStar} from 'react-icons/ai'
 import ResortCard from '../components/resortCard';
 import { Swiper, SwiperSlide } from 'swiper/react';
