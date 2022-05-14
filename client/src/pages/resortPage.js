@@ -2,11 +2,8 @@ import "../App.css";
 import axios from "axios";
 import React, { useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate, Link} from "react-router-dom";
-import { DataGrid } from "@mui/x-data-grid";
 import { BsCloudSnow } from "react-icons/bs";
 import { WiStrongWind } from "react-icons/wi";
-import { IoConstructOutline } from "react-icons/io5";
-import CourchevelDisplayPic from "../images/courchevel-display.webp";
 import ReactLoading from "react-loading";
 
 const Resort = () => {
@@ -25,22 +22,6 @@ const Resort = () => {
     // userAuthenticated();
     getWeatherData();
   }, []);
-
-  // const userAuthenticated = async () => {
-  //   var user = await axios
-  //     .get("/api/users/currentUser", {
-  //       headers: {
-  //         "x-access-token": localStorage.getItem("jwt"),
-  //       },
-  //     })
-  //     .then((response) => {
-  //       setData(response.data);
-  //       if (response.data.message == "authentication failed") {
-  //         localStorage.removeItem("jwt");
-  //         // navigate("/login");
-  //       }
-  //     });
-  // };
 
   const getWeatherData = async () => {
     await axios.get("/api/weather/getWeather", {params: {resort: location.state.title}}).then((response) => {

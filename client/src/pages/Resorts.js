@@ -99,10 +99,11 @@ const Resorts = () =>{
 
 <div id='main-body' className="container">
   
-    <h1 className="text-center text-4xl font-Sora dark:text-white mb-20 md:pt-20 pt-4 font-bold"> Three Valleys Ski Resort</h1>
+    <h1 className="text-center text-4xl dark:text-white mb-20 md:pt-28 pt-4 font-bold ">Three Valleys Ski Resorts</h1>
     </div>
-    <div className='max-w-[80%] mx-auto'>
+    <div className='max-w-[80%] mx-auto '>
 <Swiper autoHeight id="swiper" className='shadow-lg mb-10'
+mousewheel={true}
       grabCursor={true}
       spaceBetween={10}
       navigation={true}
