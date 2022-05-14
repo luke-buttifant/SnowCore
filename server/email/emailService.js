@@ -4,7 +4,8 @@ const asyncHandler = require('express-async-handler');
 require("dotenv").config();
 const axios = require('axios')
 
-
+function mailSender(emailList,resorts){
+  console.log(emailList)
 var transporter = nodemailer.createTransport({
   service: 'outlook',
   auth: {
@@ -14,13 +15,13 @@ var transporter = nodemailer.createTransport({
 });
 
 var mailOptions = {
-  from: 'SnowCoreOfficial@outlook.com, ',
-  to: 'SnowCoreOfficial@outlook.com, ',
+  from: 'SnowCoreOfficial@outlook.com',
+  bcc: emailList,
   subject: 'Snowfall Alert',
-  text: 'Freshly snow today fell in the villages of: Please pay attention as it may be dangerous. This message was generated automatically. If necessary, please contact our Snowcore team.'
+  text: `There was snowfall today at ${resorts}. Please pay attention as it may be dangerous. This message was generated automatically. If necessary, please contact our Snowcore team.`
 };
 
-const emailService = async () => {
+//const emailService = async () => {
 transporter.sendMail(mailOptions, function(error, info){
   if (error) {
     console.log(error);
@@ -29,14 +30,47 @@ transporter.sendMail(mailOptions, function(error, info){
   }
 });
 } 
+//}
 
-const emails = asyncHandler(async (req, res) => {
-  const request = `https://api.weatherunlocked.com/api/resortforecast/${333005}?hourly_interval=&app_id=${process.env.API_APP_ID}&app_key=${process.env.API_APP_KEY}`
+async function getWeather(resort_id) {
+  const request = `https://api.weatherunlocked.com/api/resortforecast/${resort_id}?hourly_interval=12&app_id=${process.env.API_APP_ID}&app_key=${process.env.API_APP_KEY}`
   const weather = await axios.get(request)
+  return [weather.data.forecast[0].mid.freshsnow_cm,weather.data.name]
 
-  const emails = await Resorts.findOne({resort_name:"courchevel"});
-  console.log(emails.snowAlerts)
-  console.log(weather.data.forecast)
-})
+}
 
-module.exports = emails
+const checkForSnowFall = async() => {
+  const resorts =["333005","333020","333012","333031","54883577","54885193","333014"]
+  resortDataList=[]
+  emailList=[]
+
+  for(let i = 0;i < resorts.length; i++){
+    var response = await getWeather([resorts[i]])
+    var name = response[1]
+    var snowfall= response[0]
+    if(snowfall >0){
+      const emails = await Resorts.findOne({resort_Title:name});
+      for(let i = 0;i < emails.snowAlerts.length; i++){
+        emailList.push(emails.snowAlerts[i])
+        
+      }
+      resortDataList.push(name+" ("+snowfall+"cm)")
+      console.log(resortDataList)
+      console.log(emailList)
+    }
+    
+
+} 
+
+console.log(emailList.length)
+if(emailList.length==0){
+  console.log("Today it wasn't snowing at any of the resorts.")
+  }
+  else{
+    console.log(emailList)
+    mailSender(emailList,resortDataList)
+  }
+
+
+}
+module.exports = checkForSnowFall

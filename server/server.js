@@ -4,16 +4,17 @@ const connectDB = require("./database/db");
 const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 3001;
 const { errorHandler } = require("./middlewares/errorMiddleware");
-const emailService = require("./email/emailService");
+const mailSender = require("./email/emailService");
 const monthlyData = require("./monthlyData/monthlyData");
 const cron = require("node-cron");
 const cors = require("cors");
 
 //Database Connection
 connectDB();
-cron.schedule("10 * * * * *", () => {
-  emailService();
-  console.log("Run every ?? Cake is a lie..");
+
+cron.schedule("* 18 * * * *", () => {
+  mailSender();
+  console.log("Run every day just before 6PM.");
 });
 //save data about users
 cron.schedule("* 59 23 31 * * *", () => {
