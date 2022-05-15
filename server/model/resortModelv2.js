@@ -30,6 +30,13 @@ const resortModel = mongoose.Schema(
       type: String,
       required: [true, ''],
     },
+    snowAlerts: {
+      type: [
+      
+
+      ],
+      required: [true, ''],
+    },
     
 
    
