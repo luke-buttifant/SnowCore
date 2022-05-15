@@ -16,9 +16,9 @@ const Home = () =>{
     <div>
     </div>
 </div>
-<div className="grid lg:grid-cols-3 grid-cols-1">
+<div className="grid lg:grid-cols-3 grid-cols-1 mt-20">
   <div className="hidden lg:grid"></div>
-  <div className="mr-48 lg:col-span-2 pt-10 lg:pt-0 mx-auto dark:hidden"><img className="min-w-[140%] lg:min-w-[80%] lg:max-w-[80%] mx-auto lg:mt-20" src={Illustration}></img></div>
+  <div className="mr-48 lg:col-span-2 pt-10 lg:pt-0 mx-auto dark:hidden min-w-screen"><img className=" ml-10 min-w-[140%] lg:min-w-[80%] lg:max-w-[80%] mx-auto lg:mt-20 text-center" src={Illustration}></img></div>
 </div>
         </>
   );

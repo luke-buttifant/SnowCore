@@ -93,7 +93,7 @@ const Register = () =>{
                         <div className="flex"><h1 className="text-2xl lg:text-3xl pr-2 pt-2">Welcome to</h1><h1 className="text-3xl lg:text-3xl bg-primary p-2 rounded-lg text-white">SNOWCORE.</h1></div>
                         <h2 className="text-xl text-gray-500">Register an account</h2>   
                         <form onSubmit={submitHandler}>   
-                        <div className="pt-10 pr-20 mx-auto">   
+                        <div className="pt-10 pr-10 lg-pr-20 mx-auto">   
                             <div className="grid grid-cols-2 gap-2">
                                 <div>
                             <input
@@ -102,7 +102,7 @@ const Register = () =>{
                                 value={first_name}
                                 placeholder="First name..." 
                                 onChange={(e) => setFirstName(e.target.value)}
-                                className="w-full py-3 px-3 border hover:border-gray-700 shadow-lg rounded-2xl text-base border-gray-400"/>     
+                                className="w-full py-3 px-3 border hover:border-gray-700 shadow-lg rounded-lg text-base border-gray-400"/>     
                                 </div>
                                 <div>
                             <input 
@@ -111,40 +111,40 @@ const Register = () =>{
                                 value={last_name}
                                 onChange={(e) => setLastName(e.target.value)}
                                 placeholder="Last name..." 
-                                className="w-full py-3 px-3 border hover:border-gray-700 rounded-2xl shadow-lg  text-base border-gray-400"/>     
+                                className="w-full py-3 px-3 border hover:border-gray-700 rounded-lg shadow-lg  text-base border-gray-400"/>     
                                 </div>
                             <div>
                         </div>
                         </div>
                             </div>
-                            <div className="pr-20 mx-auto">                        
+                            <div className="pr-10 lg:pr-20 mx-auto">                        
                             <input 
                                 type="email" 
                                 name="email" 
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 placeholder="Email..." 
-                                className="w-full py-3 px-3 border hover:border-gray-700 border-gray-400  shadow-lg rounded-md text-base "/>                            
+                                className="w-full py-3 px-3 border hover:border-gray-700 border-gray-400  shadow-lg rounded-lg text-base "/>                            
                         </div>
-                        <div className="pt-2 pr-20">
+                        <div className="pt-2 pr-10 lg:pr-20">
                             <input 
                                 type="password" 
                                 name="password" 
                                 value={password}
                                 placeholder="Password..." 
                                 onChange={(e) => setPassword(e.target.value)}
-                                className=" w-full py-3 px-3 border  shadow-lg rounded-2xl text-base border-gray-400 mx-auto"/>
+                                className=" w-full py-3 px-3 border  shadow-lg rounded-lg text-base border-gray-400 mx-auto"/>
                         </div>
-                        <div className="pt-2 pr-20">
+                        <div className="pt-2 pr-10 lg:pr-20">
                             <input 
                                 type="password" 
                                 name="RepeatPassword" 
                                 placeholder="Repeat Password..." 
                                 value={repeatPassword}
                                 onChange={(e) => setRepeatPassword(e.target.value)}
-                                className=" w-full py-3 px-3 border  shadow-lg rounded-2xl text-base border-gray-400 mx-auto"/>
+                                className=" w-full py-3 px-3 border  shadow-lg rounded-lg text-base border-gray-400 mx-auto"/>
                         </div>
-                        <div className="pt-2 mr-20">
+                        <div className="pt-2 pr-10 lg:pr-20">
                     <LocalizationProvider dateAdapter={AdapterDateFns} className="bg-white">
   <DatePicker
   className="bg-white"
@@ -174,7 +174,7 @@ const Register = () =>{
       </RadioGroup>
     </FormControl>
                     </div>
-                        <div className="text-sm font-sans font-medium w-full pr-20 pt-5 text-center mx-auto">
+                        <div className="text-sm font-sans font-medium w-full pr-10 lg:pr-20 pt-5 text-center mx-auto">
                         {error &&<ErrorMessage>{error}</ErrorMessage>}
                     {message &&<ErrorMessage>{message}</ErrorMessage>}
                     <button 

@@ -61,7 +61,7 @@ const HistoricalData = () => {
       {
         field: 'description',
         headerName: 'Description',
-        width: 'auto',
+        width: 160,
       },
   ];
   var rows = []
@@ -79,8 +79,9 @@ const HistoricalData = () => {
           className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
         />
       ) : (
-        <div className="min-h-screen min-w-screen bg-white mx-auto pt-10">
-      <DataGrid style={{ height: 800, width: '80%', marginInline: 'auto'}}
+        <div className="min-h-screen min-w-screen  mx-auto pt-10">
+          <div style={{ height: 800, width: '80%', marginInline: "auto"}}>
+      <DataGrid
       getRowId={(rows) => rows.datetime}
         rows={rows}
         columns={columns}
@@ -89,6 +90,9 @@ const HistoricalData = () => {
         disableSelectionOnClick
       />
     </div>
+    </div>
+
+    
       )}
     </>
   );

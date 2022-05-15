@@ -60,7 +60,7 @@ const Login = () => {
             src={loginIllustration}
           ></img>
         </div>
-        <div className="text-white font-sans font-bold min-h-screen mx-auto container bg-white ">
+        <div className="text-white font-sans font-bold min-h-screen mx-auto container   ">
           <div className="grid grid-rows-6 min-h-screen items-center mx-auto">
             <div className="row-span-4 row-start-2 col-auto text-black">
               <div className="flex">
@@ -71,7 +71,7 @@ const Login = () => {
               </div>
               <h2 className="text-xl text-gray-500">login to your account</h2>
               <form onSubmit={submitHandler}>
-                <div className="pt-10 pr-20 mx-auto">
+                <div className="pt-10 pr-10 lg:pr-20 mx-auto ">
                   {error && <ErrorMessage>{error}</ErrorMessage>}
                   <input
                     type="email"
@@ -82,7 +82,7 @@ const Login = () => {
                     className="w-full py-3 px-3 border hover: border-gray-500 shadow-lg rounded-2xl text-base border-gray-400"
                   />
                 </div>
-                <div className="pt-2 pr-20">
+                <div className="pt-2 pr-10 lg:pr-20">
                   <input
                     value={password}
                     type="password"
@@ -98,14 +98,14 @@ const Login = () => {
                     Forgot password?
                   </a>
                 </div>
-                <div className="text-sm font-sans font-medium w-full pr-20 pt-5 text-center mx-auto">
+                <div className="text-sm font-sans font-medium w-full pr-10 pt-5 text-center mx-auto">
                   <button
                     type="submit"
                     className="text-center w-full py-4 bg-primary hover:bg-dark-mode  text-white shadow-lg rounded-2xl mx-auto font-bold "
                   >
-                    <div className="flex flex-row items-center">
-                      <div className="mx-auto flex">
-                        <div className="text-center">SIGN IN</div>
+                    <div className="flex flex-row items-center min-w-screen">
+                      <div className="flex mx-auto">
+                        <div className="text-center mx-auto">SIGN IN</div>
                         {loading && <Spinner />}
                       </div>
                     </div>
@@ -116,10 +116,10 @@ const Login = () => {
                   >
                     Don´t have an account? Sign up
                   </a>
-                  <h1 className="mt-2 text-xl font-bold text-red-400">
+                  {/* <h1 className="mt-2 text-xl font-bold text-red-400">
                     Admin: <br></br> email: admin@snowcore.com <br></br>pass:
                     admin123
-                  </h1>
+                  </h1> */}
                 </div>
               </form>
             </div>

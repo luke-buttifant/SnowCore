@@ -59,7 +59,7 @@ export const Users = () => {
         if(users[u]._id === favourites[f].user_ID){
           row.push({...users[u], brides_Les_Bains: favourites[f].brides_Les_Bains, courchevel: favourites[f].courchevel,
              LesMenuires: favourites[f].les_Menuires, valThorens: favourites[f].val_Thorens,
-               meribel: favourites[f].Méribel, orelle: favourites[f].orelle, 
+               meribel: favourites[f].meribel, orelle: favourites[f].orelle, 
                 stMartin: favourites[f].saint_Martin_De_Belleville
           })
         }

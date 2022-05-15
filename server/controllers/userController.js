@@ -17,7 +17,7 @@ const getUsers = async (req, res) => {
 
 const registerUser = asyncHandler(async (req, res) => {
     const {first_name, last_name, email, password, gender,dob, is_admin} = req.body;
-    const [  courchevel,meribel, brides_Les_Bains, les_Menuires, saint_Martin_De_Belleville,val_Thorens, orelle] = [true,true,false,false,false,false,false]
+    const [  courchevel,meribel, brides_Les_Bains, les_Menuires, saint_Martin_De_Belleville,val_Thorens, orelle] = [false,false,false,false,false,false,false]
 
     const userExists = await User.findOne({email});
 
