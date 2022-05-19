@@ -5,6 +5,8 @@ require("dotenv").config();
 const axios = require('axios');
 const User = require("../model/userModel")
 const favouriteSchema = require("../model/favouriteModel")
+const path = require('path')
+const hbs = require('nodemailer-express-handlebars')
 
 function mailSender(emailList,snowfall, resorts){
   console.log(emailList)
@@ -16,11 +18,33 @@ var transporter = nodemailer.createTransport({
   }
 });
 
+// point to the template folder
+const handlebarOptions = {
+  viewEngine: {
+      partialsDir: path.resolve('./server/email/views/'),
+      defaultLayout: false,
+  },
+  viewPath: path.resolve('./server/email/views/'),
+};
+
+// use a template file with nodemailer
+transporter.use('compile', hbs(handlebarOptions))
+
 var mailOptions = {
+  attachments: [{
+    filename: 'snowcore.jpeg',
+    path: './server/email/images/snowcore.jpeg',
+    cid: 'image@snowcore1234'
+  }],
   from: 'SnowCoreOfficial@outlook.com',
   bcc: emailList,
   subject: 'Snowfall Alert',
-  text: `There was ${snowfall}cm of snowfall today at ${resorts}. Please pay attention as it may be dangerous. This message was generated automatically. If necessary, please contact our Snowcore team.`
+  text: `There was ${snowfall}cm of snowfall today at ${resorts}. Please pay attention as it may be dangerous. This message was generated automatically. If necessary, please contact our Snowcore team.`,
+  template: "email",
+  context:{
+    snowfall: snowfall,
+    resorts: resorts 
+}
 };
 
 //const emailService = async () => {
@@ -106,7 +130,8 @@ const checkForSnowFall = async() => {
   for(let i = 0;i < resorts.length; i++){
       var response = await getWeather([resorts[i]])
       var name = response[1]
-      var snowfall= response[0]
+      // var snowfall= response[0]
+      var snowfall = 1
       if(snowfall > 0){
         if(name == "Courchevel"){
           console.log(courchevel)
