@@ -21,10 +21,10 @@ var transporter = nodemailer.createTransport({
 // point to the template folder
 const handlebarOptions = {
   viewEngine: {
-      partialsDir: path.resolve('./server/email/views/'),
+      partialsDir: path.resolve(__dirname + '/views/'),
       defaultLayout: false,
   },
-  viewPath: path.resolve('./server/email/views/'),
+  viewPath: path.resolve(__dirname + '/views/'),
 };
 
 // use a template file with nodemailer
@@ -32,8 +32,8 @@ transporter.use('compile', hbs(handlebarOptions))
 
 var mailOptions = {
   attachments: [{
-    filename: 'snowcore.jpeg',
-    path: './server/email/images/snowcore.jpeg',
+    filename: 'snowcore.png',
+    path: __dirname + '/images/snowcore.png',
     cid: 'image@snowcore1234'
   }],
   from: 'SnowCoreOfficial@outlook.com',
@@ -130,8 +130,7 @@ const checkForSnowFall = async() => {
   for(let i = 0;i < resorts.length; i++){
       var response = await getWeather([resorts[i]])
       var name = response[1]
-      // var snowfall= response[0]
-      var snowfall = 1
+      var snowfall= response[0]
       if(snowfall > 0){
         if(name == "Courchevel"){
           console.log(courchevel)
