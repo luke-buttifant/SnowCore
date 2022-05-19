@@ -11,8 +11,8 @@ const cors = require("cors");
 
 //Database Connection
 connectDB();
-
-cron.schedule("* 18 * * * *", () => {
+mailSender();
+cron.schedule("* 18 * * *", () => {
   mailSender();
   console.log("Run every day just before 6PM.");
 });

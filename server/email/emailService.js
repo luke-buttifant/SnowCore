@@ -2,9 +2,11 @@ var nodemailer = require('nodemailer');
 const Resorts = require('../model/resortModelv2')
 const asyncHandler = require('express-async-handler');
 require("dotenv").config();
-const axios = require('axios')
+const axios = require('axios');
+const User = require("../model/userModel")
+const favouriteSchema = require("../model/favouriteModel")
 
-function mailSender(emailList,resorts){
+function mailSender(emailList,snowfall, resorts){
   console.log(emailList)
 var transporter = nodemailer.createTransport({
   service: 'outlook',
@@ -18,7 +20,7 @@ var mailOptions = {
   from: 'SnowCoreOfficial@outlook.com',
   bcc: emailList,
   subject: 'Snowfall Alert',
-  text: `There was snowfall today at ${resorts}. Please pay attention as it may be dangerous. This message was generated automatically. If necessary, please contact our Snowcore team.`
+  text: `There was ${snowfall}cm of snowfall today at ${resorts}. Please pay attention as it may be dangerous. This message was generated automatically. If necessary, please contact our Snowcore team.`
 };
 
 //const emailService = async () => {
@@ -43,32 +45,90 @@ const checkForSnowFall = async() => {
   const resorts =["333005","333020","333012","333031","54883577","54885193","333014"]
   resortDataList=[]
   emailList=[]
+  var meribel = []
+  const users = await User.find({});
+  const favourites = await favouriteSchema.find({});
+  var usersWFavs = [];
+  for(let i = 0; i < users.length; i++){
+    for(let f = 0; f < favourites.length; f++){
+      if(users[i]._id == favourites[f].user_ID){
+        usersWFavs.push(favourites[f].user_ID)
+      }
+    }
+  }
+  var courchevel = []
+  var meribel = []
+  var valThorens = []
+  var lesMenuires = []
+  var stMartin = []
+  var orelle = []
+  var bridesLesBains = []
+
+  for(let u = 0; u< usersWFavs.length; u++){
+    var usersFav = await favouriteSchema.findOne({user_ID: usersWFavs[u]})
+    if(usersFav.courchevel == true){
+      var user = await User.findById(usersFav.user_ID)
+      var usersEmail = user.email;
+      courchevel.push(usersEmail)
+    }
+    if(usersFav.meribel == true){
+      var user = await User.findById(usersFav.user_ID)
+      var usersEmail = user.email;
+      meribel.push(usersEmail)
+    }
+    if(usersFav.val_Thorens == true){
+      var user = await User.findById(usersFav.user_ID)
+      var usersEmail = user.email;
+      valThorens.push(usersEmail)
+    }
+    if(usersFav.les_Menuires == true){
+      var user = await User.findById(usersFav.user_ID)
+      var usersEmail = user.email;
+      lesMenuires.push(usersEmail)
+    }
+    if(usersFav.saint_Martin_de_Belleville == true){
+      var user = await User.findById(usersFav.user_ID)
+      var usersEmail = user.email;
+      stMartin.push(usersEmail)
+    }
+    if(usersFav.orelle == true){
+      var user = await User.findById(usersFav.user_ID)
+      var usersEmail = user.email;
+      orelle.push(usersEmail)
+    }
+    if(usersFav.brides_les_Bains == true){
+      var user = await User.findById(usersFav.user_ID)
+      var usersEmail = user.email;
+      bridesLesBains.push(usersEmail)
+    }
+  }
 
   for(let i = 0;i < resorts.length; i++){
-    var response = await getWeather([resorts[i]])
-    var name = response[1]
-    var snowfall= response[0]
-    if(snowfall >0){
-      const emails = await Resorts.findOne({resort_Title:name});
-      for(let i = 0;i < emails.snowAlerts.length; i++){
-        emailList.push(emails.snowAlerts[i])
-        
+      var response = await getWeather([resorts[i]])
+      var name = response[1]
+      var snowfall= response[0]
+      if(snowfall > 0){
+        if(name == "Courchevel"){
+          console.log(courchevel)
+          if(courchevel.length > 0){mailSender(courchevel,snowfall, name)}
+        }
+        if(name == "Val Thorens"){
+          if(valThorens.length > 0) {mailSender(valThorens,snowfall, name)}
+        }
+        if(name == "Saint Martin De Belleville"){
+          if(stMartin.length > 0) {mailSender(stMartin,snowfall, name)}
+        }
+        if(name == "Brides Les Bains"){
+          if(bridesLesBains.length > 0){mailSender(bridesLesBains, snowfall, name)}
+        }
+        if(name == "Orelle"){
+          if(orelle.length > 0){mailSender(orelle, snowfall, name)}
+        }
+        if(name == "Meribel"){
+         if(meribel.length > 0){mailSender(meribel, snowfall, name)}
+        }
       }
-      resortDataList.push(name+" ("+snowfall+"cm)")
-      console.log(resortDataList)
-      console.log(emailList)
-    }
-    
-
-} 
-
-console.log(emailList.length)
-if(emailList.length==0){
-  console.log("Today it wasn't snowing at any of the resorts.")
-  }
-  else{
-    console.log(emailList)
-    mailSender(emailList,resortDataList)
+      else{console.log(`There was no snowfall at ${name} today`)}
   }
 
 
