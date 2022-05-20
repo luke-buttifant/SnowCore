@@ -11,6 +11,8 @@ const hbs = require('nodemailer-express-handlebars')
 function mailSender(emailList,snowfall, resorts){
   console.log(emailList)
 var transporter = nodemailer.createTransport({
+  pool: true,
+  maxConnections: 100,
   service: 'outlook',
   auth: {
     user: 'snowcoreofficial@outlook.com',
@@ -151,6 +153,7 @@ const checkForSnowFall = async() => {
         if(name == "Meribel"){
          if(meribel.length > 0){mailSender(meribel, snowfall, name)}
         }
+        await new Promise(resolve => setTimeout(resolve, 1000));
       }
       else{console.log(`There was no snowfall at ${name} today`)}
   }
