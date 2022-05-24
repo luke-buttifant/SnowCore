@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
- <a href="www.snowcore.netlify.app">Snowcore.netlify.app</a><br>
+ <a href="https://snowcore.netlify.app">Snowcore.netlify.app</a><br>
  A progressive web application to keep track of snowfall in the three valleys, France.
 </p>
 
